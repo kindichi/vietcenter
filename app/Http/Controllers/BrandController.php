@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        echo 'index';
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        echo 'Create';
+        //
     }
 
     /**
