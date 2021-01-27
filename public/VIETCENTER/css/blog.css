@@ -1,0 +1,81 @@
+.banner {
+    position: relative;
+}
+
+.search {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    top: 50%;
+    z-index: 1;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.search>h2 {
+    font-family: SegoeUISemiBold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: white;
+    margin: 1rem;
+}
+
+.search>form {
+    height: 3rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    box-shadow: 0.5px 0.5px 0.5px 1px rgba(67, 59, 59, 0.5);
+}
+
+.search-input {
+    height: 3rem;
+    width: 24rem;
+    border: 0.5px solid rgb(179, 174, 174);
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+    -webkit-border-radius: ;
+    -moz-border-radius: ;
+    -ms-border-radius: ;
+    -o-border-radius: ;
+    outline: none;
+    padding-left: 1rem;
+}
+
+.search-select {
+    width: 13rem;
+    outline: none;
+    padding-left: 0.5rem;
+    border: 0.5px solid rgb(179, 174, 174);
+}
+
+.search-btn {
+    border: 0.5px solid rgb(179, 174, 174);
+    border-left: none;
+    outline: none;
+    width: 7.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    -webkit-border-radius: 0 0.5rem 0.5rem 0;
+    -moz-border-radius: 0 0.5rem 0.5rem 0;
+    -ms-border-radius: 0 0.5rem 0.5rem 0;
+    -o-border-radius: 0 0.5rem 0.5rem 0;
+    font-family: SegoeUISemiBold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: white;
+    background: rgb(115, 192, 74);
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.search-btn:hover {
+    background: rgb(35, 135, 206);
+}

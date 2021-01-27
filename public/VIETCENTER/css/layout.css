@@ -1,0 +1,593 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+html {
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src: url(../fonts/segoeui.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBold;
+    src: url(../fonts/segoeuib.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIItalic;
+    src: url(../fonts/segoeuii.ttf);
+}
+
+@font-face {
+    font-family: SegoeUILight;
+    src: url(../fonts/segoeuil.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiLight;
+    src: url(../fonts/segoeuisl.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBoldItalic;
+    src: url(../fonts/segoeuiz.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBlack;
+    src: url(../fonts/seguibl.ttf);
+}
+
+@font-face {
+    font-family: SegoeUILightItalic;
+    src: url(../fonts/seguili.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBlackItalic;
+    src: url(../fonts/seguibli.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiBold;
+    src: url(../fonts/seguisb.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiBoldItalic;
+    src: url(../fonts/seguisbi.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiLightItalic;
+    src: url(../fonts/seguisli.ttf);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.container-fluid,
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 0;
+}
+
+.header {
+    height: 7rem;
+    background-color: rgba(2, 67, 113);
+    z-index: 10;
+}
+
+.header-top {
+    height: 1.75rem;
+    border-bottom: 1px solid rgba(247, 247, 247, 0.2);
+}
+
+.header-top__contact {
+    padding: 0;
+}
+
+.header-top__contact>a {
+    font-family: SegoeUI;
+    padding: 0 0.2rem;
+    line-height: 1.75rem;
+    color: rgb(252, 242, 173);
+    text-decoration: none;
+}
+
+.header-top__contact>img:last-child {
+    padding: 0.4rem;
+}
+
+.header-top__contact>a:hover {
+    color: rgb(145, 233, 115)
+}
+
+.header-top__menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.header-top__menu>li>a {
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    padding: 0 0.5625rem;
+    color: rgb(252, 242, 173);
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.header-top__menu>li>a:hover {
+    color: rgb(145, 233, 115)
+}
+
+.nav>div>a {
+    color: white;
+}
+
+.fa-bars {
+    color: white;
+}
+
+.header-menu {
+    height: 5.25rem;
+}
+
+.header-menu>img {
+    margin: auto 0;
+    align-items: center;
+}
+
+.header-menu>nav {
+    padding: 0 0 0 2rem;
+}
+
+.header-menu__main>li {
+    height: 5.25rem;
+    position: relative;
+    margin: 0 0.5rem;
+}
+
+.header-menu__main>li>a {
+    font-family: SegoeUISemiBold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: -.02rem;
+    color: white;
+    text-decoration: none;
+    line-height: 5.25rem;
+}
+
+.header-menu__main>li:hover>a {
+    color: rgb(145, 233, 115);
+}
+
+.header-menu__main>li:hover>a::before {
+    content: "";
+    position: absolute;
+    bottom: 1.5rem;
+    height: 4px;
+    width: 100%;
+    background-color: rgb(145, 233, 115);
+}
+
+.header-menu__submenu,
+.header-menu__foreigntours,
+.header-menu__news,
+{
+    display: none;
+    position: absolute;
+}
+
+.header-menu__main>li:hover .header-menu__submenu {
+    display: block;
+}
+
+.header-menu__submenu {
+    display: none;
+    width: 12rem;
+    background: rgba(30, 89, 134);
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+}
+
+.header-menu__submenu>li {
+    height: 2.25rem;
+    border-bottom: 1px solid rgb(112, 144, 167);
+}
+
+.header-menu__submenu>li>a {
+    font-family: SegoeUISemiBold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    padding-left: 0.75rem;
+    line-height: 2.25rem;
+}
+
+.header-menu__submenu>li:hover {
+    border-left: 0.3rem solid rgb(145, 233, 115);
+}
+
+.header-menu__submenu>li:hover>a {
+    color: rgb(145, 233, 115);
+}
+
+.header-menu__vntours {
+    position: absolute;
+    left: -31rem;
+    width: 72rem;
+    background: rgb(247, 247, 247);
+    display: none;
+    z-index: 10;
+}
+
+.header-menu__main>li:hover .header-menu__vntours {
+    display: block;
+}
+
+.header-menu__tours {
+    display: flex;
+}
+
+.header-menu__tours>li {
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.header-menu__vntours>ul>li {
+    width: 22.5%;
+}
+
+.header-menu__vntours>ul>li:first-child {
+    width: 32.5%;
+}
+
+.header-menu__tours>li>a {
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    color: black;
+    text-transform: uppercase;
+    padding-bottom: 0.2rem;
+    border-bottom: 3px solid rgb(145, 233, 115);
+    margin-left: 0.5rem;
+    text-decoration: none;
+}
+
+.header-menu__tours>li>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.header-menu__tours>li>ul {
+    margin: 0.5rem 0;
+}
+
+.header-menu__tours>li>ul:last-child {
+    margin-right: 1rem;
+}
+
+.header-menu__tours>li>ul>li {
+    padding: 0 0.5rem;
+}
+
+.header-menu__tours>li>ul>li>a {
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+    color: rgb(159, 159, 159);
+    text-decoration: none;
+}
+
+.header-menu__tours>li>ul>li:hover {
+    background: rgba(175, 214, 243, 0.3);
+}
+
+.header-menu__tours>li>ul>li:hover>a {
+    color: rgb(145, 233, 115);
+}
+
+.header-menu__foreigntours {
+    position: absolute;
+    left: -39.95rem;
+    width: 72rem;
+    background: rgb(247, 247, 247);
+    display: none;
+    z-index: 10;
+}
+
+.header-menu__main>li:hover .header-menu__foreigntours {
+    display: block;
+}
+
+.header-menu__foreigntours>ul>li {
+    width: 20%;
+}
+
+.header-menu__themedtours {
+    width: 17rem;
+}
+
+.header-menu__news {
+    width: 14rem;
+    top: 100%;
+    right: 0;
+}
+
+footer {
+    border-top: 1px solid rgb(206, 206, 206);
+}
+
+.footer-menu {
+    height: 2.25rem;
+}
+
+.footer-menu>ul {
+    justify-content: center;
+    align-items: center;
+    height: 2.25rem;
+    margin: 0;
+}
+
+.footer-menu>ul>li {
+    position: relative;
+}
+
+.footer-menu>ul>li::before {
+    content: '';
+    position: absolute;
+    height: 0.875rem;
+    border-left: 2px solid rgb(210, 210, 210);
+    top: 0.35rem;
+    right: 0rem;
+}
+
+.footer-menu>ul>li>a {
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    color: rgb(143, 51, 51);
+    text-decoration: none;
+    padding: 0 1rem;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.footer-menu>ul>li>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.promotional-news {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6.625rem;
+    background: url(../images/homepage/bg-regis-promo.png) center no-repeat;
+}
+
+.promotional-news>h3 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: white;
+    margin-right: 1rem;
+}
+
+.promotional-news>input {
+    width: 30rem;
+    height: 2.5rem;
+    border: none;
+    padding-left: 1.5rem;
+    border-radius: 0.3rem;
+    -webkit-border-radius: ;
+    -moz-border-radius: ;
+    -ms-border-radius: ;
+    -o-border-radius: ;
+    margin-right: 0.3rem;
+}
+
+.promotional-news>button {
+    font-family: SegoeUISemiBold;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: white;
+    height: 2.5rem;
+    border: none;
+    width: 7rem;
+    background: rgb(115, 192, 74);
+    transition: all 0.7s;
+    border-radius: 0.3rem;
+    -webkit-border-radius: ;
+    -moz-border-radius: ;
+    -ms-border-radius: ;
+    -o-border-radius: ;
+}
+
+.promotional-news>button:hover {
+    background: rgb(2, 67, 113)
+}
+
+.vietcenter-info {
+    display: flex;
+}
+
+.vietcenter-info>div {
+    margin-top: 1.5rem;
+}
+
+.vietcenter-info>div>p {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.vietcenter-info>div>p>span {
+    margin-left: 0.3rem;
+    font-size: 1rem;
+}
+
+.vietcenter-info>div>p>span:last-child {
+    color: #999999;
+}
+
+.vietcenter-info>div>p>img {
+    height: 100%;
+}
+
+.vietcenter-info__socialNetwork {
+    display: flex;
+    align-items: center;
+}
+
+.vietcenter-info__socialNetwork>li {
+    margin: 1rem 0.2rem;
+}
+
+.vietcenter-info__socialNetwork>li>a>img {
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.vietcenter-info__socialNetwork>li>a>img:hover {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.vietcenter-info__card>h4 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: rgb(9, 81, 132);
+    margin-bottom: 0.5rem;
+}
+
+.vietcenter-info__card>ul>li>a {
+    color: #999999;
+    text-decoration: none;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.vietcenter-info__card>ul>li>a:hover {
+    color: rgb(115, 192, 74);
+}
+
+.vietcenter-info>div:last-child>ul>li {
+    display: flex;
+}
+
+.vietcenter-info>div:last-child>ul>li>i {
+    margin-right: 0.5rem;
+    padding-top: 0.35rem;
+    font-size: 0.9rem;
+    color: #999999;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.vietcenter-info>div:last-child>ul>li:hover i {
+    color: rgb(115, 192, 74);
+}
+
+.vietcenter-info>div:last-child>ul>li:hover i {
+    color: rgb(115, 192, 74);
+}
+
+.licenseInfo {
+    background: url(../images/homepage/bg-bottom-ft.png) center no-repeat;
+    background-size: cover;
+    padding: 2rem 0rem;
+}
+
+.licenseInfo>div {
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.licenseInfo-content>p {
+    font-family: SegoeUI;
+    font-size: 1rem;
+    color: white;
+}
+
+.licenseInfo-content>p:first-child {
+    font-family: SegoeUISemiBold;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+}
+
+.licenseInfo-content>p>a {
+    color: white;
+    text-decoration: none;
+}
+
+.licenseInfo-content>p>a:hover {
+    color: red;
+}
+
+.socialNetwork-contact {
+    position: fixed;
+    top: 50vh;
+    right: 0;
+    z-index: 999;
+}
+
+.socialNetwork-contact>ul>li {
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-top: 0.25rem;
+}
+
+.bg-phone {
+    background: rgb(255, 48, 42);
+}
+
+.bg-fb {
+    background: rgb(43, 97, 173);
+}
+
+.bg-zalo {
+    background: rgb(0, 143, 229);
+}
+
+.socialNetwork-contact>ul>li>a {
+    display: block;
+    width: 3.25rem;
+    height: 3.25rem;
+    line-height: 3.25rem;
+    text-align: center;
+}
+
+.socialNetwork-contact>ul>li>a>img {
+    margin: auto;
+}

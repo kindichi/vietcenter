@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+html {
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src: url(../fonts/segoeui.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBold;
+    src: url(../fonts/segoeuib.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIItalic;
+    src: url(../fonts/segoeuii.ttf);
+}
+
+@font-face {
+    font-family: SegoeUILight;
+    src: url(../fonts/segoeuil.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiLight;
+    src: url(../fonts/segoeuisl.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBoldItalic;
+    src: url(../fonts/segoeuiz.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBlack;
+    src: url(../fonts/seguibl.ttf);
+}
+
+@font-face {
+    font-family: SegoeUILightItalic;
+    src: url(../fonts/seguili.ttf);
+}
+
+@font-face {
+    font-family: SegoeUIBlackItalic;
+    src: url(../fonts/seguibli.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiBold;
+    src: url(../fonts/seguisb.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiBoldItalic;
+    src: url(../fonts/seguisbi.ttf);
+}
+
+@font-face {
+    font-family: SegoeUISemiLightItalic;
+    src: url(../fonts/seguisli.ttf);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.container-fluid,
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 7rem;
+    background-color: rgba(30, 89, 134);
+}
+
+.header-top {
+    height: 1.75rem;
+    border-bottom: 1px solid rgb(75, 95, 157);
+    padding: 0 6.9375rem;
+}
+
+.header-top__contact>a {
+    font-family: SegoeUI;
+    padding: 0 0.2rem;
+    line-height: 1.75rem;
+    color: rgb(252, 242, 173);
+    text-decoration: none;
+}
+
+.header-top__contact>img:last-child {
+    padding: 0.4rem;
+}
+
+.header-top__contact>a:hover {
+    color: rgb(145, 233, 115)
+}
+
+.header-top__menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.header-top__menu>li>a {
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    padding: 0 0.5625rem;
+    color: rgb(252, 242, 173);
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.header-top__menu>li>a:hover {
+    color: rgb(145, 233, 115)
+}
+
+.nav>div>a {
+    color: white;
+}
+
+.fa-bars {
+    color: white;
+}
+
+.header-menu {
+    padding: 0 7.875rem;
+    height: 5.25rem;
+}
+
+.header-menu>img {
+    margin: auto 0;
+    align-items: center;
+}
+
+.header-menu>nav {
+    padding: 0 0 0 2rem;
+}
+
+.header-menu__main>li {
+    line-height: 5.25rem;
+    position: relative;
+    margin: 0.5rem;
+}
+
+.header-menu__main>li>a {
+    font-family: SegoeUISemiBold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: -.02rem;
+    color: white;
+    text-decoration: none;
+    line-height: 4.25rem;
+    padding: 0 !important;
+}
+
+.header-menu__main>li:hover>a::before {
+    content: '';
+    position: absolute;
+    bottom: 1.5rem;
+    height: 4px;
+    width: 100%;
+    background: rgb(145, 233, 115);
+}
+
+.header-menu__main>li:hover>a {
+    color: rgb(145, 233, 115);
+}
+
+.header-menu__submenu,
+.header-menu__foreigntours,
+.header-menu__vntours,
+.header-menu__news,
+.header-menu__themedtours {
+    display: none;
+    position: absolute;
+}
+
+.header-menu__main>li:hover .header-menu__submenu {
+    display: block;
+}
+
+.header-menu__submenu {
+    display: none;
+    width: 12rem;
+    background: rgba(30, 89, 134);
+    position: absolute;
+    top: 100%;
+}
+
+.header-menu__submenu>li {
+    height: 2.25rem;
+    border-bottom: rgb(112, 144, 167);
+}
+
+.header-menu__submenu>li>a {
+    font-family: SegoeUISemiBold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: -.02rem;
+    color: white;
+    text-decoration: none;
+}
+
+.header-menu__submenu>li>a:hover {
+    color: rgb(145, 233, 115);
+}
