@@ -1,0 +1,439 @@
+.carForRent-title>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+.carForRent-title>p>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.carForRent-title>p>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+
+.carForRent-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+  
+}
+
+.col-md-9, .col-md-3, .col-md-6{
+    padding: 0;
+}
+.col-md-6{
+    padding:0;
+}
+.carForRent{
+}
+.carForRent>h3 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    color: rgb(9, 81, 132);
+}
+.carForRent>strong{
+    text-transform: uppercase;
+    margin-top: 1rem;
+    display: block;
+}
+.carForRent>.large-size{
+    font-size: 1.5rem;
+}
+.carForRent>.normal-size{
+    text-transform: none;
+}
+.carForRent>p{ 
+    margin-top: 0.5rem;
+}
+.bookcar{
+    margin-top: 1rem;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-top: 2px solid #095184;
+    box-shadow: 0 0 10px -6px #000;
+    background: #f2f2f2;
+}
+.bookcar-title{
+    display: flex;
+    margin-bottom: 1rem;
+}
+.bookcar-title>h3{
+    display: block;
+    margin: auto;
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: #095184;
+    position: relative;
+    padding: 0.25rem;
+}
+.bookcar-title>h3:before {
+    content: '';
+    top: -1px;
+    right: 100%;
+    position: absolute;
+    width: 2.35rem;
+    height: 2.35rem;
+    background: url(../images/services/bg-title-book-car-left.png)center no-repeat;
+}
+.bookcar-title>h3:after {
+    content: '';
+    top: -1px;
+    left: 100%;
+    position: absolute;
+    width: 2.35rem;
+    height: 2.35rem;
+    background: url(../images/services/bg-title-book-car-right.png)center no-repeat;
+}
+.bookcar-input{
+    display: flex;
+    flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.bookcar-input>input, .bookcar-input>select{
+    width: 30%;
+    height: 1.6rem;
+    outline: none;
+    margin: 0.5rem 0;
+    padding-left: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.bookcar-input>#cartype{
+    width: 62.5%;
+}
+.bookcar-input>textarea{
+    width: 95%;
+    outline: none;
+    margin: 0.5rem 0;
+    padding-left: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.bookcar-input>button{
+    font-family: SegoeUIBold;
+    font-size: 1.25rem;
+    height: 2.5rem;
+    width: 15rem;
+    text-transform: uppercase;
+    background: #ff7e00;
+    color: white;
+    outline: none;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.mostview-title{
+    height: 2.25rem;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    display: flex;
+    align-items: center;
+}
+.mostview-title>h5 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.15rem;
+    border-left: 10px solid rgb(145, 233, 115);
+    color: rgb(9, 81, 132);
+    text-transform: uppercase;
+    padding-left: 0.75rem;
+
+}
+.mostview-desc{
+    padding: 1rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.mostview-desc>a{
+    font-family: SegoeUISemiBold;
+    font-size: 1.25rem;
+    color: rgb(57, 51, 51);
+    text-decoration: none;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    line-height: 1.25rem;
+    
+}
+.mostview-desc>a:hover{
+    color: rgb(145, 233, 115);
+}
+
+.time-view {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+    display: flex;
+}
+
+.time-view>img {
+    margin: auto 0;
+}
+
+.time-view>span {
+    line-height: 1.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.75rem;
+    color: black;
+}
+.mostview{
+    margin-top: 2rem;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px -6px #000;
+}
+
+.mostview-desc>p{
+    font-family: SegoeUI;
+    font-size: 1rem;
+    color: rgb(150, 100, 100);
+}
+
+.mostview-photo{
+    position: relative;
+    overflow: hidden;  
+    width: 8rem;
+    height: 6rem;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+.mostview-photo>a{
+    display: block;
+    width: 7rem;
+    height: 5.65rem;
+    overflow: hidden;
+    margin: 2px;
+    align-self: center;
+    position: relative;
+}
+
+.mostview-photo>a>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1.5s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+}
+.mostview-photo:hover img{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+.mostview-desc>.time-view>span{
+    font-size: .875rem;
+}
+
+
+
+.mostview-card{
+    display: flex;
+    margin:  0 0.75rem ;
+    padding: 1rem 0;
+    border-bottom: 2px dotted rgb(151, 151, 151);
+}
+.mostview-desc{
+    width: calc(100% - 4.875rem);
+    padding: 0 0 0 0.5rem;
+}
+.mostview-desc>a{
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    line-height: 1rem;  
+}
+.mostview .time-view{
+    margin: 0;
+}
+.mostview .time-view>span{
+    font-size: 0.75rem;
+}
+
+
+/* .mostview-content::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(221, 221, 221);
+}
+.mostview-content::-webkit-scrollbar-thumb {
+    background-color:rgb(9, 81, 132);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+} */
+
+.mostview-content>.mostview-card:last-child{
+    border: none;
+}
+
+.service-card{
+    height: 7.75rem;
+    position: relative;
+    margin: 1rem 0 1rem 0.5rem;
+}
+.service-img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+}
+.service-img>a>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+.service-card:hover .service-img>a>img{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.service-img::after {
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+}
+
+.service-img:hover::after {
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 2s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 2s ease 0s normal none 1 running fixedAnim;
+}
+
+.service-desc{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(216, 86, 108, 0.8);
+
+}
+.service-desc>a{
+    font-family: SegoeUIBold;
+    font-size:1.15rem;
+    color: white;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+}
+
+
+@-webkit-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@-moz-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@keyframes fixedAnim {
+    0% {
+        right: 125%
+    }
+    125% {
+        right: 0;
+    }
+}
+
+
+@media (min-width: 768px) { 
+    
+    .mostview-photo{
+        width: 4.375rem;
+        height: 4.375rem;
+    }
+
+    .mostview-photo>a{
+        display: block;
+        width: 4rem;
+        height: 4rem;
+    }
+    .carForRent{
+        max-width: 60%;
+    }
+    .carForRent-content>.col-md-3{
+        max-width: 38%;
+    }
+    .service-card{
+        margin: 1rem 0;
+    }
+    .service-desc>a{
+        font-size: 1rem;
+    }
+}
+@media (min-width: 992px) { 
+    
+    .mostview-photo{
+        width: 4.375rem;
+        height: 4.375rem;
+    }
+
+    .mostview-photo>a{
+        display: block;
+        width: 4rem;
+        height: 4rem;
+    }
+    .carForRent{
+        max-width: 72%;
+    }
+    .carForRent-content>.col-md-3{
+        max-width: 25%;
+    }
+    .service-card{
+        margin: 1rem 0;
+    }
+    .service-desc>a{
+        font-size: 1.05rem;
+    }
+}
+@media (min-width: 1200px) { 
+    
+ 
+    .service-desc>a{
+        font-size: 1.15rem;
+    }
+}

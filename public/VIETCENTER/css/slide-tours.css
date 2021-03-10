@@ -1,0 +1,197 @@
+.tours-list .slick-next,
+.tours-list .slick-prev {
+    width: 2rem;
+    height: 2rem;
+    color: unset;
+    opacity: 1;
+}
+
+.tours-list .slick-next {
+    background: url(../images/homepage/ic-next-slider-v1.png) center no-repeat;
+    right: -1.5rem;
+}
+
+.tours-list .slick-prev {
+    background: url(../images/homepage/ic-prev-slider-v1.png) center no-repeat;
+    left: -1.5rem;
+}
+
+.tours-list .slick-prev::before,
+.tours-list .slick-next::before {
+    content: "";
+}
+
+.tours-list .slick-prev:focus,
+.tours-list .slick-next:focus {
+    color: unset;
+    background: unset;
+}
+
+.tours-list .slick-prev:focus,
+.tours-list .slick-prev:hover {
+    background: url(../images/homepage/ic-prev-slider-v1.png) center no-repeat;
+}
+
+.tours-list .slick-next:focus,
+.tours-list .slick-next:hover {
+    background: url(../images/homepage/ic-next-slider-v1.png) center no-repeat;
+}
+
+.tour-card {
+    margin: 0 0.59rem;
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+    box-shadow: 2px 2px 10px -5px #000;
+}
+
+.tour-img {
+    height: 13.75rem !important;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.tour-img>a>img {
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.tour-img:hover>a>img {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.tour-price {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 3rem;
+    width: 100%;
+    padding: 0 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+}
+
+.tour-price>div {
+    margin: auto 0;
+    width: 100%;
+}
+
+.new-price {
+    font-family: SegoeUISemiBold;
+    font-size: 1.25rem;
+    color: rgb(255, 150, 0);
+    line-height: 1.5rem;
+}
+
+.old-price {
+    font-family: SegoeUI;
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: line-through;
+}
+
+.tour-price>a {
+    width: 5.625rem;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: SegoeUI;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: white;
+    background: rgb(241, 113, 2);
+    border: none;
+    border-radius: 0.3rem;
+    margin: auto 0;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.tour-price>a:hover {
+    background: rgb(115, 192, 74);
+}
+
+.tour-info {
+    padding: 0.75rem 1rem;
+    border: 1px solid #dcdcdc;
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.tour-info>h4 {
+    font-family: SegoeUI;
+    font-size: 1rem;
+    color: #024371;
+    line-height: 1.3rem;
+    margin-bottom: 0.5rem;
+    height: 2.6rem;
+    overflow: hidden;
+}
+
+.tour-info>h4>a {
+    text-decoration: none;
+    letter-spacing: 0.02rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.tour-info>h4>a:hover {
+    color: rgb(115, 192, 74);
+}
+
+.tour-info>p {
+    display: flex;
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    color: #333333;
+    margin: 0.25rem 0;
+}
+
+.tour-info>p>img,
+.tour-info>p>i {
+    margin: auto 0;
+    padding-right: 0.5rem;
+}
+
+.tour-info>p>i {
+    padding-left: 2px;
+}
+
+.tour-info>p>span {
+    padding-left: 0.3rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    width: 40%;
+}

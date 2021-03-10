@@ -1,0 +1,241 @@
+.booktour>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+.booktour>p>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.booktour>p>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.booktour>h3 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    color: rgb(9, 81, 132);
+    text-align: center;
+}
+
+.booktour>img {
+    display: block;
+    margin: auto;
+}
+
+.booktour-content {
+    margin: 2rem 0;
+    justify-content: space-between;
+}
+
+.booktour-content form {
+    justify-content: space-between;
+}
+
+.booktour-info>form {
+    margin: 1rem 1.5rem;
+}
+
+.booktour-content h4 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: rgb(9, 81, 132);
+    margin: 1rem 1.5rem;
+}
+
+.booktour-info {
+    background: rgb(245, 245, 245);
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .booktour-info {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .booktour-info {
+        width: 58%;
+    }
+}
+
+.booktour-info>p {
+    background: rgb(233, 241, 224);
+    line-height: 2rem;
+    padding: 0.5rem 1rem;
+    color: rgb(66, 105, 56);
+    margin: 1rem 1.5rem;
+}
+
+.booktour-info__input {
+    margin-bottom: 1rem;
+}
+
+.booktour-info__input>label {
+    color: black;
+    font-family: SegoeUISemiBold;
+}
+
+.booktour-info__input>div {
+    display: flex;
+}
+
+.booktour-info__input>div>div {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    background: rgb(145, 233, 115);
+    border-radius: 0.3rem 0 0 0.3rem;
+    -webkit-border-radius: 0.3rem 0 0 0.3rem;
+    -moz-border-radius: 0.3rem 0 0 0.3rem;
+    -ms-border-radius: 0.3rem 0 0 0.3rem;
+    -o-border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.booktour-info__input>div>div>img {
+    margin: auto;
+}
+
+.booktour-info__input>div>input {
+    border: 1px solid rgb(233, 241, 224);
+    outline: none;
+    height: 2.5rem;
+    padding-left: 1rem;
+    width: 16rem;
+}
+
+.booktour-info__input>textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    height: 6rem;
+    color: black;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+
+.booktour-info__check {
+    background: rgb(211, 232, 242);
+    line-height: 2rem;
+    padding-left: 1rem;
+}
+
+.booktour-info__check>span {
+    padding-left: 0.25rem;
+}
+
+.booktour-info button {
+    margin: 1rem auto;
+    color: white;
+    text-transform: uppercase;
+    background: rgb(255, 126, 0);
+    width: 9.5rem;
+    height: 2.5rem;
+    font-family: SegoeUIBold;
+    outline: none;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+    border: none;
+}
+
+.booktour-payment {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: rgb(245, 245, 245);
+}
+
+@media (min-width: 768px) {
+    .booktour-payment {
+        width: 48%;
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .booktour-payment {
+        width: 40%;
+    }
+}
+
+.booktour-payment form {
+    margin: 1rem 1.5rem;
+}
+
+.booktour-payment .booktour-info__input>div>input {
+    width: 12rem;
+}
+
+.booktour-info__input select {
+    height: 2.5rem;
+    width: 9.5rem;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+
+.booktour-price,
+.booktour-totalprice {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    border-top: 1px solid rgb(221, 221, 221);
+    padding: 0.75rem 0;
+}
+
+.booktour-price>p:last-child,
+.booktour-totalprice>p:last-child {
+    font-family: SegoeUIBold;
+    color: red;
+    font-size: 1.25rem;
+}
+
+.booktour-tourinfo {
+    width: 100%;
+    border-top: 1px solid rgb(221, 221, 221);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.booktour-tourinfo>h5 {
+    padding-top: 0.75rem;
+}
+
+.booktour-tourinfo>h5>a {
+    font-family: SegoeUIBold;
+    color: rgb(54, 57, 52);
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.booktour-tourinfo>img {
+    padding-top: 0.75rem;
+    width: 9.75rem;
+    height: 6.75rem;
+}
+
+.booktour-tourinfo>div {
+    padding-top: 0.75rem;
+    padding-left: 0.75rem;
+    height: 6.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.booktour-tourinfo>div>p>img {
+    padding-right: 0.25rem;
+}
