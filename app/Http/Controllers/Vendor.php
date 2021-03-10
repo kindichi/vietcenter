@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class Vendor extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        return view('backend.photo.index');
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('backend.photo.create');
+        //
     }
 
     /**
