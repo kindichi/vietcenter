@@ -14,5 +14,6 @@
 Route::resource('/default', 'DefaultController');
 Route::resource('/category', 'CategoryController');
 Route::resource('/photo', 'PhotoController');
+Route::resource('/vendor', 'VendorController');
 
 ?>

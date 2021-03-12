@@ -3,13 +3,13 @@
 @section('content2')
     <section class="content-header">
         <h1>
-            Quản lý Danh mục
+            Quản lý Nhà cung cấp
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">Danh mục</li>
+            <li class="active">Nhà cung cấp</li>
         </ol>
     </section>
     <section class="content">
@@ -19,7 +19,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin danh mục</h3>
+                        <h3 class="box-title">Thông thông tin Nhà cung cấp</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -27,21 +27,17 @@
                         <div class="box-body">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Danh mục cha</label>
-                                    <select class="form-control" name="parent_id" id="parent_id">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="ncc">Tên danh mục</label>
+                                    <label for="ncc">Nhà cung cấp</label>
                                     <input type="text" name="name" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Điện thoại</label>
+                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Điện thoại" required>
+                                </div>
                                 <div class="form-group">
                                     <label for="imgage">Ảnh</label>
                                     <input type="file" name="image" id="image">
@@ -55,14 +51,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Loại danh mục</label>
-                                    <select class="form-control" name="type" id="type">
-                                        <option>Sản phẩm</option>
-                                        <option>Bài viết</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
+                                    <label for="website">Website</label>
+                                    <input type="text" name="website"  class="form-control" id="website" placeholder="Website">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nhập địa chỉ</label>
+                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="position">Vị trí hiển thị</label>
