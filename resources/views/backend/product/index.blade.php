@@ -3,13 +3,13 @@
 @section('content2')
     <section class="content-header">
         <h1>
-            Quản lý Nhà cung cấp
+            Quản lý Sản phẩm
             <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">Nhà cung cấp</li>
+            <li class="active">Sản phẩm</li>
         </ol>
     </section>
     <section class="content">
@@ -19,7 +19,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông thông tin Nhà cung cấp</h3>
+                        <h3 class="box-title">Thông tin sản phẩm</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -27,21 +27,29 @@
                         <div class="box-body">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="tensp">Tên sản phẩm</label>
+                                    <input type="text" name="name" class="form-control" id="tensp" placeholder="Tên sản phẩm" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loaisp">Phân loại</label>
+                                    <input type="text" name="category_id" class="form-control" id="loaisp" placeholder="Loại sản phẩm" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hangsx">Hãng sản xuất</label>
+                                    <input type="text" name="brand_id" class="form-control" id="hangsx" placeholder="Hãng sản xuất" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="ncc">Nhà cung cấp</label>
-                                    <input type="text" name="name" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
+                                    <input type="text" name="vendor_id" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Điện thoại</label>
-                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Điện thoại" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="imgage">Ảnh</label>
-                                    <input type="file" name="image" id="image">
 
+                                <div class="form-group">
+                                    <label for="imgage">Ảnh sản phẩm</label>
+                                    <input type="file" name="image" id="image">
+                                </div>
+                                <div class="form-group">
+                                    <label for="color">Màu sắc</label>
+                                    <input type="text" name="color" class="form-control" id="color" placeholder="Màu sắc" required>
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -51,18 +59,17 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="text" name="website"  class="form-control" id="website" placeholder="Website">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nhập địa chỉ</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter ..."></textarea>
+                                    <label for="description">Mô tả sản phẩm</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Mô tả"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="position">Vị trí hiển thị</label>
                                     <input type="number" name="position" class="form-control" id="position" min="1" value="1">
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="price">Giá sản phẩm</label>
+                                    <input type="text" name="price" class="form-control" id="price" placeholder="Màu sắc" required>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-body -->

@@ -41,8 +41,22 @@
             </span>
                 </a>
             </li>
-
-
+            <li>
+                <a href="{{route('user.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Người dùng</span>
+                    <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+            </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('product.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Sản phẩm</span>
+                    <span class="pull-right-container">
+                    <small class="label pull-right bg-green">new</small>
+                    </span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
