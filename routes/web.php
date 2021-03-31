@@ -10,12 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::resource('/default', 'DefaultController');
-Route::resource('/category', 'CategoryController');
-Route::resource('/photo', 'PhotoController');
-Route::resource('/vendor', 'VendorController');
-Route::resource('/user', 'UserController');
-Route::resource('/product', 'ProductController');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'],function (){
+    Route::resource('default', 'DefaultController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('photo', 'PhotoController');
+    Route::resource('vendor', 'VendorController');
+    Route::resource('user', 'UserController');
+    Route::resource('product', 'ProductController');
+});
 
 ?>

@@ -1,10 +1,10 @@
 @extends('backend.layouts.main');
 
-@section('content2')
+@section('content')
     <section class="content-header">
         <h1>
-            Quản lý Danh mục
-            <small>Preview</small>
+            Quản lý Danh mục<a href="{{ route('admin.category.index') }}" class="btn bg-purple btn-flat"><i class="fa fa-tasks"></i> Danh sách</a>
+
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -23,30 +23,39 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" method="post" action="{{route('admin.category.store')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="box-body">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Danh mục cha</label>
                                     <select class="form-control" name="parent_id" id="parent_id">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                        <option>--chọn--</option>
+                                        @foreach($data as $item)
+                                        <option value="{{$item -> id}}">{{$item -> name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                @if ($errors->has('parent_id'))
+                                    <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('parent_id')}} </label>
+                                @endif
 
                                 <div class="form-group">
-                                    <label for="ncc">Tên danh mục</label>
-                                    <input type="text" name="name" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
+                                    <label for="name">Tên danh mục</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Danh mục">
                                 </div>
+                                @if ($errors->has('name'))
+                                    <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('name')}} </label>
+                                @endif
 
                                 <div class="form-group">
                                     <label for="imgage">Ảnh</label>
                                     <input type="file" name="image" id="image">
 
                                 </div>
+                                @if ($errors->has('image'))
+                                    <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('image')}} </label>
+                                @endif
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="is_active" id="is_active"> Hiển thị
@@ -57,11 +66,12 @@
                                 <div class="form-group">
                                     <label>Loại danh mục</label>
                                     <select class="form-control" name="type" id="type">
-                                        <option>Sản phẩm</option>
-                                        <option>Bài viết</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                        <option value>--chọn--</option>
+                                        <option value="1">Sản phẩm</option>
+                                        <option value="2">Dịch vụ</option>
+                                        <option value="3">Bài viết</option>
+                                        <option value="4">option 4</option>
+                                        <option value="5">option 5</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

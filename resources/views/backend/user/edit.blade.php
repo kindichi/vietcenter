@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm người dùng <a href="{{route('user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
+            Thêm người dùng <a href="{{route('admin.user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
         </h1>
     </section>
 
@@ -19,7 +19,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('user.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.user.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">

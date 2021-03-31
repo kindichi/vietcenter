@@ -360,6 +360,9 @@ h6,
         height: 100%;
         top: 0;
     }
+    .header-menu>div>img{
+        margin: 0;
+    }
     .navbar>div {
         height: 100%;
     }
@@ -826,6 +829,9 @@ footer {
     width: 3.25rem;
     height: 3.25rem;
     margin-top: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bg-phone {
@@ -842,9 +848,7 @@ footer {
 
 .socialNetwork-contact>ul>li>a {
     display: block;
-    width: 3.25rem;
-    height: 3.25rem;
-    line-height: 3.25rem;
+  
     text-align: center;
 }
 

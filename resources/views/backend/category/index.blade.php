@@ -1,90 +1,116 @@
 @extends('backend.layouts.main');
-@section('content2')
+@section('content')
     <section class="content-header">
         <h1>
-            Quản lý Danh mục
-            <small>Preview</small>
+            QL Danh mục <a href="{{ route('admin.category.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">Danh mục</li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">QL Danh mục</li>
         </ol>
     </section>
+
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin danh mục</h3>
+                        <h3 class="box-title">Danh mục</h3>
                     </div>
                     <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Danh mục cha</label>
-                                    <select class="form-control" name="parent_id" id="parent_id">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Logo</th>
+                                <th>Danh mục</th>
+                                <th>Danh mục cha</th>
+                                <th>Kiểu</th>
+                                <th>Trạng Thái</th>
+                                <th>Vị trí</th>
+                                <th>Hành Động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $key => $item)
+                                <tr class="item-{{ $item->id }}">
+                                    <td>{{ $key }}</td>
+                                    <td><img src="{{ asset($item->image) }}" width="50" /></td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->parent_id }}</td>
+                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
+                                    <td>{{ $item->position }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.category.edit', ['id' => $item->id]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
 
-                                <div class="form-group">
-                                    <label for="ncc">Tên danh mục</label>
-                                    <input type="text" name="name" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
-                                </div>
+                            @endforeach
+                            </tbody>
+                        </table>
 
-                                <div class="form-group">
-                                    <label for="imgage">Ảnh</label>
-                                    <input type="file" name="image" id="image">
-
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Loại danh mục</label>
-                                    <select class="form-control" name="type" id="type">
-                                        <option>Sản phẩm</option>
-                                        <option>Bài viết</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="position">Vị trí hiển thị</label>
-                                    <input type="number" name="position" class="form-control" id="position" min="1" value="1">
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        {{ $data->links() }}
+                    </div>
                 </div>
                 <!-- /.box -->
-
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-
+            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 @endsection
+@section('code_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Thiết lập csrf => chổng giả mạo
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('.btn-delete').on('click',function () {
+
+                let id = $(this).data('id');
+
+                let result = confirm("Bạn có chắc chắn muốn xóa ?");
+
+                if (result) { // neu nhấn == ok , sẽ send request ajax
+
+                    $.ajax({
+                        url: '/admin/category/'+id, // http://webthucpham.local:8888/user/8
+                        type: 'DELETE', // phương truyền tải dữ liệu
+                        data: {
+                            // dữ liệu truyền sang nếu có
+                            name : 'dung'
+                        },
+                        dataType: "json", // kiểu dữ liệu muốn nhận về
+                        success: function (res) {
+                            //  PHP : $user->name
+                            //  JS: res.name
+
+                            if (res.success != 'undefined' && res.success == 1) { // xóa thành công
+                                $('.item-'+id).remove();
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e);
+                        }
+                    });
+                }
+
+            });
+
+            /*$( ".btn-delete" ).click(function() {
+                alert( "Handler for .click() called." );
+            });*/
+
+        });
+    </script>
+@endsection
+

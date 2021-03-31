@@ -134,9 +134,12 @@
     right: -3.3rem;
     background: url(../images/homepage/bg-title-center-right.png) no-repeat;
 }
+.slick-slide{
+    padding: 0 0.75rem;
+    height: auto;
+}
 
 .tour-card {
-    margin: 0 0.75rem;
     border-radius: 0.3rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
@@ -430,7 +433,6 @@
 
 .news-vietcenter__main>div>img {
     width: 100%;
-    height: 100%;
     transition: all 01s;
     -webkit-transition: all 01s;
     -moz-transition: all 01s;
@@ -516,12 +518,14 @@
     margin-left: -0.5rem;
     margin-right: -0.5rem;
 }
-
+.news-vietcenter__sub .slick-slide{
+    padding: 0 0.5rem;
+}
 .news-vietcenter__sub-card {
     display: flex !important;
     width: auto;
     line-height: 1rem;
-    margin: 0 0.5rem;
+  
 }
 
 .news-vietcenter__sub-img {
@@ -555,7 +559,7 @@
 }
 
 .news-vietcenter__sub-title {
-    margin: 0.5rem;
+    margin: 0.5rem 0;
     height: auto;
     overflow: hidden;
 }
@@ -858,7 +862,6 @@
     -moz-border-radius: .3rem;
     -ms-border-radius: .3rem;
     -o-border-radius: .3rem;
-    margin: 0 0.75rem;
 }
 
 .customerExperience-card>div {

@@ -1,9 +1,9 @@
 @extends('backend.layouts.main');
 
-@section('content2')
+@section('content')
     <section class="content-header">
         <h1>
-            Thêm Người dùng <a href="{{route('user.index')}}" class="btn btn-primary">Danh sách </a>
+            Thêm Người dùng <a href="{{route('admin.user.index')}}" class="btn btn-primary">Danh sách </a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -22,7 +22,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('user.store')}}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{route('admin.user.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="col-md-12">

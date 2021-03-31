@@ -593,6 +593,9 @@ a:focus {
 .sidebar-menu .active > .treeview-menu {
   display: block;
 }
+.sidebar-menu li:active{
+  background: white;
+}
 /*
  * Component: Sidebar Mini
  */

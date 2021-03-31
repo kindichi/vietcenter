@@ -89,7 +89,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
 
     }
 
@@ -175,7 +175,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -186,6 +186,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $isDelete = User::destroy($id);
+        if ($isDelete) {
+            return response()->json(['success' => 1, 'message' => 'Thành công']);
+        } else {
+            return response()->json(['success' => 0, 'message' => 'Thất bại']);
+        }
     }
 }

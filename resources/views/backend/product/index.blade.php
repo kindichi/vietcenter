@@ -1,10 +1,10 @@
 @extends('backend.layouts.main');
 
-@section('content2')
+@section('content')
     <section class="content-header">
         <h1>
-            Quản lý Sản phẩm
-            <small>Preview</small>
+            Quản lý Sản phẩm  <a href="{{ route('admin.product.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -23,66 +23,53 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="tensp">Tên sản phẩm</label>
-                                    <input type="text" name="name" class="form-control" id="tensp" placeholder="Tên sản phẩm" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="loaisp">Phân loại</label>
-                                    <input type="text" name="category_id" class="form-control" id="loaisp" placeholder="Loại sản phẩm" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="hangsx">Hãng sản xuất</label>
-                                    <input type="text" name="brand_id" class="form-control" id="hangsx" placeholder="Hãng sản xuất" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ncc">Nhà cung cấp</label>
-                                    <input type="text" name="vendor_id" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
-                                </div>
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Logo</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Số lượng</th>
+                                <th>Giá bán</th>
+                                <th>Giá khuyến mãi</th>
+                                <th>Thương hiệu</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Trạng thái</th>
+                                <th>Hành Động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $key => $item)
+                                <tr>
+                                    <td>{{ $key }}</td>
+                                    <td><img src="{{ asset($item->image) }}" width="50" /></td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->stock }}</td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $item->sale }}</td>
+                                    <td>{{ $item->brand_id }}</td>
+                                    <td>{{ $item->vendor_id }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
 
-                                <div class="form-group">
-                                    <label for="imgage">Ảnh sản phẩm</label>
-                                    <input type="file" name="image" id="image">
-                                </div>
-                                <div class="form-group">
-                                    <label for="color">Màu sắc</label>
-                                    <input type="text" name="color" class="form-control" id="color" placeholder="Màu sắc" required>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="description">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Mô tả"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="position">Vị trí hiển thị</label>
-                                    <input type="number" name="position" class="form-control" id="position" min="1" value="1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="price">Giá sản phẩm</label>
-                                    <input type="text" name="price" class="form-control" id="price" placeholder="Màu sắc" required>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
+                            @endforeach
+                            </tbody>
+                        </table>
 
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        {{ $data->links() }}
+                    </div>
                 </div>
                 <!-- /.box -->
-
-
             </div>
+
             <!--/.col (left) -->
             <!-- right column -->
 

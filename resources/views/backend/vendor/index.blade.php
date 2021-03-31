@@ -1,85 +1,69 @@
 @extends('backend.layouts.main');
 
-@section('content2')
+@section('content')
     <section class="content-header">
         <h1>
-            Quản lý Nhà cung cấp
-            <small>Preview</small>
+            QL Nhà cung cấp <a href="{{ route('admin.vendor.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">Nhà cung cấp</li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">QL Nhà cung cấp</li>
         </ol>
     </section>
+
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông thông tin Nhà cung cấp</h3>
+                        <h3 class="box-title">Danh sách Nhà cung cấp</h3>
                     </div>
                     <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="ncc">Nhà cung cấp</label>
-                                    <input type="text" name="name" class="form-control" id="ncc" placeholder="Nhà cung cấp" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Điện thoại</label>
-                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Điện thoại" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="imgage">Ảnh</label>
-                                    <input type="file" name="image" id="image">
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Logo</th>
+                                    <th>Nhà cung cấp</th>
+                                    <th>Email</th>
+                                    <th>Điện thoại</th>
+                                    <th>Website</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $key => $item)
+                                <tr>
+                                    <td>{{ $key }}</td>
+                                    <td><img src="{{ asset($item->image) }}" width="50" /></td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->website }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
 
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="text" name="website"  class="form-control" id="website" placeholder="Website">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nhập địa chỉ</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter ..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="position">Vị trí hiển thị</label>
-                                    <input type="number" name="position" class="form-control" id="position" min="1" value="1">
-                                </div>
+                            @endforeach
+                            </tbody>
+                        </table>
 
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        {{ $data->links() }}
+                    </div>
                 </div>
                 <!-- /.box -->
-
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-
+            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 @endsection

@@ -24,42 +24,49 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-
             <li>
-                <a href="{{route('category.index')}}">
+                <a href="{{route('admin.category.index')}}">
                     <i class="fa fa-th"></i> <span>Quản lý Danh mục</span>
-                    <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
                 </a>
             </li>
             <li>
-                <a href="{{route('vendor.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản lý Nhà cung cấp</span>
-                    <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('user.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản lý Người dùng</span>
-                    <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('product.index')}}">
+                <a href="{{route('admin.product.index')}}">
                     <i class="fa fa-th"></i> <span>Quản lý Sản phẩm</span>
-                    <span class="pull-right-container">
-                    <small class="label pull-right bg-green">new</small>
-                    </span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.category.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Bài viết article</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.category.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Thư viện - banner</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.category.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Thương hiệu - brand</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.vendor.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Nhà cung cấp</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.user.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Người dùng</span>
+                </a>
+            </li>
+
         </ul>
     </section>
+    <script>
+
+    </script>
     <!-- /.sidebar -->
 </aside>
+
 
 
