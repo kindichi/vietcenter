@@ -35,13 +35,14 @@
                                 <th>Giá khuyến mãi</th>
                                 <th>Thương hiệu</th>
                                 <th>Nhà cung cấp</th>
+                                <th>Danh mục</th>
                                 <th>Trạng thái</th>
                                 <th>Hành Động</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($data as $key => $item)
-                                <tr>
+                                <tr class="item-{{ $item->id }}">
                                     <td>{{ $key }}</td>
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
@@ -50,10 +51,11 @@
                                     <td>{{ $item->sale }}</td>
                                     <td>{{ $item->brand_id }}</td>
                                     <td>{{ $item->vendor_id }}</td>
+                                    <td>{{ $item->category_id }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
 
@@ -76,4 +78,53 @@
         </div>
         <!-- /.row -->
     </section>
+@endsection
+@section('code_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Thiết lập csrf => chổng giả mạo
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('.btn-delete').on('click',function () {
+
+                let id = $(this).data('id');
+
+                let result = confirm("Bạn có chắc chắn muốn xóa ?");
+
+                if (result) { // neu nhấn == ok , sẽ send request ajax
+
+                    $.ajax({
+                        url: '/admin/product/'+id, // http://webthucpham.local:8888/user/8
+                        type: 'DELETE', // phương truyền tải dữ liệu
+                        data: {
+                            // dữ liệu truyền sang nếu có
+                            name : 'dung'
+                        },
+                        dataType: "json", // kiểu dữ liệu muốn nhận về
+                        success: function (res) {
+                            //  PHP : $user->name
+                            //  JS: res.name
+
+                            if (res.success != 'undefined' && res.success == 1) { // xóa thành công
+                                $('.item-'+id).remove();
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e);
+                        }
+                    });
+                }
+
+            });
+
+            /*$( ".btn-delete" ).click(function() {
+                alert( "Handler for .click() called." );
+            });*/
+
+        });
+    </script>
 @endsection

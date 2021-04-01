@@ -23,7 +23,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{route('admin.category.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{route('admin.category.update', ['id' => $data->id ], ['parent_id' => $data->parent_id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
@@ -32,17 +32,14 @@
                                     <label>Danh mục cha</label>
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option>--chọn--</option>
-                                        <option value="1" {{ ($data->parent_id == 1) ? 'selected' : '' }}>Combo Du lịch</option>
-                                        <option value="2" {{ ($data->parent_id == 2) ? 'selected' : '' }}>Tour trong nước</option>
-                                        <option value="3" {{ ($data->parent_id == 3) ? 'selected' : '' }}>Tour nước ngoài</option>
-                                        <option value="4" {{ ($data->parent_id == 4) ? 'selected' : '' }}>Tour theo chủ đề</option>
-                                        <option value="5" {{ ($data->parent_id == 5) ? 'selected' : '' }}>Lịch khởi hành</option>
-                                        <option value="6" {{ ($data->parent_id == 6) ? 'selected' : '' }}>Tin tức</option>
+                                        @foreach($dataAll as $item)
+                                            <option value="{{$item -> id}}" >{{$item -> name}}</option>
+                                        @endforeach
+                                        <option value="{{$data -> parent_id}}" selected>{{ $item -> name}}</option>
+
                                     </select>
                                 </div>
-                                @if ($errors->has('parent_id'))
-                                    <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('parent_id')}} </label>
-                                @endif
+
 
                                 <div class="form-group">
                                     <label for="name">Tên danh mục</label>
@@ -55,7 +52,7 @@
                                 <div class="form-group">
                                     <label for="imgage">Ảnh</label>
                                     <input type="file" name="image" id="image">
-
+                                    <img src="{{ asset($data->image) }}" alt="" width="100" style="margin-top: 10px;">
                                 </div>
                                 @if ($errors->has('image'))
                                     <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('image')}} </label>
@@ -71,9 +68,7 @@
                                     <label>Loại danh mục</label>
                                     <select class="form-control" name="type" id="type">
                                         <option value>--chọn--</option>
-                                        @foreach($data as $item)
-                                            <option value="{{$item -> id}}">{{$item -> name}}</option>
-                                        @endforeach
+
                                         <option value="1" {{ ($data->type == 1) ? 'selected' : '' }}>Sản phẩm</option>
                                         <option value="2" {{ ($data->type == 2) ? 'selected' : '' }}>Bài viết</option>
                                         <option value="3" {{ ($data->type == 3) ? 'selected' : '' }}>option 3</option>
