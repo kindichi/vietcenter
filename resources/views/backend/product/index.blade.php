@@ -4,7 +4,6 @@
     <section class="content-header">
         <h1>
             Quản lý Sản phẩm  <a href="{{ route('admin.product.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
-
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -28,14 +27,15 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Logo</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Số lượng</th>
+                                <th>Hình ảnh</th>
+                                <th>Tour</th>
+                                <th>Danh mục</th>
                                 <th>Giá bán</th>
                                 <th>Giá khuyến mãi</th>
-                                <th>Thương hiệu</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Danh mục</th>
+                                <th>Ngày khởi hành</th>
+                                <th>Thời gian</th>
+                                <th>Phương tiện</th>
+                                <th>Vị trí</th>
                                 <th>Trạng thái</th>
                                 <th>Hành Động</th>
                             </tr>
@@ -43,15 +43,16 @@
                             <tbody>
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key }}</td>
+                                    <td>{{ $key + 1 }}</td>
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->stock }}</td>
+                                    <td>{{ @$item->category->name }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->sale }}</td>
-                                    <td>{{ $item->brand_id }}</td>
-                                    <td>{{ $item->vendor_id }}</td>
-                                    <td>{{ $item->category_id }}</td>
+                                    <td>{{ $item->departure_day }}</td>
+                                    <td>{{ $item->duration }}</td>
+                                    <td>{{ $item->vehicle }}</td>
+                                    <td>{{ $item->position }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
@@ -90,13 +91,9 @@
             })
 
             $('.btn-delete').on('click',function () {
-
                 let id = $(this).data('id');
-
                 let result = confirm("Bạn có chắc chắn muốn xóa ?");
-
                 if (result) { // neu nhấn == ok , sẽ send request ajax
-
                     $.ajax({
                         url: '/admin/product/'+id, // http://webthucpham.local:8888/user/8
                         type: 'DELETE', // phương truyền tải dữ liệu
@@ -108,7 +105,6 @@
                         success: function (res) {
                             //  PHP : $user->name
                             //  JS: res.name
-
                             if (res.success != 'undefined' && res.success == 1) { // xóa thành công
                                 $('.item-'+id).remove();
                             }
@@ -118,7 +114,6 @@
                         }
                     });
                 }
-
             });
 
             /*$( ".btn-delete" ).click(function() {

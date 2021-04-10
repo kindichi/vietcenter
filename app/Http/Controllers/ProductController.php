@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::latest()->paginate(20);
+        $product = Product::latest()->paginate(30);
         return view('backend.product.index',[
             'data' =>  $product
         ]);
@@ -29,9 +29,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $dataCategory = Category::all();
-        return view('backend.product.create',[
-            'dataCategory' => $dataCategory
+        $categories = Category::all();
+//        $brands = Brand::all();
+//        $vendors = Vendor::all();
+//        $max_position = Product::max('position');
+
+        return view('backend.product.create' ,[
+            'categories' => $categories,
+//            'brands' => $brands,
+//            'vendors' => $vendors,
+//            'max_position' => $max_position
         ]);
     }
 
@@ -45,13 +52,9 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'summary' => 'required',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:10000'
         ],[
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
-            'summary.required' => 'Bạn chưa nhập tóm tắt',
-            'description.email' => 'Bạn chưa nhập mô tả',
             'avatar.mines' => 'File ảnh chưa đúng định dạng',
             'avatar.max' => 'Kích thước file quá lớn'
         ]);
@@ -59,10 +62,12 @@ class ProductController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
-        $stock  = $request->input('stock');
+        $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
         $position  = $request->input('position');
+        $duration  = $request->input('duration');
+        $vehicle  = $request->input('vehicle');
         $url  = $request->input('url');
         $summary  = $request->input('summary');
         $description  = $request->input('description');
@@ -93,7 +98,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $name;
         $product->category_id = $category_id;
-        $product->stock = $stock;
+        $product->departure_day = $departure_day;
         $product->price = $price;
         $product->sale = $sale;
         $product->position = $position;
@@ -102,7 +107,8 @@ class ProductController extends Controller
         $product->description = $description;
         $product->slug = $slug;
         $product->is_active = $is_active;
-        $product->is_hot = $is_hot;
+        $product->duration = $duration;
+        $product->vehicle = $vehicle;
         $product->image = $path_image;
         $product->save();
 
@@ -130,11 +136,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $dataCategory = Category::all();
+        $categories = Category::all();
         return view('backend.product.edit', [
             'data' => $product
         ],[
-            'dataCategory' => $dataCategory
+            'categories' => $categories
         ]);
     }
 
@@ -149,13 +155,10 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'summary' => 'required',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:10000'
         ],[
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
-            'summary.required' => 'Bạn chưa nhập tóm tắt',
-            'description.email' => 'Bạn chưa nhập mô tả',
             'avatar.mines' => 'File ảnh chưa đúng định dạng',
             'avatar.max' => 'Kích thước file quá lớn'
         ]);
@@ -163,31 +166,27 @@ class ProductController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
-        $stock  = $request->input('stock');
+        $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
         $position  = $request->input('position');
+        $duration  = $request->input('duration');
+        $vehicle  = $request->input('vehicle');
         $url  = $request->input('url');
         $summary  = $request->input('summary');
         $description  = $request->input('description');
-
-
-
 
 
         $is_active = 0; // default
         if ($request->has('is_active')) {
             $is_active = (int)$request->input('is_active');
         }
-        $is_hot = 0; // default
-        if ($request->has('is_hot')) {
-            $is_hot = (int)$request->input('$is_hot');
-        }
+
 
         $product = Product::find($id);
         $product->name = $name;
         $product->category_id = $category_id;
-        $product->stock = $stock;
+        $product->departure_day = $departure_day;
         $product->price = $price;
         $product->sale = $sale;
         $product->position = $position;
@@ -196,7 +195,8 @@ class ProductController extends Controller
         $product->description = $description;
         $product->slug = $slug;
         $product->is_active = $is_active;
-        $product->is_hot = $is_hot;
+        $product->duration = $duration;
+        $product->vehicle = $vehicle;
         if ($request->hasFile('image')) {
             // get file
             $file = $request->file('image');

@@ -89,6 +89,9 @@
 <script src="/backend/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/backend/dist/js/demo.js"></script>
+
+<script src="/backend/plugins/ckeditor/ckeditor.js"></script>
+
 <!-- Page script -->
 <script>
   $(function () {
@@ -163,6 +166,7 @@
 
 </script>
 @yield('code_js')
+@yield('ckeditor_js')
 </body>
 </html>
 

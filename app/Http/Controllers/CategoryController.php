@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::latest()->paginate(10);
+        $category = Category::latest()->paginate(30);
         return view('backend.category.index',[
             'data' => $category
         ]);

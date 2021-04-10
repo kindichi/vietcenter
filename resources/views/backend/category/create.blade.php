@@ -70,8 +70,6 @@
                                         <option value="1">Sản phẩm</option>
                                         <option value="2">Dịch vụ</option>
                                         <option value="3">Bài viết</option>
-                                        <option value="4">option 4</option>
-                                        <option value="5">option 5</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

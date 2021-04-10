@@ -11,14 +11,21 @@
 |
 */
 Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/admin', 'AdminController@login')->name('admin.index');
+Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin');
+Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'],function (){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin'],function (){
     Route::resource('default', 'DefaultController');
     Route::resource('category', 'CategoryController');
     Route::resource('photo', 'PhotoController');
     Route::resource('vendor', 'VendorController');
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
+    Route::resource('article', 'ArticleController');
+    Route::resource('banner', 'BannerController');
 });
+
 
 ?>

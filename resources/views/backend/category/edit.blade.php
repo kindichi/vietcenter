@@ -33,9 +33,9 @@
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option>--chọn--</option>
                                         @foreach($dataAll as $item)
-                                            <option value="{{$item -> id}}" >{{$item -> name}}</option>
+                                            <option {{ $data ->parent_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+
                                         @endforeach
-                                        <option value="{{$data -> parent_id}}" selected>{{ $item -> name}}</option>
 
                                     </select>
                                 </div>
@@ -70,10 +70,8 @@
                                         <option value>--chọn--</option>
 
                                         <option value="1" {{ ($data->type == 1) ? 'selected' : '' }}>Sản phẩm</option>
-                                        <option value="2" {{ ($data->type == 2) ? 'selected' : '' }}>Bài viết</option>
-                                        <option value="3" {{ ($data->type == 3) ? 'selected' : '' }}>option 3</option>
-                                        <option value="4" {{ ($data->type == 4) ? 'selected' : '' }}>option 4</option>
-                                        <option value="5" {{ ($data->type == 5) ? 'selected' : '' }}>option 5</option>
+                                        <option value="2" {{ ($data->type == 2) ? 'selected' : '' }}>Dịch vụ</option>
+                                        <option value="3" {{ ($data->type == 3) ? 'selected' : '' }}>Bài viết</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

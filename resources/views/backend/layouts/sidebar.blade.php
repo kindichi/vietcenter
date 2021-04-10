@@ -35,13 +35,13 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.category.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản lý Bài viết article</span>
+                <a href="{{route('admin.article.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Bài viết</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.category.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản lý Thư viện - banner</span>
+                <a href="{{route('admin.banner.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Banner</span>
                 </a>
             </li>
             <li>

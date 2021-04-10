@@ -35,10 +35,10 @@
                             <tbody>
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key }}</td>
+                                    <td>{{ $key +1 }}</td>
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->parent_id }}</td>
+                                    <td>{{ $item->parent->name or ''}}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td>{{ $item->position }}</td>
