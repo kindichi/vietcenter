@@ -78,6 +78,11 @@
                                 </div>
 
                             </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea id="editor2" name="description" class="form-control" rows="3" placeholder="Nhập mô tả"
+                                ></textarea>
+                            </div>
                         </div>
                         <!-- /.box-body -->
 
@@ -96,4 +101,14 @@
         </div>
         <!-- /.row -->
     </section>
+@endsection
+@section('ckeditor_js')
+    <script type="text/javascript">
+        $(function () {
+            $(function () {
+                var _ckeditor2 = CKEDITOR.replace('description');
+                _ckeditor2.config.height = 250;
+            })
+        })
+    </script>
 @endsection

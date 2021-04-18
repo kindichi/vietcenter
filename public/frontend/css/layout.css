@@ -403,6 +403,9 @@ h6,
     .header-menu__sub-news {
         right: 0;
     }
+    .header-menu__main li:last-child ul {
+        right: 0;
+    }
     .header-menu__sub-large {
         position: absolute !important;
         left: 0;
@@ -848,7 +851,7 @@ footer {
 
 .socialNetwork-contact>ul>li>a {
     display: block;
-  
+
     text-align: center;
 }
 
@@ -1154,7 +1157,7 @@ footer {
 @media (min-width: 1200px) {}
 
 
-/* @media (min-width: 1200px){ 
+/* @media (min-width: 1200px){
     .hotline {
         position: relative;
         width: 17.125rem;
@@ -1162,9 +1165,9 @@ footer {
         margin-left: 0.5rem;
         z-index: 100;
     }
-    
-    
-    
+
+
+
     .mobile {
         background: url(../images/homepage/bg-head-advisory.png) center no-repeat;
         background-size: cover;
@@ -1174,7 +1177,7 @@ footer {
         align-items: center;
         padding: 1rem 1.5rem;
     }
-    
+
     .mobile-img {
         display: block;
         height: 3.375rem;
@@ -1186,25 +1189,25 @@ footer {
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
     }
-    
+
     .mobile-img>a {
         height: 3.375rem;
         width: 3.375rem;
         display: flex;
         margin: auto;
     }
-    
+
     .mobile-img>a>img {
         margin: auto;
     }
-    
+
     .mobile-img>a:hover img {
         animation: call 0.5s ease;
         -webkit-animation: call 0.5s ease;
         animation-iteration-count: infinite;
         -webkit-animation-iteration-count: infinite;
     }
-    
+
     @keyframes call {
         0% {
             transform: rotate(0deg) scale(1);
@@ -1242,7 +1245,7 @@ footer {
             -o-transform: rotate(0deg) scale(1);
         }
     }
-    
+
     .mobile-callto {
         color: white;
         text-align: center;
@@ -1250,12 +1253,12 @@ footer {
         padding-right: 0.5rem;
         font-family: SegoeUISemiBold;
     }
-    
+
     .mobile-callto>h5 {
         font-size: 0.875rem;
         letter-spacing: -0.02rem;
     }
-    
+
     .mobile-callto>a {
         color: white;
         font-size: 1.5rem;
@@ -1267,17 +1270,17 @@ footer {
         -ms-transition: all .5s;
         -o-transition: all .5s;
     }
-    
+
     .mobile-callto>a:hover {
         color: rgb(9, 81, 132);
     }
-    
+
     .advisory {
         background: url(../images/homepage/bg-body-advisory.png) center no-repeat;
         background-size: cover;
         text-align: center;
     }
-    
+
     .advisory>p {
         font-family: SegoeUI;
         font-size: 1rem;
@@ -1285,12 +1288,12 @@ footer {
         padding: 0.75rem 0;
         letter-spacing: -0.03rem;
     }
-    
+
     .form-advisory {
         display: flex;
         justify-content: center;
     }
-    
+
     .form-advisory>input {
         width: 12.75rem;
         height: 2.25rem;
@@ -1304,7 +1307,7 @@ footer {
         -ms-border-radius: 0.2rem 0 0 0.2rem;
         -o-border-radius: 0.2rem 0 0 0.2rem;
     }
-    
+
     .form-advisory>button {
         width: 2.25rem;
         height: 2.25rem;
@@ -1316,7 +1319,7 @@ footer {
         -ms-border-radius: 0 0.2rem 0.2rem 0;
         -o-border-radius: 0 0.2rem 0.2rem 0;
     }
-    
+
     .form-advisory>button>img {
         transition: all .5s;
         -webkit-transition: all .5s;
@@ -1324,7 +1327,7 @@ footer {
         -ms-transition: all .5s;
         -o-transition: all .5s;
     }
-    
+
     .form-advisory>button:hover img {
         transform: rotateY(180deg);
         -webkit-transform: rotateY(180deg);

@@ -34,13 +34,9 @@
                                         <option>--chọn--</option>
                                         @foreach($dataAll as $item)
                                             <option {{ $data ->parent_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-
                                         @endforeach
-
                                     </select>
                                 </div>
-
-
                                 <div class="form-group">
                                     <label for="name">Tên danh mục</label>
                                     <input value="{{ $data->name }}" type="text" name="name" class="form-control" id="name">
@@ -48,7 +44,6 @@
                                 @if ($errors->has('name'))
                                     <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('name')}} </label>
                                 @endif
-
                                 <div class="form-group">
                                     <label for="imgage">Ảnh</label>
                                     <input type="file" name="image" id="image">
@@ -78,7 +73,14 @@
                                     <label for="position">Vị trí hiển thị</label>
                                     <input value="{{ $data->position }}" type="number" name="position" class="form-control" id="position" min="1">
                                 </div>
+                            </div>
 
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea id="editor2" name="description" class="form-control" rows="3"
+                                >{{$data->description}}</textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -98,4 +100,14 @@
         </div>
         <!-- /.row -->
     </section>
+@endsection
+@section('ckeditor_js')
+    <script type="text/javascript">
+        $(function () {
+            $(function () {
+                var _ckeditor2 = CKEDITOR.replace('description');
+                _ckeditor2.config.height = 250;
+            })
+        })
+    </script>
 @endsection

@@ -73,11 +73,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Vị trí</label>
-                                        <input type="number" class="form-control" id="position" name="position"
-                                               value="1">
+                                        <label for="categoryOption">Danh mục cha</label>
+                                        <select class="form-control" name="categoryParent_id">
+                                            <option value="select"> -- chọn Danh Mục --</option>
+                                            @foreach($categoryParent_id as $Parent_id)
+                                                <option value="{{$Parent_id -> id}}">{{$Parent_id -> name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -85,9 +90,7 @@
                                         <label for="">Giá gốc (vnđ)</label>
                                         <input type="text" class="form-control" id="price" name="price">
                                     </div>
-
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Giá khuyến mãi (vnđ)</label>
@@ -95,9 +98,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
-
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -117,19 +117,41 @@
                                     <div class="form-group">
                                         <label for="categoryOption">Phương tiện</label>
                                         <select class="form-control" name="vehicle">
-                                            <option value="select"> -- chọn Danh Mục --</option>
-                                            <option value="1">Máy bay</option>
-                                            <option value="2">Tàu hỏa</option>
-                                            <option value="3">Ô tô</option>
-                                            <option value="4">Tàu thủy</option>
-
+                                            <option value=""> -- chọn Phương tiện --</option>
+                                            <option value="Máy bay">Máy bay</option>
+                                            <option value="Tàu hỏa">Tàu hỏa</option>
+                                            <option value="Ô tô">Ô tô</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="categoryOption">Điểm khởi hành</label>
+                                        <select class="form-control" name="location">
+                                            <option value=""> -- chọn Điểm khởi hành --</option>
+                                            <option value="Hà Nội">Hà Nội</option>
+                                            <option value="Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</option>
+                                            <option value="Hải Phòng">Hải Phòng</option>
+                                            <option value="Đà Nẵng">Đà Nẵng</option>
+                                            <option value="Đà Lạt">Đà Lạt</option>
+                                            <option value="Nha Trang">Nha Trang</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vị trí</label>
+                                        <input type="number" class="form-control" id="position" name="position"
+                                               value="1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="checkbox">
-                                        <label class="col-md-4">
-                                            <input type="checkbox" value="1" name="is_active"><b>Trạng thái hiển thị</b>
+                                        <label class="col-md-6">
+                                            <input type="checkbox" value="1" name="is_hot"><b>Tour hot</b>
+                                        </label>
+                                        <label class="col-md-6">
+                                            <input type="checkbox" value="1" name="is_active"><b>Hiển thị</b>
                                         </label>
                                     </div>
                                 </div>
@@ -146,8 +168,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Tóm tắt</label>
-                                <textarea id="editor1" name="summary" class="form-control" rows="3"
+                                <label>Lịch trình</label>
+                                <textarea id="editor1" name="schedule" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
                             </div>
 
@@ -156,7 +178,11 @@
                                 <textarea id="editor2" name="description" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
                             </div>
-
+                            <div class="form-group">
+                                <label>Điều khoản</label>
+                                <textarea id="editor3" name="rule" class="form-control" rows="3"
+                                          placeholder="Enter ..."></textarea>
+                            </div>
 
                         </div>
                         <!-- /.box-body -->
@@ -179,10 +205,12 @@
     <script type="text/javascript">
         $(function () {
             $(function () {
-                var _ckeditor1 = CKEDITOR.replace('summary');
-                _ckeditor1.config.height = 150;
+                var _ckeditor1 = CKEDITOR.replace('schedule');
+                _ckeditor1.config.height = 100;
                 var _ckeditor2 = CKEDITOR.replace('description');
-                _ckeditor2.config.height = 400;
+                _ckeditor2.config.height = 150;
+                var _ckeditor3 = CKEDITOR.replace('rule');
+                _ckeditor3.config.height = 150;
             })
         })
     </script>

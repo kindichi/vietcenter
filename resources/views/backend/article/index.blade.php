@@ -41,7 +41,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->category->name }}</td>
+                                    <td>{{ @$item->category->name }}</td>
                                     <td>{{ $item->position }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">

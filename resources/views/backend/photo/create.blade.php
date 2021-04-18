@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm mới photo <a href="" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
+            Thêm mới Ảnh <a href="{{route('admin.photo.index')}}" class="btn btn-primary">Danh sách </a>
         </h1>
     </section>
 
@@ -15,12 +15,27 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin photo</h3>
+                        <h3 class="box-title">Thông tin Ảnh</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @if ($errors->any())
+                                <div class="alert alert-warning alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-warning"></i> Cảnh báo !</h4>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="" method="post" enctype="multipart/form-data">
-
+                    <form role="form" action="{{route('admin.photo.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="box-body">
 
                             <div class="form-group">
@@ -40,6 +55,7 @@
                                     <div class="form-group">
                                         <label>Target</label>
                                         <select class="form-control" name="target">
+                                            <option value="">--chọn target--</option>
                                             <option value="_blank">_blank</option>
                                             <option value="_self">_self</option>
                                         </select>
@@ -49,11 +65,29 @@
                                     <div class="form-group">
                                         <label>Loại</label>
                                         <select class="form-control" name="type">
+                                            <option value="">--chọn loại ảnh--</option>
                                             <option value="1">Slide</option>
                                             <option value="2">Background</option>
-                                            <option value="3">photo right</option>
-                                            <option value="4">photo left</option>
+                                            <option value="3">Photo right</option>
+                                            <option value="4">Photo left</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Danh mục Sản phẩm</label>
+                                        <select class="form-control" name="product_id">
+                                            <option value="">--Select Product--</option>
+                                            @foreach($products as $product)
+                                                <option value="{{$product->id}}">{{$product->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vị trí</label>
+                                        <input type="number" class="form-control" id="position" name="position" value="1">
                                     </div>
                                 </div>
                             </div>
@@ -67,12 +101,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Vị trí</label>
-                                        <input type="number" class="form-control" id="position" name="position" value="">
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="form-group">
@@ -83,7 +112,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Tạo</button>
+                            <button type="submit" class="btn btn-primary">Thêm</button>
                         </div>
                     </form>
                 </div>
@@ -97,3 +126,13 @@
     </section>
 @endsection
 
+@section('ckeditor_js')
+    <script type="text/javascript">
+        $(function () {
+            $(function () {
+                var _ckeditor2 = CKEDITOR.replace('description');
+                _ckeditor2.config.height = 200;
+            })
+        })
+    </script>
+@endsection

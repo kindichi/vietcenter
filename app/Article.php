@@ -10,4 +10,8 @@ class Article extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
 }

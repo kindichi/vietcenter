@@ -63,9 +63,9 @@
             <ul>
                 <li>
                     <i class="fas fa-map-marker-alt"></i>
-                    <a href=""></i>Tầng 3 Số nhà 32, Ngách 37/2 Dịch Vọng, Cầu Giấy, Hà Nội</a>
+                    <a href=""></i>{{$setting->address}}</a>
                 </li>
-                <li><i class="fas fa-phone-alt"></i> <a href=""> 024.6281.6212</a></li>
+                <li><i class="fas fa-phone-alt"></i> <a href=""> {{$setting->phone}}</a></li>
                 <li><i class="fas fa-fax"></i> <a href=""> 024.6281.6210</a></li>
                 <li><i class="fas fa-envelope"></i> <a href=""> lienhe@vietcenter.vn</a></li>
             </ul>
@@ -74,7 +74,7 @@
     <div class="licenseInfo">
         <div class="container d-flex">
             <div class="licenseInfo-content">
-                <p>CÔNG TY TNHH DU LỊCH TRUNG TÂM VIỆT (VIETCENTER TOURIST)</p>
+                <p>{{$setting->company}}</p>
                 <p>Giấy phép kinh doanh số 0103011405 Sở kế hoạch và đầu tư Thành phố Hà Nội cấp ngày 15/11/2008.</p>
                 <p>Coppyright &copy; 2011-2018. All Rights Reserved by Vietcenter Tourist. Thiết kế và điều hành bởi <a href="https://vietcenter.vn" target="_blank">Vietcenter Tourist</a></p>
                 <p>

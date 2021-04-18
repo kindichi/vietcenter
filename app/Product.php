@@ -10,4 +10,12 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function booktours()
+    {
+        return $this->hasMany('App\Booktour');
+    }
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
 }

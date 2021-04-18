@@ -29,13 +29,16 @@
                                 <th style="width: 10px">#</th>
                                 <th>Hình ảnh</th>
                                 <th>Tour</th>
-                                <th>Danh mục</th>
+                                <th>Danh mục tour</th>
+                                <th>Danh mục cha</th>
                                 <th>Giá bán</th>
                                 <th>Giá khuyến mãi</th>
                                 <th>Ngày khởi hành</th>
                                 <th>Thời gian</th>
                                 <th>Phương tiện</th>
+                                <th>Điểm khởi hành</th>
                                 <th>Vị trí</th>
+                                <th>Tour hot</th>
                                 <th>Trạng thái</th>
                                 <th>Hành Động</th>
                             </tr>
@@ -47,12 +50,15 @@
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ @$item->category->name }}</td>
+                                    <td>{{ @$item->category->parent->name }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->sale }}</td>
                                     <td>{{ $item->departure_day }}</td>
                                     <td>{{ $item->duration }}</td>
                                     <td>{{ $item->vehicle }}</td>
+                                    <td>{{ $item->location }}</td>
                                     <td>{{ $item->position }}</td>
+                                    <td>{{ $item->is_hot }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>

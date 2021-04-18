@@ -1,4 +1,7 @@
 @extends('frontend.layouts.main');
+@section('mycss')
+    <link rel="stylesheet" href="/frontend/css/index.css">
+    @endsection
 @section('content')
     <!-- slide show -->
     <section class="banner">

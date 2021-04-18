@@ -57,6 +57,7 @@ class CategoryController extends Controller
 //        $category->slug = Str::slug($request->input('name'));
         $parent_id  = (int)$request->input('parent_id');
         $type = $request->input('type');
+        $description = $request->input('description');
         $position = $request->input('position');
 
         $path_image = '';
@@ -81,6 +82,7 @@ class CategoryController extends Controller
         $category->slug = $slug;
         $category->parent_id = $parent_id;
         $category->type = $type;
+        $category->description = $description;
         $category->position = $position;
         $category->image = $path_image;
         $category->save();
@@ -110,8 +112,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $categoryAll = Category::all();
         return view('backend.category.edit', [
-            'data' => $category
-        ],[
+            'data' => $category,
             'dataAll' => $categoryAll
         ]);
     }
@@ -137,6 +138,7 @@ class CategoryController extends Controller
         $slug = str_slug($name,'-');
         $parent_id  = (int)$request->input('parent_id');
         $type = $request->input('type');
+        $description = $request->input('description');
         $position = $request->input('position');
 
         $is_active = 0; // default
@@ -148,6 +150,7 @@ class CategoryController extends Controller
         $category->slug = $slug;
         $category->parent_id = $parent_id;
         $category->type = $type;
+        $category->description = $description;
         $category->position = $position;
         if ($request->hasFile('image')) {
             // get file

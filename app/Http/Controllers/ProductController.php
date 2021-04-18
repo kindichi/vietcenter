@@ -30,12 +30,15 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $categoryParent_id = Category::where(['parent_id' => 0])->get();
+        $categories = Category::where(['type' => 1, 'position' => 2])->get();
 //        $brands = Brand::all();
 //        $vendors = Vendor::all();
 //        $max_position = Product::max('position');
 
         return view('backend.product.create' ,[
             'categories' => $categories,
+'categoryParent_id' => $categoryParent_id
 //            'brands' => $brands,
 //            'vendors' => $vendors,
 //            'max_position' => $max_position
@@ -62,15 +65,18 @@ class ProductController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
+        $categoryParent_id  = (int)$request->input('categoryParent_id');
         $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
         $position  = $request->input('position');
         $duration  = $request->input('duration');
         $vehicle  = $request->input('vehicle');
+        $location  = $request->input('location');
         $url  = $request->input('url');
-        $summary  = $request->input('summary');
+        $schedule  = $request->input('schedule');
         $description  = $request->input('description');
+        $rule  = $request->input('rule');
 
 
         $path_image = '';
@@ -98,18 +104,22 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $name;
         $product->category_id = $category_id;
+        $product->categoryParent_id = $categoryParent_id;
         $product->departure_day = $departure_day;
         $product->price = $price;
         $product->sale = $sale;
         $product->position = $position;
         $product->url = $url;
-        $product->summary = $summary;
+        $product->schedule = $schedule;
         $product->description = $description;
         $product->slug = $slug;
         $product->is_active = $is_active;
+        $product->is_hot = $is_hot;
         $product->duration = $duration;
         $product->vehicle = $vehicle;
+        $product->location = $location;
         $product->image = $path_image;
+        $product->rule = $rule;
         $product->save();
 
         // chuyen dieu huong trang
@@ -136,11 +146,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::all();
-        return view('backend.product.edit', [
-            'data' => $product
-        ],[
-            'categories' => $categories
+        $categoryParent_id = Category::where(['parent_id' => 0])->get();
+        $categories = Category::where(['type' => 1, 'position' => 2])->get();
+
+        return view('backend.product.edit' ,[
+            'data' => $product,
+            'categories' => $categories,
+            'categoryParent_id' => $categoryParent_id
         ]);
     }
 
@@ -166,37 +178,47 @@ class ProductController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
+        $categoryParent_id  = (int)$request->input('categoryParent_id');
         $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
         $position  = $request->input('position');
         $duration  = $request->input('duration');
         $vehicle  = $request->input('vehicle');
+        $location  = $request->input('location');
         $url  = $request->input('url');
-        $summary  = $request->input('summary');
+        $schedule  = $request->input('schedule');
         $description  = $request->input('description');
+        $rule  = $request->input('rule');
 
 
         $is_active = 0; // default
         if ($request->has('is_active')) {
             $is_active = (int)$request->input('is_active');
         }
-
+        $is_hot = 0; // default
+        if ($request->has('is_hot')) {
+            $is_hot = (int)$request->input('$is_hot');
+        }
 
         $product = Product::find($id);
         $product->name = $name;
         $product->category_id = $category_id;
+        $product->categoryParent_id = $categoryParent_id;
         $product->departure_day = $departure_day;
         $product->price = $price;
         $product->sale = $sale;
         $product->position = $position;
         $product->url = $url;
-        $product->summary = $summary;
+        $product->schedule = $schedule;
         $product->description = $description;
         $product->slug = $slug;
         $product->is_active = $is_active;
+        $product->is_hot = $is_hot;
         $product->duration = $duration;
         $product->vehicle = $vehicle;
+        $product->location = $location;
+        $product->rule = $rule;
         if ($request->hasFile('image')) {
             // get file
             $file = $request->file('image');

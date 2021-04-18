@@ -75,11 +75,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Vị trí</label>
-                                    <input type="number" class="form-control" id="position" name="position"
-                                           value="{{ $data->position }}">
+                                    <label for="categoryOption">Danh mục cha</label>
+                                    <select class="form-control" name="categoryParent_id">
+                                        <option value="select"> -- chọn Danh Mục --</option>
+                                        @foreach($categoryParent_id as $Parent_id)
+                                            <option {{ $data ->categoryParent_id == $Parent_id->id ? 'selected' : '' }} value="{{ $Parent_id->id }}">{{ $Parent_id->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -119,18 +124,40 @@
                                 <div class="form-group">
                                     <label for="categoryOption">Phương tiện</label>
                                     <select class="form-control" name="vehicle">
-                                        <option value="select"> -- chọn Danh Mục --</option>
-                                        <option value="1" {{$data->vehicle = 1 ? 'selected' : ''}}>Máy bay</option>
-                                        <option value="2" {{$data->vehicle = 2 ? 'selected' : ''}}>Tàu hỏa</option>
-                                        <option value="3" {{$data->vehicle = 3 ? 'selected' : ''}}>Ô tô</option>
-                                        <option value="4" {{$data->vehicle = 4 ? 'selected' : ''}}>Tàu thủy</option>
-
+                                        <option value=""> -- chọn Phương tiện --</option>
+                                        <option value="Máy bay" {{$data->vehicle = 'Máy bay' ? 'selected' : ''}}>Máy bay</option>
+                                        <option value="Tàu hỏa" {{$data->vehicle = 'Tàu hỏa' ? 'selected' : ''}}>Tàu hỏa</option>
+                                        <option value="Ô tô" {{$data->vehicle = 'Ô tô' ? 'selected' : ''}}>Ô tô</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="categoryOption">Điểm khởi hành</label>
+                                    <select class="form-control" name="location">
+                                        <option value=""> -- chọn Điểm khởi hành --</option>
+                                        <option value="Hà Nội" {{$data->vehicle = 'Hà Nội' ? 'selected' : ''}}>Hà Nội</option>
+                                        <option value="Tp. Hồ Chí Minh" {{$data->location = 'Tp. Hồ Chí Minh' ? 'selected' : ''}}>Tp. Hồ Chí Minh</option>
+                                        <option value="Hải Phòng" {{$data->location = 'Hải Phòng' ? 'selected' : ''}}>Hải Phòng</option>
+                                        <option value="Đà Nẵng" {{$data->location = 'Đà Nẵng' ? 'selected' : ''}}>Đà Nẵng</option>
+                                        <option value="Đà Lạt" {{$data->location = 'Đà Lạt' ? 'selected' : ''}}>Đà Lạt</option>
+                                        <option value="Nha Trang" {{$data->location = 'Nha Trang' ? 'selected' : ''}}>Nha Trang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Vị trí</label>
+                                    <input type="number" class="form-control" id="position" name="position"
+                                           value="{{ $data->position }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="checkbox">
-                                    <label class="col-md-4">
+                                    <label class="col-md-6">
+                                        <input type="checkbox" {{ ($data->is_hot == 1) ? 'checked' : '' }} value="1" name="is_active"><b>Tour hot</b>
+                                    </label>
+                                    <label class="col-md-6">
                                         <input type="checkbox" {{ ($data->is_active == 1) ? 'checked' : '' }} value="1" name="is_active"><b>Trạng thái hiển thị</b>
                                     </label>
                                 </div>
@@ -148,15 +175,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Tóm tắt</label>
-                            <textarea id="editor1" name="summary" class="form-control" rows="3"
-                                      >{{$data->summary}}</textarea>
+                            <label>Lịch trình</label>
+                            <textarea id="editor1" name="schedule" class="form-control" rows="3"
+                                      >{{$data->schedule}}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Mô tả</label>
                             <textarea id="editor2" name="description" class="form-control" rows="3"
                                       >{{$data->description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Điều khoản</label>
+                            <textarea id="editor3" name="rule" class="form-control" rows="3"
+                            >{{$data->rule}}</textarea>
                         </div>
 
 
@@ -182,10 +214,12 @@
     <script type="text/javascript">
         $(function () {
             $(function () {
-                var _ckeditor1 = CKEDITOR.replace('summary');
-                _ckeditor1.config.height = 150;
+                var _ckeditor1 = CKEDITOR.replace('schedule');
+                _ckeditor1.config.height = 100;
                 var _ckeditor2 = CKEDITOR.replace('description');
-                _ckeditor2.config.height = 400;
+                _ckeditor2.config.height = 150;
+                var _ckeditor3 = CKEDITOR.replace('rule');
+                _ckeditor3.config.height = 150;
             })
         })
     </script>

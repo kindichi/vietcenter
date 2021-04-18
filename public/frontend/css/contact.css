@@ -1,0 +1,124 @@
+.contact>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+.contact>p>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.contact>p>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.contact>h3 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    color: rgb(9, 81, 132);
+    text-align: center;
+}
+
+.contact>img {
+    display: block;
+    margin: auto;
+}
+
+.contact-content {
+    margin: 2rem 0;
+    justify-content: space-between;
+}
+
+.contact-content form {
+    justify-content: space-between;
+}
+
+.contact-address, .contact-info {
+    padding: 1rem 1.5rem;
+}
+
+.contact-content h4 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: rgb(9, 81, 132);
+}
+
+.contact-address {
+    background: rgb(245, 245, 245);
+    width: 100%;
+}
+.contact-address>div,.contact-address>p{
+    margin: 0.25rem 0
+}
+.contact-address span{
+    margin-right: 0.5rem;
+}
+@media (min-width: 768px) {
+    .contact-address {
+        width: 49%;
+    }
+}
+
+
+
+
+.contact-info {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: rgb(245, 245, 245);
+}
+.contact-info h4{
+    margin-bottom: 1rem;
+}
+.contact-info input, .contact-info textarea {
+    margin: 0.35rem 0;
+    width: 100%;
+    height: 2rem;
+    padding-left: 0.75rem;
+    border: 1px solid rgb(151,151,151);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+    outline: none;
+}
+.contact-info textarea{
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .contact-info {
+        width: 49%;
+        margin-top: 0;
+    }
+}
+
+label{
+    margin-top: 0.5rem;
+    display: contents;
+}
+label>strong{
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+}
+.contact-info_btn{
+    background: rgb(9, 81, 132);
+    width: 6rem;
+    height: 2rem;
+    font-family: SegoeUIBold;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+    margin-top: 0.5rem;
+   
+}
