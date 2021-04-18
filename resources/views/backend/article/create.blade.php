@@ -80,6 +80,15 @@
                                            value="1">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputSupplier">Lượt xem</label>
+                                    <input type="number" class="form-control" id="view" name="view" value="263">
+                                    @if ($errors->has('view'))
+                                        <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('view') }}</label>
+                                    @endif
+                                </div>
+                            </div>
                                 <div class="col-md-6">
                                     <div class="checkbox">
                                         <label>

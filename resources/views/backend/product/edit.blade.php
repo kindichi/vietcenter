@@ -174,16 +174,17 @@
                                    value="{{$data->url}}">
                         </div>
 
-                        <div class="form-group">
-                            <label>Lịch trình</label>
-                            <textarea id="editor1" name="schedule" class="form-control" rows="3"
-                                      >{{$data->schedule}}</textarea>
-                        </div>
+
 
                         <div class="form-group">
                             <label>Mô tả</label>
                             <textarea id="editor2" name="description" class="form-control" rows="3"
                                       >{{$data->description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Lịch trình</label>
+                            <textarea id="editor1" name="schedule" class="form-control" rows="3"
+                            >{{$data->schedule}}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Điều khoản</label>

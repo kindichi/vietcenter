@@ -66,6 +66,7 @@ class ArticleController extends Controller
         $summary  = $request->input('summary');
         $description  = $request->input('description');
         $category_id  = $request->input('category_id');
+        $view  = $request->input('view');
         $position  = $request->input('position');
         $meta_title = $request->input('title');
         $meta_description = $request->input('title');
@@ -93,6 +94,7 @@ class ArticleController extends Controller
         $article->summary = $summary;
         $article->description = $description;
         $article->position = $position;
+        $article->view = $view;
         $article->category_id = $category_id;
         $article->meta_title = $meta_title;
         $article->meta_description = $meta_description;
@@ -160,6 +162,7 @@ class ArticleController extends Controller
         $summary  = $request->input('summary');
         $description  = $request->input('description');
         $category_id  = $request->input('category_id');
+        $view  = $request->input('view');
         $position  = $request->input('position');
         $meta_title = $request->input('title');
         $meta_description = $request->input('title');
@@ -175,6 +178,7 @@ class ArticleController extends Controller
         $article->summary = $summary;
         $article->description = $description;
         $article->position = $position;
+        $article->view = $view;
         $article->category_id = $category_id;
         $article->meta_title = $meta_title;
         $article->meta_description = $meta_description;
