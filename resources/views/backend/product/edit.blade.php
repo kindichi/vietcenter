@@ -155,10 +155,13 @@
                             <div class="col-md-6">
                                 <div class="checkbox">
                                     <label class="col-md-6">
-                                        <input type="checkbox" {{ ($data->is_hot == 1) ? 'checked' : '' }} value="1" name="is_active"><b>Tour hot</b>
+                                        <input type="checkbox" value="1" {{ $data->is_hot == 1 ? 'checked' : '' }} name="is_hot"><b>Tour hot</b>
                                     </label>
+
+                                </div>
+                                <div class="checkbox">
                                     <label class="col-md-6">
-                                        <input type="checkbox" {{ ($data->is_active == 1) ? 'checked' : '' }} value="1" name="is_active"><b>Trạng thái hiển thị</b>
+                                        <input type="checkbox" {{ $data->is_active == 1 ? 'checked' : '' }} value="1" name="is_active"><b>Trạng thái hiển thị</b>
                                     </label>
                                 </div>
                             </div>

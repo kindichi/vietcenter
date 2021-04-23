@@ -58,7 +58,7 @@
                                     <td>{{ $item->vehicle }}</td>
                                     <td>{{ $item->location }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td>{{ $item->is_hot }}</td>
+                                    <td>{{ $item->is_hot == 1 ? 'Hot' : '' }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>

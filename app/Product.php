@@ -18,4 +18,12 @@ class Product extends Model
     {
         return $this->hasMany('App\Photo');
     }
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule');
+    }
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

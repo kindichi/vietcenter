@@ -198,7 +198,7 @@ class ProductController extends Controller
         }
         $is_hot = 0; // default
         if ($request->has('is_hot')) {
-            $is_hot = (int)$request->input('$is_hot');
+            $is_hot = (int)$request->input('is_hot');
         }
 
         $product = Product::find($id);

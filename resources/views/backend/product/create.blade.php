@@ -148,7 +148,7 @@
                                 <div class="col-md-6">
                                     <div class="checkbox">
                                         <label class="col-md-6">
-                                            <input type="checkbox" value="1" name="is_hot"><b>Tour hot</b>
+                                            <input type="checkbox" value="1" name="is_hot" id="is_hot"><b>Tour hot</b>
                                         </label>
                                         <label class="col-md-6">
                                             <input type="checkbox" value="1" name="is_active"><b>Hiển thị</b>

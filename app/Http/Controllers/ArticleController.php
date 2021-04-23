@@ -17,7 +17,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::latest()->paginate(20);
+        $article = Article::latest()->paginate(30);
         return view('backend.article.index',[
             'data' =>  $article
         ]);
@@ -57,8 +57,8 @@ class ArticleController extends Controller
             'title.required' => 'Bạn chưa nhập tiêu đề',
             'summary.required' => 'Bạn chưa nhập tóm tắt',
             'description.email' => 'Bạn chưa nhập mô tả',
-            'avatar.mines' => 'File ảnh chưa đúng định dạng',
-            'avatar.max' => 'Kích thước file quá lớn'
+            'image.mines' => 'File ảnh chưa đúng định dạng',
+            'image.max' => 'Kích thước file quá lớn'
         ]);
 
         $title  = $request->input('title');

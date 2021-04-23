@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('booktour', 'BooktourController');
     Route::resource('contact', 'ContactController');
     Route::resource('setting', 'SettingController');
+    Route::resource('schedule', 'ScheduleController');
+    Route::resource('review', 'ReviewController');
 });
 
 

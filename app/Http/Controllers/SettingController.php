@@ -86,11 +86,17 @@ class SettingController extends Controller
         $setting->address = $request->input('address');
         $setting->address2 = $request->input('address2');
         $setting->tax = $request->input('tax');
+        $setting->fax = $request->input('fax');
         $setting->facebook = $request->input('facebook');
         $setting->email = $request->input('email');
         $setting->introduce = $request->input('introduce');
         $setting->website = $request->input('website');
-        $setting->privacy_policy = $request->input('privacy_policy');
+        $setting->policy = $request->input('policy');
+        $setting->payment_guide = $request->input('payment_guide');
+        $setting->information_security = $request->input('information_security');
+        $setting->travel_insurance = $request->input('travel_insurance');
+
+
 
         if ($request->hasFile('new_image')) {
             // xóa file cũ

@@ -40,6 +40,16 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.schedule.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Lịch trình</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.review.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Đánh giá</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.article.index')}}">
                     <i class="fa fa-th"></i> <span>Quản lý Bài viết</span>
                 </a>

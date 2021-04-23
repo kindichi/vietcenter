@@ -474,8 +474,10 @@
                 <div class="accordion" id="accordionExample">
                     <div class="tourIntro-btn">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" autofocus>Giới thiệu</button>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">bao gồm và điều khoản</button>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">bình luận</button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Lịch trình</button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">bao gồm và điều khoản</button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">đánh giá</button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">bình luận</button>
                     </div>
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <ol>
@@ -514,7 +516,32 @@
                             </li>
                         </ol>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div id="collapseTwo" class="collapse blognews-mostviewed tourSchedule" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion" id="schedule">
+                            <div class="tourSchedule-btn">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1" aria-expanded="true" aria-controls="day1" autofocus>Ngày 1</button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2" aria-expanded="false" aria-controls="day2">Ngày 2</button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day3" aria-expanded="false" aria-controls="day3">Ngày 3</button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day4" aria-expanded="false" aria-controls="day4">Ngày 4</button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day5" aria-expanded="false" aria-controls="day5">Ngày 5</button>
+                            </div>
+                            <div id="day1" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#schedule">
+                                
+                            </div>
+                            <div id="day2" class="collapse blognews-mostviewed" aria-labelledby="headingTwo" data-bs-parent="#schedule">
+                                
+                            </div>
+                            <div id="day3" class="collapse" aria-labelledby="headingThree" data-bs-parent="#schedule">
+                              
+                            </div>
+                            <div id="day4" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#schedule">
+                            </div>
+                            <div id="day5" class="collapse blognews-mostviewed" aria-labelledby="headingFive" data-bs-parent="#schedule">
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <ol>
                             <li>Bao gồm :
                                 <ul>
@@ -558,9 +585,11 @@
                             </li>
                         </ol>
                     </div>
-                    <div id="collapseThree" class="collapse blognews-mostviewed" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-
+                    <div id="collapseFour" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     </div>
+                    <div id="collapseFive" class="collapse blognews-mostviewed" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    </div>
+                   
                 </div>
             </div>
 

@@ -18,4 +18,8 @@ class Category extends Model
     {
         return $this->hasMany('App\Article');
     }
+    public function banners()
+    {
+        return $this->hasMany('App\Banner');
+    }
 }

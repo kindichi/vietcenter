@@ -60,8 +60,8 @@
 }
 
 .carousel>button>span {
-    height: 2rem;
-    width: 2rem;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 .tourInfo-card {
@@ -145,6 +145,17 @@
     background: rgb(145, 233, 115);
 }
 
+@media (min-width: 992px) {
+    .tourInfo-slide {
+        width: 65%;
+    }
+    .tourInfo-card {
+        width: 35%;
+        margin: 0;
+        padding-left: 1rem;
+    }
+}
+
 .col-md-9,
 .col-md-3,
 .col-md-6 {
@@ -181,6 +192,41 @@
 .tourIntro-btn>button:hover {
     background: #73c04a;
     color: white;
+}
+
+.tourSchedule{
+    margin: 1rem 0 !important;
+}
+.tourSchedule-btn {
+    background: #f5f4ef;
+}
+.tourSchedule-btn>button {
+    font-family: SegoeUIBold;
+    font-size: 1rem;
+    color: black;
+    border: none;
+    outline: none;
+    height: 3rem;
+    width: 8rem;
+    text-align: center;
+    margin-left: -1.75rem;
+    background: rgb(222,239,255);
+    /*padding: 0.5rem 1rem;
+    */clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.tourSchedule-btn>button:first-child{
+    padding-left: 1rem;
+    text-align: left;
+    margin-left: 0rem;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+.tourSchedule-btn>button:focus{
+    background: rgb(42,115,177);
 }
 
 .collapse>ol>li {

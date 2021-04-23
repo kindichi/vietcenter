@@ -30,6 +30,7 @@
                                 <th>Hình ảnh</th>
                                 <th>Title</th>
                                 <th>Kiểu bài viết</th>
+                                <th>Lượt xem</th>
                                 <th>Vị trí</th>
                                 <th>Trạng thái</th>
                                 <th>Hành Động</th>
@@ -42,6 +43,7 @@
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ @$item->category->name }}</td>
+                                    <td>{{ @$item->view }}</td>
                                     <td>{{ $item->position }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">

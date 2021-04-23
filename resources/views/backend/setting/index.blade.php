@@ -16,66 +16,82 @@
                         @csrf
                         @method('PUT')
                         <div class="box-body">
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Tên Công Ty</label>
                                 <input value="{{ $setting->company }}" type="text" class="form-control" id="company"
                                        name="company" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputFile">Thay đổi Logo</label>
                                 <input type="file" id="new_image" name="new_image"><br>
                                 @if ($setting->image)
                                     <img src="{{ asset($setting->image) }}" width="200">
                                 @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Địa chỉ 1</label>
                                 <input value="{{ $setting->address }}" type="text" class="form-control" id="address"
                                        name="address" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Địa chỉ 2</label>
                                 <input value="{{ $setting->address2 }}" type="text" class="form-control" id="address2"
                                        name="address2" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">SĐT</label>
                                 <input value="{{ $setting->phone }}" type="text" class="form-control" id="phone"
                                        name="phone" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Fax</label>
+                                <input value="{{ $setting->fax }}" type="text" class="form-control" id="fax"
+                                       name="fax" placeholder="">
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Hotline</label>
                                 <input value="{{ $setting->hotline }}" type="text" class="form-control" id="hotline"
                                        name="hotline" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">MST</label>
                                 <input value="{{ $setting->tax }}" type="text" class="form-control" id="tax"
                                        name="tax" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Facebook</label>
                                 <input value="{{ $setting->facebook }}" type="text" class="form-control" id="facebook"
                                        name="facebook" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input value="{{ $setting->email }}" type="text" class="form-control" id="email"
                                        name="email" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Website</label>
                                 <input value="{{ $setting->website }}" type="text" class="form-control" id="email"
                                        name="website" placeholder="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label>Giới thiệu về công ty</label>
                                 <textarea id="editor1" name="introduce" class="form-control" rows="10" >{{ $setting->introduce }}</textarea>
                             </div>
-
-                            <div class="form-group">
-                                <label>Chính sách bảo mật</label>
-                                <textarea id="editor2" name="privacy_policy" class="form-control" rows="10" >{{ $setting->privacy_policy }}</textarea>
+                            <div class="form-group col-md-12">
+                                <label>Hướng dẫn thanh toán</label>
+                                <textarea id="editor2" name="payment_guide" class="form-control" rows="10" >{{ $setting->payment_guide }}</textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Điều khoản</label>
+                                <textarea id="editor3" name="policy" class="form-control" rows="10" >{{ $setting->policy }}</textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Bảo mật thông tin</label>
+                                <textarea id="editor4" name="information_security" class="form-control" rows="10" >{{ $setting->information_security }}</textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Bảo hiểm du lịch</label>
+                                <textarea id="editor5" name="travel_insurance" class="form-control" rows="10" >{{ $setting->travel_insurance }}</textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -100,9 +116,15 @@
         $(function () {
             $(function () {
                 var _ckeditor1 = CKEDITOR.replace('introduce');
-                _ckeditor1.config.height = 350;
-                var _ckeditor2 = CKEDITOR.replace('privacy_policy');
-                _ckeditor2.config.height = 250;
+                _ckeditor1.config.height = 150;
+                var _ckeditor2 = CKEDITOR.replace('payment_guide');
+                _ckeditor2.config.height = 150;
+                var _ckeditor3 = CKEDITOR.replace('policy');
+                _ckeditor3.config.height = 150;
+                var _ckeditor4 = CKEDITOR.replace('information_security');
+                _ckeditor4.config.height = 150;
+                var _ckeditor5 = CKEDITOR.replace('travel_insurance');
+                _ckeditor5.config.height = 150;
             })
         })
     </script>

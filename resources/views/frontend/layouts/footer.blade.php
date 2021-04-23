@@ -66,8 +66,8 @@
                     <a href=""></i>{{$setting->address}}</a>
                 </li>
                 <li><i class="fas fa-phone-alt"></i> <a href=""> {{$setting->phone}}</a></li>
-                <li><i class="fas fa-fax"></i> <a href=""> 024.6281.6210</a></li>
-                <li><i class="fas fa-envelope"></i> <a href=""> lienhe@vietcenter.vn</a></li>
+                <li><i class="fas fa-fax"></i> <a href=""> {{$setting->fax}}</a></li>
+                <li><i class="fas fa-envelope"></i> <a href=""> {{$setting->email}}</a></li>
             </ul>
         </div>
     </div>

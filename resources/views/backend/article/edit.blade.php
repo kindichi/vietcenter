@@ -92,7 +92,7 @@
                             <div class="col-md-6">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" {{ ($data->is_active == 1) ? 'checked' : '' }} name="is_active"><b>Trạng thái hiển thị</b>
+                                        <input type="checkbox" value="1" {{ ($data->is_active == 1) ? 'checked' : '' }} name="is_active"><b>Trạng thái hiển thị</b>
                                     </label>
                                 </div>
                             </div>
