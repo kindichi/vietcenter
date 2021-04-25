@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    public function product()
+    public function tour()
     {
-        return $this->belongsTo('App\Product');
+        return $this->belongsTo('App\Tour');
     }
 }

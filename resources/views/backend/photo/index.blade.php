@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 @section('content')
     <section class="content-header">
         <h1>
@@ -42,7 +42,7 @@
                                     <td><img src="{{ asset($item->image) }}" width="100" /> </td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->type }}</td>
-                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ @$item->tour->name }}</td>
                                     <td>{{ $item->position }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">

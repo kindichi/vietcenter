@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -52,10 +52,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Danh mục Sản phẩm</label>
-                                    <select class="form-control" name="product_id" id="product_id">
-                                        <option value>--chọn--</option>
-                                        @foreach($products as $product)
-                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                    <select class="form-control" name="tour_id" id="tour_id">
+                                        <option value>--chọn Tour--</option>
+                                        @foreach($tours as $tour)
+                                            <option value="{{$tour->id}}">{{$tour->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

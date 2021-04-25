@@ -82,6 +82,7 @@ class CategoryController extends Controller
         $category->slug = $slug;
         $category->parent_id = $parent_id;
         $category->type = $type;
+        $category->is_active = $is_active;
         $category->description = $description;
         $category->position = $position;
         $category->image = $path_image;
@@ -150,6 +151,7 @@ class CategoryController extends Controller
         $category->slug = $slug;
         $category->parent_id = $parent_id;
         $category->type = $type;
+        $category->is_active = $is_active;
         $category->description = $description;
         $category->position = $position;
         if ($request->hasFile('image')) {

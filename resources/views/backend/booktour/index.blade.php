@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -46,7 +46,7 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ @$item->tour->name }}</td>
                                     <td>{{ $item->date }}</td>
                                     <td>{{ $item->amount }}</td>
                                     <td>{{ $item->content }}</td>

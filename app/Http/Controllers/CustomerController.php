@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banner;
 use App\Customer;
-use App\Product;
+use App\Tour;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller

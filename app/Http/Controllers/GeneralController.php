@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Article;
+use App\Banner;
 use App\Category;
-use App\Product;
+use App\Tour;
 use App\Setting;
 
 use Illuminate\Http\Request;
@@ -23,29 +25,36 @@ class GeneralController extends Controller
             'is_active' => 1
         ])->orderBy('position', 'ASC')->get();
 
-        // Danh mục
-//        $menu = Category::where('is_active',1)->orderBy('position','ASC')
-//            ->orderBy('id','DESC')->get();
-//
-//        $menu_brand = Brand::where('is_active',1)->orderBy('position','ASC')
-//            ->orderBy('id','DESC')->get();
+        $this->categories = $categories;
 
-        // Cấu hình
+        // 2. Lấy dữ liệu - Banner
+        $banners = Banner::where('is_active', 1)->orderBy('position', 'ASC')
+            ->orderBy('id', 'DESC')->get();
+        // 3. lấy dữ liệu 4 tin tức mới nhất
+        $articles = Article::where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+        // 4. cấu hình website
         $setting = Setting::first();
 
-        // chia sẻ dữ liệu qua nhiều view khác nhau
+        // Chia sẻ dữ qua tất các layout
         view()->share([
-            'categories' => $categories,
-//            'menu_brand' => $menu_brand,
-//            'menu' => $menu,
             'setting' => $setting,
+            'categories' => $categories,
+            'banners' => $banners,
+            'articles' => $articles
         ]);
+
     }
     public function index()
     {
         //
     }
-
+    public function notfound()
+    {
+        return view('frontend.notfound');
+    }
     /**
      * Show the form for creating a new resource.
      *

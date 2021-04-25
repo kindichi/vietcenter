@@ -1,9 +1,9 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Quản lý Sản phẩm  <a href="{{ route('admin.product.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+            Quản lý Sản phẩm  <a href="{{ route('admin.tour.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -61,7 +61,7 @@
                                     <td>{{ $item->is_hot == 1 ? 'Hot' : '' }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{ route('admin.tour.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -101,7 +101,7 @@
                 let result = confirm("Bạn có chắc chắn muốn xóa ?");
                 if (result) { // neu nhấn == ok , sẽ send request ajax
                     $.ajax({
-                        url: '/admin/product/'+id, // http://webthucpham.local:8888/user/8
+                        url: '/admin/tour/'+id, // http://webthucpham.local:8888/user/8
                         type: 'DELETE', // phương truyền tải dữ liệu
                         data: {
                             // dữ liệu truyền sang nếu có

@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -54,7 +54,7 @@
                                 @endif
                                 <div class="checkbox">
                                     <label>
-                                        <input {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                        <input value="1" {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" name="is_active" id="is_active"> Hiển thị
                                     </label>
                                 </div>
                             </div>

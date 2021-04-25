@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -53,10 +53,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Danh mục Sản phẩm</label>
-                                    <select class="form-control" name="product_id" id="product_id">
+                                    <select class="form-control" name="tour_id" id="tour_id">
                                         <option value>--chọn--</option>
-                                        @foreach($products as $product)
-                                            <option value="{{$product->id}}" {{($data->product_id == $product->id) ? 'selected' : ''}}>{{$product->name}}</option>
+                                        @foreach($tours as $tour)
+                                            <option value="{{$tour->id}}" {{($data->tour_id == $tour->id) ? 'selected' : ''}}>{{$tour->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label>Nội dung</label>
                             <textarea id="editor1" name="content" class="form-control" rows="3"
-                                      placeholder="Enter ...">value="{{ $data -> content }}"</textarea>
+                                      placeholder="Enter ...">{{ $data -> content }}</textarea>
                         </div>
 
 

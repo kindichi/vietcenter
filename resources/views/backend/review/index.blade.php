@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -46,7 +46,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td>{{ @$item->product->name }}</td>
+                                    <td>{{ @$item->tour->name }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.review.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>

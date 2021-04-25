@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
-use App\Product;
+use App\Tour;
 use App\Schedule;
 use Illuminate\Http\Request;
 
@@ -30,10 +30,10 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $tours = Tour::all();
 
         return view('backend.schedule.create',[
-            'products' => $products
+            'tours' => $tours
         ]);
     }
 
@@ -47,18 +47,18 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'product_id' => 'required',
+            'tour_id' => 'required',
             'position' => 'required',
             'content' => 'required'
         ],[
             'title.required' => 'Bạn chưa nhập tiêu đề',
-            'product_id.required' => 'Bạn chưa chọn tour',
+            'tour_id.required' => 'Bạn chưa chọn tour',
             'position.reqquired' => 'Bạn chưa chọn vị trí',
             'content.reqquired' => 'Bạn chưa nhập nội dung',
         ]);
 
         $title  = $request->input('title');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
         $content = $request->input('content');
 
@@ -70,7 +70,7 @@ class ScheduleController extends Controller
         $schedule = new Schedule();
         $schedule->title = $title;
         $schedule->position = $position;
-        $schedule->product_id = $product_id;
+        $schedule->tour_id = $tour_id;
         $schedule->content = $content;
         $schedule->is_active = $is_active;
         $schedule->save();
@@ -99,11 +99,11 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         $data = Schedule::find($id);
-        $products = Product::all();
+        $tours = Tour::all();
 
         return view('backend.schedule.edit',[
             'data' => $data,
-            'products' => $products
+            'tours' => $tours
         ]);
     }
 
@@ -118,18 +118,18 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'product_id' => 'required',
+            'tour_id' => 'required',
             'position' => 'required',
             'content' => 'required'
         ],[
             'title.required' => 'Bạn chưa nhập tiêu đề',
-            'product_id.required' => 'Bạn chưa chọn tour',
+            'tour_id.required' => 'Bạn chưa chọn tour',
             'position.reqquired' => 'Bạn chưa chọn vị trí',
             'content.reqquired' => 'Bạn chưa nhập nội dung',
         ]);
 
         $title  = $request->input('title');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
         $content = $request->input('content');
 
@@ -141,7 +141,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::find($id);
         $schedule->title = $title;
         $schedule->position = $position;
-        $schedule->product_id = $product_id;
+        $schedule->tour_id = $tour_id;
         $schedule->content = $content;
         $schedule->is_active = $is_active;
         $schedule->save();

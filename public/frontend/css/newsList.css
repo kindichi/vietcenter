@@ -1,0 +1,360 @@
+/* .banner>img{
+    height: 15rem;
+}
+@media (min-width: 768px) {
+    .banner>img{
+        height: 20rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .banner>img{
+        height: 25rem;
+    }
+} */
+
+.travelNews>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+
+
+.col-md-6{
+    padding:0;
+}
+
+.newsList{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.newsList>.col-md-9{
+    width: 100%;
+    margin: 0 1rem;
+}
+@media (min-width: 768px){
+    .newsList>.col-md-9{
+        max-width: 100%;
+    }
+}
+@media (min-width: 992px){
+    .newsList{
+        display: flex;
+    }
+    .newsList>.col-md-9{
+        max-width: 75%;
+        margin: 0;
+        padding-right: 1rem;
+    }
+}
+.title{
+
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+}
+.title>h3{
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    color: rgb(9, 81, 132);
+    margin-bottom: 1.5rem;
+}
+.title>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.title>a:hover {
+    color: rgb(145, 233, 115);
+}
+.col-md-9, .col-md-3, .col-md-6{
+    padding: 0;
+}
+.news-descript{
+    padding: 1rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.news-descript>a{
+    font-family: SegoeUISemiBold;
+    font-size: 1.25rem;
+    color: rgb(57, 51, 51);
+    text-decoration: none;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    line-height: 1.25rem;
+
+}
+.news-descript>a:hover{
+    color: rgb(145, 233, 115);
+}
+
+.time-view {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+    display: flex;
+}
+
+.time-view>img {
+    margin: auto 0;
+}
+
+.time-view>span {
+    line-height: 1.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.75rem;
+    color: black;
+}
+
+.news-descript>p{
+    font-family: SegoeUI;
+    font-size: 1rem;
+    color: rgb(150, 100, 100);
+}
+
+.news-photo{
+    position: relative;
+    overflow: hidden;
+}
+.news-photo>a>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1.5s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+}
+.news-photo:hover img{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+
+
+.news-card>.news-descript>a
+{
+    font-size: 1rem;
+    font-family: SegoeUI;
+    line-height: 1.3rem !important;
+    height: 2.6rem;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+}
+
+.news-descript>.time-view>span{
+    font-size: .875rem;
+}
+
+
+
+.news-content{
+    justify-content: space-between;
+}
+.news-card{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+
+}
+.news-card>.news-photo{
+    width: 15rem;
+    height: 9rem;
+}
+.news-card>.news-descript{
+    padding: 0.5rem;
+    width: calc(100% - 15rem);
+}
+
+@media (min-width: 768px) {
+
+    .news-card{
+        margin-top: 1rem;
+        width: 48%;
+        flex-direction: column;
+
+    }
+    .news-card>.news-photo{
+        width: 100%;
+        height: 12rem;
+    }
+    .news-card>.news-descript{
+        width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .news-card{
+        margin-top: 1rem;
+        width: 32%;
+
+    }
+    .news-card>.news-photo{
+        width: 100%;
+        height: 11rem;
+    }
+
+}
+
+.otherNews>.col-md-3{
+    width: 100%;
+    margin: 0 1rem 1rem;
+
+}
+@media (min-width: 768px){
+    .otherNews>.col-md-3{
+        max-width: 100%;
+        margin: 0 1rem;
+    }
+
+}
+@media (min-width: 992px){
+    .otherNews>.col-md-3{
+        margin: 0;
+    }
+}
+
+.featuredNews{
+    margin-top: 2rem;
+    height: 46.5rem;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px -6px #000;
+}
+.btn-featuredNews{
+    height: 2.25rem;
+    border-bottom: 2px solid rgb(255, 132, 0);
+    display: flex;
+}
+.btn-featuredNews>button{
+    height: 100%;
+    width: 50%;
+    border: none;
+    font-family: SegoeUISemiBold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.btn-featuredNews>button:focus{
+    background: rgb(255, 132, 0);
+    color: white;
+}
+
+.featuredNews .news-photo{
+    width: 40%;
+    height: 6rem;
+    border: 1px solid rgb(200, 200, 200);
+}
+.featuredNews .news-photo>a{
+    display: block;
+    width: 94%;
+    height: 94%;
+    overflow: hidden;
+    margin: 3%;
+    position: relative;
+}
+.featuredNews .news-photo>a>img{
+      width: 100%;
+    height: 100%;
+}
+.featuredNews-card{
+    display: flex;
+    margin:  0 1rem ;
+    padding: 1rem 0;
+    border-bottom: 2px dotted rgb(151, 151, 151);
+}
+.featuredNews .news-descript{
+    width: calc(100% - 4.875rem);
+    padding: 0 0 0 0.5rem;
+}
+.featuredNews .news-descript>a{
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    line-height: 1rem;
+}
+.featuredNews .time-view{
+    margin: 0;
+}
+.featuredNews .time-view>span{
+    font-size: 0.75rem;
+}
+.featuredNews-mostviewed {
+    height: 44rem;
+    overflow-y: scroll;
+}
+.featuredNews-mostviewed::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(221, 221, 221);
+}
+.featuredNews-mostviewed::-webkit-scrollbar-thumb {
+    background-color:rgb(9, 81, 132);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+
+}
+
+@media (min-width: 768px){
+    .featuredNews .news-photo{
+        width: 40%;
+        height: 9rem;
+    }
+  
+}
+@media (min-width: 992px){
+    .featuredNews .news-photo{
+        width: 40%;
+        height: 5rem;
+    }
+}
+
+.tourPromotion>h3{
+    margin: 0.5rem 0;
+}
+.tourPromotion>h3>a{
+    font-family: SegoeUISemiBold;
+    font-size: 1.255rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    padding-left: 1rem;
+    color: rgb(9, 81, 132);
+    border-left: 8px solid rgb(145, 233, 115);
+}
+.tourPromotion{
+    justify-content: space-between;
+}
+.tourPromotion .tour-card{
+
+}
+.tourPromotion .tour-card>.tour-img{
+    width: 100%;
+    height: 10.375rem !important;
+}
+.tourPromotion>section{
+    margin-bottom: 2rem;
+
+}
+ .tours-list .slick-next {
+    background: url(../images/homepage/ic-next-slider-v1.png) center no-repeat;
+    right: -1.5rem;
+}
+

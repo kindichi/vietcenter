@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booktour;
 use App\Customer;
-use App\Product;
+use App\Tour;
 use Illuminate\Http\Request;
 
 class BooktourController extends Controller
@@ -16,9 +16,9 @@ class BooktourController extends Controller
      */
     public function index()
     {
-        $booktour = Booktour::latest()->paginate(20);
+        $bookTour = Booktour::latest()->paginate(20);
         return view('backend.booktour.index',[
-            'data' =>  $booktour
+            'data' =>  $bookTour
         ]);
     }
 
@@ -62,11 +62,11 @@ class BooktourController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::all();
+        $tours = Tour::all();
         $data = Booktour::find($id);
         return view('backend.booktour.edit',[
             'data' => $data,
-            'products' =>  $products
+            'tours' =>  $tours
         ]);
     }
 
@@ -97,7 +97,7 @@ class BooktourController extends Controller
         $address  = $request->input('address');
         $date  = $request->input('date');
         $amount  = $request->input('amount');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $content  = $request->input('content');
 
 
@@ -108,7 +108,7 @@ class BooktourController extends Controller
         $booktour->address = $address;
         $booktour->date = $date;
         $booktour->amount = $amount;
-        $booktour->product_id = $product_id;
+        $booktour->tour_id = $tour_id;
         $booktour->content = $content;
 
         $booktour->save();

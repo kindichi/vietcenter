@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -39,7 +39,6 @@
                                 @if ($errors->has('parent_id'))
                                     <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('parent_id')}} </label>
                                 @endif
-
                                 <div class="form-group">
                                     <label for="name">Tên danh mục</label>
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Danh mục">
@@ -47,18 +46,16 @@
                                 @if ($errors->has('name'))
                                     <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('name')}} </label>
                                 @endif
-
                                 <div class="form-group">
                                     <label for="imgage">Ảnh</label>
                                     <input type="file" name="image" id="image">
-
                                 </div>
                                 @if ($errors->has('image'))
                                     <label class="text-red"> <i class="fa fa-info"></i> {{$errors->first('image')}} </label>
                                 @endif
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                        <input type="checkbox" name="is_active" id="is_active" value="1"> Hiển thị
                                     </label>
                                 </div>
                             </div>
@@ -76,14 +73,14 @@
                                     <label for="position">Vị trí hiển thị</label>
                                     <input type="number" name="position" class="form-control" id="position" min="1" value="1">
                                 </div>
-
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label>Mô tả</label>
                                 <textarea id="editor2" name="description" class="form-control" rows="3" placeholder="Nhập mô tả"
                                 ></textarea>
                             </div>
                         </div>
+
                         <!-- /.box-body -->
 
                         <div class="box-footer">

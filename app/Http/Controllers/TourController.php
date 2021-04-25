@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Tour;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class TourController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::latest()->paginate(30);
-        return view('backend.product.index',[
-            'data' =>  $product
+        $tours = Tour::latest()->paginate(30);
+        return view('backend.tour.index',[
+            'data' =>  $tours
         ]);
     }
 
@@ -32,16 +32,11 @@ class ProductController extends Controller
         $categories = Category::all();
         $categoryParent_id = Category::where(['parent_id' => 0])->get();
         $categories = Category::where(['type' => 1, 'position' => 2])->get();
-//        $brands = Brand::all();
-//        $vendors = Vendor::all();
-//        $max_position = Product::max('position');
 
-        return view('backend.product.create' ,[
+        return view('backend.tour.create' ,[
             'categories' => $categories,
-'categoryParent_id' => $categoryParent_id
-//            'brands' => $brands,
-//            'vendors' => $vendors,
-//            'max_position' => $max_position
+            'categoryParent_id' => $categoryParent_id
+
         ]);
     }
 
@@ -86,7 +81,7 @@ class ProductController extends Controller
             // get ten
             $filename = $file->getClientOriginalName(); // lấy tên gốc của ảnh
             // duong dan upload
-            $path_upload = 'upload/product/';
+            $path_upload = 'upload/tour/';
             // upload file
             $file->move($path_upload,$filename);
             $path_image = $path_upload.$filename;
@@ -101,29 +96,29 @@ class ProductController extends Controller
             $is_hot = (int)$request->input('$is_hot');
         }
 
-        $product = new Product();
-        $product->name = $name;
-        $product->category_id = $category_id;
-        $product->categoryParent_id = $categoryParent_id;
-        $product->departure_day = $departure_day;
-        $product->price = $price;
-        $product->sale = $sale;
-        $product->position = $position;
-        $product->url = $url;
-        $product->schedule = $schedule;
-        $product->description = $description;
-        $product->slug = $slug;
-        $product->is_active = $is_active;
-        $product->is_hot = $is_hot;
-        $product->duration = $duration;
-        $product->vehicle = $vehicle;
-        $product->location = $location;
-        $product->image = $path_image;
-        $product->rule = $rule;
-        $product->save();
+        $tour = new Tour();
+        $tour->name = $name;
+        $tour->category_id = $category_id;
+        $tour->categoryParent_id = $categoryParent_id;
+        $tour->departure_day = $departure_day;
+        $tour->price = $price;
+        $tour->sale = $sale;
+        $tour->position = $position;
+        $tour->url = $url;
+        $tour->schedule = $schedule;
+        $tour->description = $description;
+        $tour->slug = $slug;
+        $tour->is_active = $is_active;
+        $tour->is_hot = $is_hot;
+        $tour->duration = $duration;
+        $tour->vehicle = $vehicle;
+        $tour->location = $location;
+        $tour->image = $path_image;
+        $tour->rule = $rule;
+        $tour->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.tour.index');
     }
 
     /**
@@ -145,12 +140,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $tour = Tour::find($id);
         $categoryParent_id = Category::where(['parent_id' => 0])->get();
         $categories = Category::where(['type' => 1, 'position' => 2])->get();
 
-        return view('backend.product.edit' ,[
-            'data' => $product,
+        return view('backend.tour.edit' ,[
+            'data' => $tour,
             'categories' => $categories,
             'categoryParent_id' => $categoryParent_id
         ]);
@@ -201,40 +196,40 @@ class ProductController extends Controller
             $is_hot = (int)$request->input('is_hot');
         }
 
-        $product = Product::find($id);
-        $product->name = $name;
-        $product->category_id = $category_id;
-        $product->categoryParent_id = $categoryParent_id;
-        $product->departure_day = $departure_day;
-        $product->price = $price;
-        $product->sale = $sale;
-        $product->position = $position;
-        $product->url = $url;
-        $product->schedule = $schedule;
-        $product->description = $description;
-        $product->slug = $slug;
-        $product->is_active = $is_active;
-        $product->is_hot = $is_hot;
-        $product->duration = $duration;
-        $product->vehicle = $vehicle;
-        $product->location = $location;
-        $product->rule = $rule;
+        $tour = Tour::find($id);
+        $tour->name = $name;
+        $tour->category_id = $category_id;
+        $tour->categoryParent_id = $categoryParent_id;
+        $tour->departure_day = $departure_day;
+        $tour->price = $price;
+        $tour->sale = $sale;
+        $tour->position = $position;
+        $tour->url = $url;
+        $tour->schedule = $schedule;
+        $tour->description = $description;
+        $tour->slug = $slug;
+        $tour->is_active = $is_active;
+        $tour->is_hot = $is_hot;
+        $tour->duration = $duration;
+        $tour->vehicle = $vehicle;
+        $tour->location = $location;
+        $tour->rule = $rule;
         if ($request->hasFile('image')) {
             // get file
             $file = $request->file('image');
             // get ten
             $filename = $file->getClientOriginalName(); // lấy tên gốc của ảnh
             // duong dan upload
-            $path_upload = 'upload/product/';
+            $path_upload = 'upload/tour/';
             // upload file
             $file->move($path_upload,$filename);
             $path_image = $path_upload.$filename;
-            $product->image = $path_image;
+            $tour->image = $path_image;
         }
-        $product->save();
+        $tour->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.tour.index');
     }
 
     /**
@@ -245,7 +240,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $isDelete = Product::destroy($id);
+        $isDelete = Tour::destroy($id);
         if ($isDelete) {
             return response()->json(['success' => 1, 'message' => 'Thành công']);
         } else {

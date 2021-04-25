@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
-use App\Product;
 use App\Review;
+use App\Tour;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -30,10 +30,10 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $tours = Tour::all();
 
         return view('backend.review.create',[
-            'products' => $products
+            'tours' => $tours
         ]);
     }
 
@@ -71,7 +71,7 @@ class ReviewController extends Controller
         $slug = str_slug($title,'-');
         $summary  = $request->input('summary');
         $description  = $request->input('description');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
 
         $path_avatar = '';
@@ -111,7 +111,7 @@ class ReviewController extends Controller
         $review->summary = $summary;
         $review->description = $description;
         $review->position = $position;
-        $review->product_id = $product_id;
+        $review->tour_id = $tour_id;
         $review->slug = $slug;
         $review->is_active = $is_active;
         $review->avatar = $path_avatar;
@@ -142,11 +142,11 @@ class ReviewController extends Controller
     public function edit($id)
     {
         $data = Review::find($id);
-        $products = Product::all();
+        $tours = Tour::all();
 
         return view('backend.review.edit',[
             'data' => $data,
-            'products' => $products
+            'tours' => $tours
         ]);
     }
 
@@ -185,7 +185,7 @@ class ReviewController extends Controller
         $slug = str_slug($title,'-');
         $summary  = $request->input('summary');
         $description  = $request->input('description');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
 
 
@@ -195,7 +195,7 @@ class ReviewController extends Controller
             $is_active = (int)$request->input('is_active');
         }
 
-        $review = new Review();
+        $review = Review::find($id);
         $review->title = $title;
         $review->slug = $slug;
         $review->name = $name;
@@ -203,7 +203,7 @@ class ReviewController extends Controller
         $review->summary = $summary;
         $review->description = $description;
         $review->position = $position;
-        $review->product_id = $product_id;
+        $review->tour_id = $tour_id;
         $review->slug = $slug;
         $review->is_active = $is_active;
         if ($request->hasFile('avatar')) {

@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -80,10 +80,10 @@
                         </div>
                         <div class="form-group">
                             <label>Tour đặt</label>
-                            <select class="form-control" name="product_id" id="product_id">
+                            <select class="form-control" name="tour_id" id="tour_id">
                                 <option value>--chọn--</option>
-                                @foreach($products as $product)
-                                    <option {{ $data ->product_id == $product->id ? 'selected' : '' }} value="{{$product->id}}">{{$product->name}}</option>
+                                @foreach($tours as $tour)
+                                    <option {{ $data ->tour_id == $tour->id ? 'selected' : '' }} value="{{$tour->id}}">{{$tour->name}}</option>
                                 @endforeach
                             </select>
                         </div>

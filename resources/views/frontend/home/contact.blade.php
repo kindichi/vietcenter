@@ -1,7 +1,10 @@
-@extends('frontend.layouts.main');
+@extends('frontend.layouts.main')
+@section('title')
+    <title>Liên hệ</title>
+@endsection
 @section('mycss')
     <link rel="stylesheet" href="/frontend/css/contact.css">
-@endsection;
+@endsection
 
 @section('content')
     <!-- slide show -->
@@ -74,4 +77,4 @@
             </div>
         </div>
     </section>
-@endsection;
+@endsection

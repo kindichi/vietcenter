@@ -159,10 +159,26 @@ h6,
     color: rgb(252, 242, 173);
     text-decoration: none;
     text-transform: capitalize;
+
 }
 
 .header-top__menu>li>a:hover {
     color: rgb(145, 233, 115)
+}
+.header-top__menu>li::before {
+    content: '';
+    position: absolute;
+    height: 13px;
+    width: 1px;
+    /*right: 0;*/
+    /*top: 0;*/
+    background: #fcf2ad;
+    /*bottom: 0;*/
+    margin: 0.45rem -0.5rem;
+}
+.header-top__menu>li:first-child::before,.header-top__menu>li:last-child::before {
+    content: unset;
+
 }
 
 @media (min-width: 576px) {
@@ -221,13 +237,13 @@ h6,
         width: 60%;
     }
     .header-top__menu>li {
-        margin: 0.25rem;
+        margin: 0;
     }
 }
 
 @media (min-width: 1200px) {
     .header-top__menu {
-        width: 50%;
+        width: 55%;
     }
 }
 
@@ -389,7 +405,7 @@ h6,
     .header-menu__sub {
         position: absolute;
         top: 100%;
-        width: 13rem;
+        min-width: 13rem;
         background: rgba(2, 67, 113, 0.8);
         margin-top: 0;
     }

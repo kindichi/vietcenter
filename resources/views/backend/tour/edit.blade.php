@@ -1,14 +1,14 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm Sản phẩm <a href="{{route('admin.product.index')}}" class="btn btn-primary">Danh sách </a>
+            Cập nhật thông tin Tour <a href="{{route('admin.tour.index')}}" class="btn btn-primary">Danh sách </a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">Quản lý Sản phẩm</li>
+            <li class="active">Quản lý Tour</li>
         </ol>
     </section>
     <section class="content">
@@ -17,7 +17,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Thông tin sản phẩm</h3>
+                    <h3 class="box-title">Thông tin Tour</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -36,7 +36,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('admin.product.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{route('admin.tour.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="box-body">
@@ -125,9 +125,9 @@
                                     <label for="categoryOption">Phương tiện</label>
                                     <select class="form-control" name="vehicle">
                                         <option value=""> -- chọn Phương tiện --</option>
-                                        <option value="Máy bay" {{$data->vehicle = 'Máy bay' ? 'selected' : ''}}>Máy bay</option>
-                                        <option value="Tàu hỏa" {{$data->vehicle = 'Tàu hỏa' ? 'selected' : ''}}>Tàu hỏa</option>
-                                        <option value="Ô tô" {{$data->vehicle = 'Ô tô' ? 'selected' : ''}}>Ô tô</option>
+                                        <option value="Máy bay" {{$data->vehicle == 'Máy bay' ? 'selected' : ''}}>Máy bay</option>
+                                        <option value="Tàu hỏa" {{$data->vehicle == 'Tàu hỏa' ? 'selected' : ''}}>Tàu hỏa</option>
+                                        <option value="Ô tô" {{$data->vehicle == 'Ô tô' ? 'selected' : ''}}>Ô tô</option>
                                     </select>
                                 </div>
                             </div>
@@ -136,12 +136,12 @@
                                     <label for="categoryOption">Điểm khởi hành</label>
                                     <select class="form-control" name="location">
                                         <option value=""> -- chọn Điểm khởi hành --</option>
-                                        <option value="Hà Nội" {{$data->vehicle = 'Hà Nội' ? 'selected' : ''}}>Hà Nội</option>
-                                        <option value="Tp. Hồ Chí Minh" {{$data->location = 'Tp. Hồ Chí Minh' ? 'selected' : ''}}>Tp. Hồ Chí Minh</option>
-                                        <option value="Hải Phòng" {{$data->location = 'Hải Phòng' ? 'selected' : ''}}>Hải Phòng</option>
-                                        <option value="Đà Nẵng" {{$data->location = 'Đà Nẵng' ? 'selected' : ''}}>Đà Nẵng</option>
-                                        <option value="Đà Lạt" {{$data->location = 'Đà Lạt' ? 'selected' : ''}}>Đà Lạt</option>
-                                        <option value="Nha Trang" {{$data->location = 'Nha Trang' ? 'selected' : ''}}>Nha Trang</option>
+                                        <option value="Hà Nội" {{$data->location == 'Hà Nội' ? 'selected' : ''}}>Hà Nội</option>
+                                        <option value="Tp. Hồ Chí Minh" {{$data->location == 'Tp. Hồ Chí Minh' ? 'selected' : ''}}>Tp. Hồ Chí Minh</option>
+                                        <option value="Hải Phòng" {{$data->location == 'Hải Phòng' ? 'selected' : ''}}>Hải Phòng</option>
+                                        <option value="Đà Nẵng" {{$data->location == 'Đà Nẵng' ? 'selected' : ''}}>Đà Nẵng</option>
+                                        <option value="Đà Lạt" {{$data->location == 'Đà Lạt' ? 'selected' : ''}}>Đà Lạt</option>
+                                        <option value="Nha Trang" {{$data->location == 'Nha Trang' ? 'selected' : ''}}>Nha Trang</option>
                                     </select>
                                 </div>
                             </div>

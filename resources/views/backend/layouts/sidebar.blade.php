@@ -30,8 +30,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.product.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản lý Sản phẩm</span>
+                <a href="{{route('admin.tour.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Tour</span>
                 </a>
             </li>
             <li>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Contact;
 use App\Photo;
-use App\Product;
+use App\Tour;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -30,10 +30,10 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $tours = Tour::all();
         $articles = Article::all();
         return view('backend.photo.create',[
-            'products' => $products,
+            'tours' => $tours,
             'articles' => $articles
         ]);
     }
@@ -48,11 +48,11 @@ class PhotoController extends Controller
     {
         $request->validate([
             'type' => 'required',
-            'product_id' => 'required',
+            'tour_id' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ],[
             'type.required' => 'Bạn chưa chọn loại ảnh',
-            'product_id.required' => 'Bạn chưa chọn sản phẩm',
+            'tour_id.required' => 'Bạn chưa chọn sản phẩm',
             'avatar.mines' => 'File ảnh chưa đúng định dạng',
             'avatar.max' => 'Kích thước file quá lớn'
         ]);
@@ -60,7 +60,7 @@ class PhotoController extends Controller
         $title  = $request->input('title');
         $slug = str_slug($title,'-');
         $description  = $request->input('description');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
         $target = $request->input('target');
         $type = $request->input('type');
@@ -87,7 +87,7 @@ class PhotoController extends Controller
         $photo->title = $title;
         $photo->slug = $slug;
         $photo->description = $description;
-        $photo->product_id = $product_id;
+        $photo->tour_id = $tour_id;
         $photo->position = $position;
         $photo->target = $target;
         $photo->type = $type;
@@ -118,11 +118,11 @@ class PhotoController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::all();
+        $tours = Tour::all();
         $articles = Article::all();
         $data = Photo::findOrFail($id);
         return view('backend.photo.edit',[
-            'products' => $products,
+            'tours' => $tours,
             'articles' => $articles,
             'data' => $data
         ]);
@@ -139,11 +139,11 @@ class PhotoController extends Controller
     {
         $request->validate([
             'type' => 'required',
-            'product_id' => 'required',
+            'tour_id' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif,svg|max:10000'
         ],[
             'type.required' => 'Bạn chưa chọn loại ảnh',
-            'product_id.required' => 'Bạn chưa chọn sản phẩm',
+            'tour_id.required' => 'Bạn chưa chọn sản phẩm',
             'avatar.mines' => 'File ảnh chưa đúng định dạng',
             'avatar.max' => 'Kích thước file quá lớn'
         ]);
@@ -151,7 +151,7 @@ class PhotoController extends Controller
         $title  = $request->input('title');
         $slug = str_slug($title,'-');
         $description  = $request->input('description');
-        $product_id  = $request->input('product_id');
+        $tour_id  = $request->input('tour_id');
         $position  = $request->input('position');
         $target = $request->input('target');
         $type = $request->input('type');
@@ -166,7 +166,7 @@ class PhotoController extends Controller
         $photo->title = $title;
         $photo->slug = $slug;
         $photo->description = $description;
-        $photo->product_id = $product_id;
+        $photo->tour_id = $tour_id;
         $photo->position = $position;
         $photo->target = $target;
         $photo->type = $type;

@@ -34,10 +34,15 @@
 .tourInfo-slide {
     width: 100%;
 }
-
+.tourInfo-slide>div {
+    height: 100%;
+}
+.carousel-item{
+    height: 100%;
+}
 .carousel-item>img {
     width: 100%;
-    height: 25rem;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -75,7 +80,7 @@
     color: rgb(9, 81, 132);
     text-transform: uppercase;
     line-height: 1.75rem;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
 }
 
 .tourInfo-card__desc {
@@ -148,6 +153,7 @@
 @media (min-width: 992px) {
     .tourInfo-slide {
         width: 65%;
+        height: auto;
     }
     .tourInfo-card {
         width: 35%;
@@ -252,6 +258,9 @@
 #collapseTwo,
 #collapseThree {
     margin: 0 1rem;
+}
+.collapseContent{
+    margin-top: 1rem;
 }
 
 .article {
@@ -403,7 +412,9 @@
 .list-hotels__content>a>.fas {
     margin-right: 0.5rem;
 }
-
+.tours-list{
+    margin-bottom: 1.5rem;
+}
 .tours-list>h3 {
     margin: 1rem 0;
 }
@@ -427,7 +438,8 @@
 }
 
 .tours-list .tour-card {
-    width: 16.5rem !important;
+
+
     margin-right: 1rem;
 }
 

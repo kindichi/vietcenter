@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +31,7 @@ class AdminController extends Controller
 
         // kiểm tra xem có đăng nhập thành công với email và password đã nhập hay không
         if ($checkLogin) {
-            return redirect()->route('admin.product.index');
+            return redirect()->route('admin.tour.index');
         }
 
         return redirect()->back()->with('msg', ' Kiểm tra lại email hoặc mật khẩu mà bạn nhập');
