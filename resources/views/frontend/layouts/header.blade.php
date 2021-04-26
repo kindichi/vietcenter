@@ -32,20 +32,62 @@
                         <a href="{{ route('home.index') }}">trang chủ</a>
                     </li>
                     @foreach($categories as $item)
-                        @if($item->parent_id == 0 && $item->is_active == 1 && $item->position == 1 && $item->type == 1)
-                            <li class="nav-item">
-                                <a href="{{ route('home.toursList', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
-                                <ul class="header-menu__sub">
-                                    @foreach($categories as $item2)
-                                        @if($item2->parent_id == $item->id)
-                                        <li class="nav-item">
-                                            <a href="{{ route('home.toursList', ['slug' => $item2->slug]) }}">{{ $item2->name }}</a>
-                                        </li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </li>
+                        @if($item->parent_id == 0 && $item->type == 1)
+                            @if($item->position == 1 || $item->position == 3)
+                                <li class="nav-item">
+                                    <a href="{{ route('home.toursList', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
+                                    <ul class="header-menu__sub">
+                                        @foreach($categories as $item2)
+                                            @if($item2->parent_id == $item->id)
+                                                <li class="nav-item">
+                                                    <a href="{{ route('home.toursList', ['slug' => $item2->slug]) }}">{{ $item2->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
+                            @if($item->position == 2)
+                                <li class="nav-item header-menu__main-large">
+                                    <a href="{{ route('home.toursList', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
+                                    <ul class="header-menu__sub header-menu__sub-large">
+                                        @foreach($categories as $item2)
+                                            @if($item2->parent_id == $item->id)
+                                                <li class="nav-item">
+                                                    <a href="{{ route('home.toursList', ['slug' => $item2->slug]) }}">{{ $item2->name }}</a>
+                                                    <ul class="header-menu__sub-desc">
+                                                        @foreach($categories as $item3)
+                                                            @if($item3->parent_id == $item2->id)
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('home.toursList', ['slug' => $item3->slug]) }}">{{ $item3->name }}</a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
+                            @if($item->parent_id == 0 && $item->position == 1 && $item->type == 3)
+                                <li class="nav-item">
+                                    <a href="{{ route('home.news') }}">{{ $item->name }}</a>
+                                    <ul class="header-menu__sub">
+                                        @foreach($categories as $item2)
+                                            @if($item2->parent_id == $item->id)
+                                                <li class="nav-item">
+                                                    <a href="{{ route('home.newsList', ['slug' => $item2->slug]) }}">{{ $item2->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
                         @endif
+
+                    @endforeach
+                    @foreach($categories as $item)
                         @if($item->parent_id == 0 && $item->is_active == 1 && $item->position == 1 && $item->type == 3)
                                 <li class="nav-item">
                                     <a href="{{ route('home.news') }}">{{ $item->name }}</a>

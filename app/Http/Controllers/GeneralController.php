@@ -33,7 +33,7 @@ class GeneralController extends Controller
         // 3. lấy dữ liệu 4 tin tức mới nhất
         $articles = Article::where('is_active', 1)
             ->orderBy('id', 'desc')
-            ->take(4)
+            ->take(100)
             ->get();
         // 4. cấu hình website
         $setting = Setting::first();

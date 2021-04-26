@@ -21,55 +21,46 @@ class HomeController extends GeneralController
 
     public function index()
     {
-        $hotTours  = Tour::where(['is_active'=>1, 'is_hot'=>1])->limit(30)
+        $allTours  = Tour::where(['is_active'=>1])->limit(100)
             ->orderBy('id','desc')
             ->orderBy('position','ASC')
             ->get();
 
-        $vnTours  = Tour::where(['is_active'=>1, 'categoryParent_id'=>87])->limit(30)
+        $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3, 'position'=>1 ])->first();
+
+        $travelNews  = Article::where(['is_active'=>1])->limit(100)
             ->orderBy('id','desc')
             ->orderBy('position','ASC')
             ->get();
 
-        $foreignTours  = Tour::where(['is_active'=>1, 'categoryParent_id'=>88])->limit(30)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
-
-        $travelNews  = Article::where(['is_active'=>1, 'category_id'=>177])->limit(30)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
-
-        $mainTravelNews  = Article::where(['is_active'=>1, 'category_id'=>177, 'position'=>2])->first();
-
-        $travelGuides  = Article::where(['is_active'=>1, 'category_id'=>178])->limit(30)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
-
-        $travelExperiences  = Article::where(['is_active'=>1, 'category_id'=>179])->limit(30)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
-
-        $travelInquiries  = Article::where(['is_active'=>1, 'category_id'=>180])->limit(30)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
+//        $mainTravelNews  = Article::where(['is_active'=>1, 'category_id'=>177, 'position'=>2])->first();
+//
+//        $travelGuides  = Article::where(['is_active'=>1, 'category_id'=>178])->limit(30)
+//            ->orderBy('id','desc')
+//            ->orderBy('position','ASC')
+//            ->get();
+//
+//        $travelExperiences  = Article::where(['is_active'=>1, 'category_id'=>179])->limit(30)
+//            ->orderBy('id','desc')
+//            ->orderBy('position','ASC')
+//            ->get();
+//
+//        $travelInquiries  = Article::where(['is_active'=>1, 'category_id'=>180])->limit(30)
+//            ->orderBy('id','desc')
+//            ->orderBy('position','ASC')
+//            ->get();
 
         $reviews = Review::all();
 
         return view('frontend.home.index', [
             //'cart' => $cart,
-            'hotTours' => $hotTours,
-            'vnTours' => $vnTours,
-            'foreignTours' => $foreignTours,
-            'travelNews' => $travelNews,
-            'mainTravelNews' => $mainTravelNews,
-            'travelGuides' => $travelGuides,
-            'travelExperiences' => $travelExperiences,
-            'travelInquiries' => $travelInquiries,
+            'allTours' => $allTours,
+            'cateNews' => $cateNews,
+//            'travelNews' => $travelNews,
+//            'mainTravelNews' => $mainTravelNews,
+//            'travelGuides' => $travelGuides,
+//            'travelExperiences' => $travelExperiences,
+//            'travelInquiries' => $travelInquiries,
             'reviews' => $reviews,
         ]);
 
@@ -177,7 +168,13 @@ class HomeController extends GeneralController
             return $this->notfound();
         }
     }
+    public function toursList($slug){
+        $toursList = Tour::where(['is_active' => 1,'slug' => $slug])->first();
 
+        return view('frontend.toursList',[
+            'toursList' => $toursList,
+        ]);
+    }
     public function detailTour($slug){
         $tour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
         $photos = Photo::where([
@@ -216,8 +213,12 @@ class HomeController extends GeneralController
         return view('frontend.news');
     }
 
-    public function newsList()
+    public function newsList($slug)
     {
-        return view('frontend.newsList');
+        $newsList = Article::where(['is_active' => 1,'slug' => $slug])->first();
+
+        return view('frontend.newsList',[
+            'newsList' => $newsList,
+        ]);
     }
 }

@@ -11,12 +11,10 @@
 |
 */
 Route::get('/', 'HomeController@index')->name('home.index');
-Route::get('/tour/{slug}', 'HomeController@getToursByCategory')->name('home.toursList');
+Route::get('/danh-sach-tour/{slug}', 'HomeController@toursList')->name('home.toursList');
 Route::get('/chi-tiet-tour/{slug}', 'HomeController@detailTour')->name('home.tourDetail');
-Route::get('/tour-hot-nhat', 'HomeController@hotTours')->name('home.hotTours');
 Route::get('/dat-tour/{slug}', 'HomeController@bookTour')->name('home.bookTour');
 Route::get('/dat-tour/{slug}', 'HomeController@postBookTour')->name('home.postBookTour');
-
 Route::get('/tin-tuc', 'HomeController@news')->name('home.news');
 Route::get('/tin-tuc/{slug}', 'HomeController@newsList')->name('home.newsList');
 Route::get('/lien-he', 'HomeController@contact')->name('home.contact');

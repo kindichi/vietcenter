@@ -15,7 +15,7 @@
                 <div id="carouselExampleIndicators" class="carousel slide tourInfo-slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($photos as $photo)
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <img src="{{ asset($photo->image) }}" class="d-block w-100" alt="{{ $photo->title }}">
                         </div>
                         @endforeach

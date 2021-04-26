@@ -372,7 +372,7 @@ h6,
 @media (min-width: 992px) {
     .header-menu .navbar-collapse {
         position: unset;
-        margin: 0.75rem;
+        margin-left: 4rem;
         height: 100%;
         top: 0;
     }
@@ -394,6 +394,10 @@ h6,
         display: flex;
         align-items: center;
         max-width: 15%;
+
+    }
+    .header-menu__main ul{
+        z-index: 100;
     }
     .header-menu__main-large {
         position: unset !important;
@@ -401,6 +405,9 @@ h6,
     .header-menu__main>li>a {
         font-size: 1rem;
         text-align: center;
+    }
+    .header-menu__main>li:nth-last-child(3) .header-menu__sub {
+        width: 17rem;
     }
     .header-menu__sub {
         position: absolute;
@@ -907,7 +914,7 @@ footer {
     left: 0;
     top: 0;
     width: 12rem;
-    z-index: 100;
+    z-index: 50;
     margin: 0.5rem;
 }
 

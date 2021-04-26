@@ -44,248 +44,223 @@
     </div>
 
     <section>
-        <div class="hottest-tours">
-            <div class="container tours-list">
-                <h2><a href="/tour/tour-hot-nhat">tour hot nhất</a></h2>
-                <section class="regular slider responsive">
-                    @foreach($hotTours as $hotTour)
-                        <div class="tour-card">
-                            <div class="tour-img">
-                                <a href="{{ route('home.tourDetail', ['slug'=>$hotTour->slug]) }}"><img src="{{ asset($hotTour->image) }}" alt="{{ ($hotTour->name) }}"></a>
-                                <div class="tour-price">
-                                    <div>
-                                        <p class="new-price">{{number_format($hotTour->sale,0,",",".")}} đ</p>
-                                        @if($hotTour->price)
-                                            <p class="old-price">{{number_format($hotTour->price,0,",",".")}} đ</p>
-                                        @endif
+        @foreach($categories as $item)
+            @if($item->parent_id == 0 && $item->type == 1 && $item->position == 4)
+                <div class="hottest-tours">
+                    <div class="container tours-list">
+                       <h2><a href="">{{ $item->name }}</a> </h2>
+                        <section class="regular slider responsive">
+                            @foreach($allTours as $tour)
+                                @if($tour->categoryParent_id = $item->id)
+                                    <div class="tour-card">
+                                        <div class="tour-img">
+                                            <a href="{{ route('home.tourDetail', ['slug'=>$tour->slug]) }}"><img src="{{ asset($tour->image) }}" alt="{{ ($tour->name) }}"></a>
+                                            <div class="tour-price">
+                                                <div>
+                                                    <p class="new-price">{{number_format($tour->sale,0,",",".")}} đ</p>
+                                                    @if($tour->price)
+                                                        <p class="old-price">{{number_format($tour->price,0,",",".")}} đ</p>
+                                                    @endif
+                                                </div>
+                                                <a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">chi tiết </a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-info">
+                                            <h4><a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">{{$tour->name}}</a></h4>
+                                            <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$tour->departure_day}}</span> </p>
+                                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$tour->location}}</span> </p>
+                                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$tour->duration}}</span>
+                                            </p>
+                                            <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$tour->vehicle}}</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <a href="{{route('home.tourDetail', ['slug'=>$hotTour->slug])}}">chi tiết </a>
-                                </div>
-                            </div>
-                            <div class="tour-info">
-                                <h4><a href="{{route('home.tourDetail', ['slug'=>$hotTour->slug])}}">{{$hotTour->name}}</a></h4>
-                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$hotTour->departure_day}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$hotTour->location}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$hotTour->duration}}</span>
-                                </p>
-                                <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$hotTour->vehicle}}</span>
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
+                                @endif
+                            @endforeach
+                        </section>
 
-                </section>
-                <div class="tour-moreinfo">
-                    <a href="" class="btn-moreinfo">xem thêm tour</a>
-                </div>
-            </div>
-        </div>
-        <div class="vn-tours">
-            <div class="container tours-list">
-                <div class="tittle-tour">
-                    <h3>tour trong nước</h3>
-                    <img src="/frontend/images/homepage/icon star-.png" alt="iconstar">
-                </div>
-                <section class="regular slider responsive">
-                    @foreach($vnTours as $vnTour)
-                        <div class="tour-card">
-                            <div class="tour-img">
-                                <a href="{{ route('home.tourDetail', ['slug'=>$vnTour->slug]) }}"><img src="{{ asset($vnTour->image) }}" alt="{{ ($vnTour->name) }}"></a>
-                                <div class="tour-price">
-                                    <div>
-                                        <p class="new-price">{{number_format($vnTour->sale,0,",",".")}} đ</p>
-                                        @if($vnTour->price)
-                                            <p class="old-price">{{number_format($vnTour->price,0,",",".")}} đ</p>
-                                        @endif
-                                    </div>
-                                    <a href="{{route('home.tourDetail', ['slug'=>$vnTour->slug])}}">chi tiết </a>
-                                </div>
-                            </div>
-                            <div class="tour-info">
-                                <h4><a href="{{route('home.tourDetail', ['slug'=>$vnTour->slug])}}">{{$vnTour->name}}</a></h4>
-                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$vnTour->departure_day}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$vnTour->location}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$vnTour->duration}}</span>
-                                </p>
-                                <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$vnTour->vehicle}}</span>
-                                </p>
-                            </div>
+                        <div class="tour-moreinfo">
+                            <a href="{{ route('home.toursList', ['slug'=>$item->slug]) }}" class="btn-moreinfo" >xem thêm tour</a>
                         </div>
-                    @endforeach
 
-                </section>
-                <div class="tour-moreinfo">
-                    <a href="" class="btn-moreinfo">xem thêm tour</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="foreign-tours">
-            <div class="container tours-list">
-                <div class="tittle-tour">
-                    <h3>tour nước ngoài</h3>
-                    <img src="/frontend/images/homepage/icon star-2.png" alt="iconstar">
-                </div>
-                <section class="regular slider responsive">
-                    @foreach($foreignTours as $foreignTour)
-                        <div class="tour-card">
-                            <div class="tour-img">
-                                <a href="{{ route('home.tourDetail', ['slug'=>$foreignTour->slug]) }}"><img src="{{ asset($foreignTour->image) }}" alt="{{ ($foreignTour->name) }}"></a>
-                                <div class="tour-price">
-                                    <div>
-                                        <p class="new-price">{{number_format($foreignTour->sale,0,",",".")}} đ</p>
-                                        @if($foreignTour->price)
-                                            <p class="old-price">{{number_format($foreignTour->price,0,",",".")}} đ</p>
-                                        @endif
-                                    </div>
-                                    <a href="{{route('home.tourDetail', ['slug'=>$foreignTour->slug])}}">chi tiết </a>
-                                </div>
-                            </div>
-                            <div class="tour-info">
-                                <h4><a href="{{route('home.tourDetail', ['slug'=>$foreignTour->slug])}}">{{$foreignTour->name}}</a></h4>
-                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$foreignTour->departure_day}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$foreignTour->location}}</span> </p>
-                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$foreignTour->duration}}</span>
-                                </p>
-                                <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$foreignTour->vehicle}}</span>
-                                </p>
-                            </div>
+            @endif
+        @endforeach
+
+        @foreach($categories as $item)
+            @if($item->parent_id == 0 && $item->type == 1 && $item->position == 2)
+                <div class="vn-tours">
+                    <div class="container tours-list">
+                        <div class="tittle-tour">
+                            <h3>{{ $item->name }}</h3>
+                            <img src="/frontend/images/homepage/icon star-.png" alt="iconstar">
                         </div>
-                    @endforeach
-                </section>
-                <div class="tour-moreinfo">
-                    <a href="" class="btn-moreinfo">xem thêm tour</a>
+                        <section class="regular slider responsive">
+                            @foreach($allTours as $tour)
+                                @if($tour->category_id = $item->id)
+                                    <div class="tour-card">
+                                        <div class="tour-img">
+                                            <a href="{{ route('home.tourDetail', ['slug'=>$tour->slug]) }}"><img src="{{ asset($tour->image) }}" alt="{{ ($tour->name) }}"></a>
+                                            <div class="tour-price">
+                                                <div>
+                                                    <p class="new-price">{{number_format($tour->sale,0,",",".")}} đ</p>
+                                                    @if($tour->price)
+                                                        <p class="old-price">{{number_format($tour->price,0,",",".")}} đ</p>
+                                                    @endif
+                                                </div>
+                                                <a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">chi tiết </a>
+                                            </div>
+                                        </div>
+                                        <div class="tour-info">
+                                            <h4><a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">{{$tour->name}}</a></h4>
+                                            <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$tour->departure_day}}</span> </p>
+                                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$tour->location}}</span> </p>
+                                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$tour->duration}}</span>
+                                            </p>
+                                            <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$tour->vehicle}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </section>
+                        <div class="tour-moreinfo">
+                            <a href="{{ route('home.toursList', ['slug'=>$item->slug]) }}" class="btn-moreinfo" >xem thêm tour</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="themed-tours">
-            <div class="container tours-list">
-                <div class="tittle-tour">
-                    <h3>tour theo chủ đề</h3>
-                    <img src="/frontend/images/homepage/icon star-.png" alt="iconstar">
-                </div>
-                <section class="regular slider responsive">
-                    @foreach($categories as $item)
-                        @if($item->parent_id == 89 && $item->is_active == 1)
-                            <div class="tour-card">
+            @endif
+        @endforeach
+
+        @foreach($categories as $item)
+            @if($item->parent_id == 0 && $item->type == 1 && $item->position == 3)
+                <div class="themed-tours">
+                    <div class="container tours-list">
+                        <div class="tittle-tour">
+                            <h3>{{$item->name}}</h3>
+                            <img src="/frontend/images/homepage/icon star-.png" alt="iconstar">
+                        </div>
+                        <section class="regular slider responsive">
+                            @foreach($categories as $item2)
+                                @if($item2->parent_id == $item->id)
+                                <div class="tour-card">
                                 <div class="tour-img">
-                                    <a href=""><img src="{{asset($item->image)}}" alt="{{$item->name}}">{{$item->name}}
+                                    <a href="{{ route('home.toursList', ['slug'=>$item->slug]) }}"><img src="{{asset($item2->image)}}" alt="{{$item2->name}}">{{$item2->name}}
                                         <div class="tour-price">
                                             <div>
-                                                <p class="themed-tours__title">{{$item->name}}</p>
+                                                <p class="themed-tours__title">{{$item2->name}}</p>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                                </div>
+                                @endif
+                            @endforeach
+                        </section>
+                    </div>
+                </div>
+            @endif
+        @endforeach
 
-                </section>
-            </div>
-        </div>
     </section>
 
 
     <section class="news">
         <div class="container">
             <div class="news-vietcenter">
-                <div class="news-vietcenter__title">
-                    <a href="">Tin Tức du lịch</a>
-                    <p><a href="">Xem thêm ></a></p>
-                </div>
-                <div class="news-vietcenter__main">
-                        <div>
-                            <img src="{{asset($mainTravelNews->image)}}" alt="{{($mainTravelNews->title)}}">
-                        </div>
-                        <div class="news-vietcenter__main-content">
-                            <div>
-                                <a href="">{{($mainTravelNews->title)}}</a>
+                @foreach($categories as $item)
+                    @if($item->parent_id == $cateNews->id)
+                        @if($item->position == 1)
+                            <div class="news-vietcenter__title">
+                                <a href="{{ route('home.newsList', ['slug' => $item->slug]) }}">{{($item->name)}}</a>
+                                <p><a href="{{ route('home.newsList', ['slug' => $item->slug]) }}">Xem thêm ></a></p>
                             </div>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>  {{ date_format($mainTravelNews->created_at,"d/m/Y") }}</span>
-                                <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($mainTravelNews->view)}}</span>
-                            </div>
-                            {!! $mainTravelNews->summary !!}
-                        </div>
-                </div>
-                <div class="news-vietcenter__sub">
-                        <section class="regular slider responsive news-vietcenter__sub-slide">
-                            @foreach($travelNews as $item2)
-                                @if($item2->position == 1)
-                                <div class="news-vietcenter__sub-card">
-                                    <div class="news-vietcenter__sub-img">
-                                        <a href=""><img src="{{asset($item2->image)}}" alt="{{($item2->title)}}"></a>
-                                    </div>
-                                    <div class="news-vietcenter__sub-title"><a href="">{{($item2->title)}}</a>
-                                        <div class="time-view">
-                                            <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($item2->created_at,"d/m/Y") }}</span>
-                                            <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($item2->view)}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                            @endforeach
-                            </section>
-                    </div>
 
+                                <div class="news-vietcenter__main">
+                                    @foreach($articles as $news)
+                                    @if($news->position == 2 && $news->category_id == $item->id)
+                                          <div>
+                                              <img src="{{asset($news->image)}}" alt="{{($news->title)}}">
+                                          </div>
+                                          <div class="news-vietcenter__main-content">
+                                              <div>
+                                                  <a href="">{{($news->title)}}</a>
+                                              </div>
+                                              <div class="time-view">
+                                                  <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>  {{ date_format($news->created_at,"d/m/Y") }}</span>
+                                                  <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
+                                              </div>
+                                              {!! $news->summary !!}
+                                          </div>
+                                    @endif
+                                    @endforeach
+                                </div>
+                                <div class="news-vietcenter__sub">
+
+                                        <section class="regular slider responsive news-vietcenter__sub-slide">
+                                            @foreach($articles as $news)
+                                                @if($news->position == 1 && $news->category_id == $item->id)
+                                            <div class="news-vietcenter__sub-card">
+                                                <div class="news-vietcenter__sub-img">
+                                                    <a href=""><img src="{{asset($news->image)}}" alt="{{($news->title)}}"></a>
+                                                </div>
+                                                <div class="news-vietcenter__sub-title"><a href="">{{($news->title)}}</a>
+                                                    <div class="time-view">
+                                                        <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
+                                                        <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                @endif
+                                            @endforeach
+                                        </section>
+
+                                </div>
+
+                        @endif
+                    @endif
+                @endforeach
             </div>
+
             <div class="news-detail">
                 <div class="accordion" id="accordionExample">
                     <div class="btn-news-detail">
-                        <div><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" autofocus>cẩm nang du lịch</button></div>
-                        <div> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">kinh nghiệm du lịch</button></div>
-                        <div><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">hỏi đáp du lịch</button></div>
-                    </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        @foreach($travelGuides as $item)
-                        <div class="news-detail__card">
-                            <div class="news-detail__content">
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($item->created_at,"d/m/Y") }}</span>
-                                    <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($item->view)}}</span>
-                                </div>
-                                <a href="">{{($item->title)}}</a>
-                            </div>
-                            <div class="news-detail__img">
-                                <a href=""><img src="{{asset($item->image)}}" alt="{{($item->title)}}"></a>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        @foreach($travelExperiences as $item)
-                            <div class="news-detail__card">
-                                <div class="news-detail__content">
-                                    <div class="time-view">
-                                        <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($item->created_at,"d/m/Y") }}</span>
-                                        <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($item->view)}}</span>
+                        @foreach($categories as $item)
+                            @if($item->parent_id == $cateNews->id)
+                                @if($item->position !=1 )
+                                    <div>
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}" aria-expanded="true" aria-controls="collapse{{ $item->id }}" >{{ $item->name }}</button>
                                     </div>
-                                    <a href="">{{($item->title)}}</a>
-                                </div>
-                                <div class="news-detail__img">
-                                    <a href=""><img src="{{asset($item->image)}}" alt="{{($item->title)}}"></a>
-                                </div>
-                            </div>
+                                @endif
+                            @endif
                         @endforeach
                     </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        @foreach($travelInquiries as $item)
-                            <div class="news-detail__card">
-                                <div class="news-detail__content">
-                                    <div class="time-view">
-                                        <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($item->created_at,"d/m/Y") }}</span>
-                                        <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($item->view)}}</span>
-                                    </div>
-                                    <a href="">{{($item->title)}}</a>
+                    @foreach($categories as $item)
+                        @if($item->parent_id == $cateNews->id)
+                            @if($item->position !=1 )
+                                <div id="collapse{{ $item->id }}" class="collapse show" aria-labelledby="heading{{ $item->id }}" data-bs-parent="#accordionExample">
+                                    @foreach($articles as $news)
+                                        @if($news->category_id == $item->id)
+                                            <div class="news-detail__card">
+                                                <div class="news-detail__content">
+                                                    <div class="time-view">
+                                                        <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
+                                                        <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
+                                                    </div>
+                                                    <a href="{{ route('home.newsList', ['slug' => $news->slug]) }}">{{($news->title)}}</a>
+                                                </div>
+                                                <div class="news-detail__img">
+                                                    <a href="{{ route('home.newsList', ['slug' => $news->slug]) }}"><img src="{{asset($news->image)}}" alt="{{($news->title)}}"></a>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
-                                <div class="news-detail__img">
-                                    <a href=""><img src="{{asset($item->image)}}" alt="{{($item->title)}}"></a>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
+                            @endif
+                        @endif
+                    @endforeach
+            </div>
             </div>
         </div>
     </section>
