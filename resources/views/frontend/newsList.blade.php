@@ -8,7 +8,11 @@
 @endsection
 @section('content')
     <section class="banner">
-        <img src="/frontend/images/blog/banner2.png" class=" w-100" alt="...">
+        @foreach($banners as $banner)
+            @if($banner->position == 2)
+                <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
+            @endif
+        @endforeach
         <div class="search">
             <h2>bạn muốn đi du lịch ở đâu ?</h2>
             <form class="row g-3 ">
@@ -24,84 +28,38 @@
             </form>
         </div>
     </section>
-    <section class="container travelNews">
-        <p><a href="">Trang chủ</a> > <a href="">Tin tức</a> > <a href="">Tin tức du lịch</a></p>
-    </section>
+    <div class="container direction">
+        <p><a href="{{route('home.index')}}">Trang chủ</a> >
+            <a href="{{ route('home.news')}} ">Tin tức</a> >
+            <a href="{{route('home.newsList',['slug'=>$category->slug])}}">{{$category->name}}</a>
+        </p>
+    </div>
 
     <section class="container newsList">
         <div class="col-md-9">
             <div class="newsList-content">
                 <div class="title">
-                    <h3>Tin tức du lịch</h3>
-                    <p>TIN TỨC DU LỊCH - Chuyên mục cung cấp những thông tin du lịch hữu ích trong và ngoài nước. Cung cấp các luồng tin tức du lịch đa dạng và chính xác cho mỗi chuyến đi của bạn. Mọi ý kiến đóng góp cho chuyên mục " Tin tức du lịch" xin gửi về địa chỉ Email:sm1@vietcenter.vn.</p>
-                </div>
+                    <h3>{{$category->name}}</h3>
+                    {!! $category->description !!}
+                     </div>
                 <div class="news-content row">
+                    @foreach($list_news as $news)
                     <div class="news-card">
                         <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/dac-san-quy-nhon-banh-trang-nuoc-dua.jpg" alt="TOP 12 Đặc sản Quy Nhơn nhất định phải thử khi đến đây"></a>
+                            <a href="{{route('home.newsDetail',['slug'=>$news->slug])}}"><img src="{{asset($news->image)}}" alt="{{$news->title}}"></a>
                         </div>
                         <div class="news-descript">
-                            <a href="">TOP 12 Đặc sản Quy Nhơn nhất định phải thử khi đến đây</a>
+                            <a href="{{route('home.newsDetail',['slug'=>$news->slug])}}">{{$news->title}}</a>
                             <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>26/05/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>233</span>
+                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
+                                <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="news-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/bun nuoc leo.jpg" alt="Điểm mặt những món đặc sản trứ danh của tỉnh Trà Vinh"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Điểm mặt những món đặc sản trứ danh của tỉnh Trà Vinh</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>13/08/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>235</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/so huyet.jpg" alt="Du lịch biển Sầm Sơn ăn gì? Những món ăn phải thử khi đến Sầm Sơn"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Du lịch biển Sầm Sơn ăn gì? Những món ăn phải thử khi đến Sầm Sơn</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>24/03/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>55</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/mon-ngon-han-quoc.jpg" alt="Khám phá ẩm thực Hàn Quốc với top 7 món ăn truyền thống xứ Hàn"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Khám phá ẩm thực Hàn Quốc với top 7 món ăn truyền thống xứ Hàn</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>16/02/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>263</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/bánh tôm.jpg" alt="Đến Hồ Tây ăn gì? Những địa chỉ ăn ngon quanh Hồ Tây"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Đến Hồ Tây ăn gì? Những địa chỉ ăn ngon quanh Hồ Tây</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>07/01/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>385</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/mứt.jpg" alt="Tổng hợp những món mứt truyền thống không thể thiếu trong ngày tết cổ truyền"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Tổng hợp những món mứt truyền thống không thể thiếu trong ngày tết cổ truyền</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>05/01/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>418</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                </div>
+                <div class="pages">
+                    {{ $list_news->links() }}
                 </div>
             </div>
 

@@ -732,11 +732,11 @@
     background: rgb(115, 192, 74);
 }
 
-.btn-news-detail>div:focus-within button {
+.btn-news-detail>div>button.active {
     background: rgb(115, 192, 74);
 }
 
-.btn-news-detail>div:focus-within button::before {
+.btn-news-detail>div>button.active::before {
     content: '';
     border: 8px solid transparent;
     border-top-color: rgb(115, 192, 74);

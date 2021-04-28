@@ -8,7 +8,11 @@
 @endsection
 @section('content')
     <section class="banner">
-        <img src="/frontend/images/banner-tour.png" class=" w-100" alt="...">
+        @foreach($banners as $banner)
+            @if($banner->position == 2)
+                <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
+            @endif
+        @endforeach
         <div class="search">
             <h2>bạn muốn đi du lịch ở đâu ?</h2>
             <form class="row g-3 ">

@@ -65,9 +65,11 @@
 <script>
     $(document).ready(function() {
         $(".carousel-inner>div:first").addClass("active");
+        $(".carousel-indicators>button:first").addClass("active");
         $(".accordion>div>div>button:first").autofocus;
     })
 </script>
+@yield('collapseJs')
 
 </body>
 

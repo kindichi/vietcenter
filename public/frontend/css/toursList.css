@@ -1,18 +1,18 @@
-.direction>p {
-    margin: 0.5rem 0;
-    color: rgb(83, 83, 155);
-}
+/*.direction>p {*/
+/*    margin: 0.5rem 0;*/
+/*    color: rgb(83, 83, 155);*/
+/*}*/
 
-.direction>p>a {
-    text-decoration: none;
-    color: rgb(83, 83, 155);
-    font-family: SegoeUI;
-    font-size: 1rem;
-}
+/*.direction>p>a {*/
+/*    text-decoration: none;*/
+/*    color: rgb(83, 83, 155);*/
+/*    font-family: SegoeUI;*/
+/*    font-size: 1rem;*/
+/*}*/
 
-.direction>p>a:hover {
-    color: rgb(145, 233, 115);
-}
+/*.direction>p>a:hover {*/
+/*    color: rgb(145, 233, 115);*/
+/*}*/
 
 .tours {
     display: flex;
@@ -38,8 +38,8 @@
 .tours-intro>h2 {
     font-size: 1.75rem;
     color: rgb(9, 81, 132);
-    border-bottom: 1px solid rgb(218, 218, 218);
-    padding: 1rem 0;
+    padding-top: 1rem;
+    text-transform: uppercase;
 }
 
 .tours-intro>div {
@@ -149,12 +149,16 @@
 
 .tour-card__desc {
     width: 100%;
-    padding: 1rem;
+    display: flex;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .tour-card__desc>a {
     display: block;
     width: 100%;
+    min-height: 4rem;
     text-align: center;
     text-transform: uppercase;
     font-family: SegoeUIBold;
@@ -180,7 +184,7 @@
 }
 
 .tour-card__desc-info>p {
-    margin: 0.5rem 0;
+    margin: 0.15rem 0;
 }
 
 .tour-card__desc-info>p>img {
@@ -194,7 +198,7 @@
 .tour-card__desc-price {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: right;
 }
 
 .tour-card__desc-price>strong {
@@ -206,13 +210,17 @@
     color: rgb(121, 121, 121);
 }
 
-.tour-card__desc-price>button {
+.tour-card__desc-price>a {
     font-family: SegoeUIBold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     margin-top: 0.5rem;
     width: 9rem;
     color: white;
     text-transform: uppercase;
+    text-decoration: none;
     background: #ff7e00;
     border-radius: 4px;
     box-shadow: 0 0 10px -4px #000;
@@ -221,7 +229,7 @@
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border: none;
-    height: 2rem;
+    height: 2.5rem;
     transition: all .5s;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
@@ -229,7 +237,7 @@
     -o-transition: all .5s;
 }
 
-.tour-card__desc-price>button:hover {
+.tour-card__desc-price>a:hover {
     background: rgb(77, 197, 37);
 }
 

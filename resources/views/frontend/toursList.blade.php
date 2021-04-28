@@ -8,7 +8,11 @@
 @endsection
 @section('content')
     <section class="banner">
-        <img src="/frontend/images/customerExperience/banner-tour.png" class=" w-100" alt="...">
+        @foreach($banners as $banner)
+            @if($banner->position == 2)
+                <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
+            @endif
+        @endforeach
         <div class="search">
             <h2>bạn muốn đi du lịch ở đâu ?</h2>
             <form class="row g-3 ">
@@ -26,22 +30,27 @@
     </section>
 
     <div class="container direction">
-        <p><a href="">Trang chủ</a> > <a href="">Tour trong nước</a></p>
+        <p><a href="{{route('home.index')}}">Trang chủ</a> >
+            @foreach($categories as $item)
+                @if($item->id == $category->parent_id)
+                    <a href="{{route('home.toursList',['slug'=>$item->slug])}}">{{$item->name}}</a> >
+                @endif
+            @endforeach
+            <a href="{{route('home.toursList',['slug'=>$category->slug])}}">{{$category->name}}</a>
+        </p>
     </div>
 
     <section class="container tours">
         <div class="col-md-9 tours-content">
             <div class="tours-intro">
-                <h2>Tour trong nước</h2>
+                <h2>{{$category->name}}</h2>
                 <div>
-                    <img src="/frontend/images/tours/img-tour-intro.png" alt="">
-                    <p>Du lịch trong nước luôn là lựa chọn tuyệt vời. Đường bờ biển dài hơn 3260km, những khu bảo tồn thiên nhiên tuyệt vời, những thành phố nhộn nhịp, những di tích lịch sử hào hùng, nền văn hóa độc đáo và hấp dẫn, cùng một danh sách dài
-                        những món ăn ngon nhất thế giới, Việt Nam có tất cả những điều đó. Với lịch trình dày, khởi hành đúng thời gian cam kết, Vietcenter là công ty lữ hành uy tín nhất hiện nay tại Việt Nam, luôn sẵn sàng phục vụ du khách mọi lúc, mọi
-                        nơi, đảm bảo tính chuyên nghiệp và chất lượng dịch vụ tốt nhất thị trường.</p>
+                    <img src="{{asset($category->image)}}" alt="">
+                    {!! $category->description !!}
                 </div>
             </div>
             <div class="tours-title">
-                <h3>Danh sách  <p>tour trong nước</p> </h3>
+                <h3>Danh sách tour <p>{{$category->name}}</p> </h3>
                 <div class="tours-sort">
                     Sắp xếp theo
                     <select name="sapxep" id="sort">
@@ -53,225 +62,35 @@
                     </select>
                 </div>
             </div>
-            <p>Vietcenter Tourist cung cấp dịch vụ đặt phòng khách sạn, homestay nhanh chóng và tiện lợi. Với hệ thống đối tác là các khách sạn lớn trên khắp các tỉnh thành của Việt Nam. Chúng tôi tự tin mang đến cho quý khách hàng những sựa lựa chọn về
-                phòng nghỉ tối ưu nhất. Hãy tìm kiếm và đặt phòng khách sạn ngay tại đây</p>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/sapa-jade-hill-2.jpg" alt="Combo Sapa khách sạn 5 sao - Tết 2020"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Combo Sapa khách sạn 5 sao - Tết 2020</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>2 ngày 1 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>1,1150,000 đ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
+            @foreach($list_tours as $tour)
+                <div class="tour-card">
+                    <div class="tour-card__img">
+                        <a href=""><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
+                    </div>
+                    <div class="tour-card__desc">
+                        <a href="">{{$tour->name}}</a>
+                        <div>
+                            <div class="tour-card__desc-info">
+                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$tour->departure_day}}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>{{$tour->location}}</span></p>
+                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$tour->duration}}</span></p>
+                                <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$tour->vehicle}}</span></p>
+                            </div>
+                            <div class="tour-card__desc-price">
+                                <strong>{{number_format($tour->sale,0,",",".")}} đ</strong>
+                                @if($tour->price)
+                                    <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
+                                @endif
+                                <a href="{{route('home.bookTour',['slug'=>$tour->slug])}}">đặt tour</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            @endforeach
+            <div class="pages">
+                {{ $list_tours->links() }}
             </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/da-lat-1.jpg" alt="Combo Đà Lạt 3 Ngày 2 Đêm Khách Sạn 3 Saon"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Combo Đà Lạt 3 Ngày 2 Đêm Khách Sạn 3 Saon</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 2 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>Máy bay</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>2,600,000 đ</strong>
-                            <strike>2,922,000 đ</strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/du-lich-ha-khau.jpg" alt="Tour Du Lịch SaPa - Tham Quan Hà Khẩu ( Trung Quốc ) 3 Ngày 2 Đêm"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch SaPa - Tham Quan Hà Khẩu ( Trung Quốc ) 3 Ngày 2 Đêm</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>2 ngày 1 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/nui-doi-quan-ba-ha-giang (1).jpg" alt="Tour Du Lịch Hà Giang - Chợ Tình Khâu Vai - Phiên Chợ Xuân 4N3Đ (Tháng Vàng Ưu Đãi)"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch Hà Giang - Chợ Tình Khâu Vai - Phiên Chợ Xuân 4N3Đ (Tháng Vàng Ưu Đãi)</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>4 ngày 3 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/du-lich-buon-me-thuot-min.jpg" alt="Tour Du Lịch Buôn Ma Thuột - Đak Lak - Hành Trình Khám Phá Núi Rừng Tây Nguyên 3N2Đ"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch Buôn Ma Thuột - Đak Lak - Hành Trình Khám Phá Núi Rừng Tây Nguyên 3N2Đ</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 2 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>Máy bay</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/hoang-su-phi.jpg" alt="Tour Du Lịch Hà Giang - Cao Nguyên Đá Đồng Văn 3 Ngày 2 Đêm"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch Hà Giang - Cao Nguyên Đá Đồng Văn 3 Ngày 2 Đêm</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 2 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/tour-du-lich-dienbien-vietcenter.png" alt="Tour Du lịch Hà Nội - Điện Biên 3 Ngày 2 Đêm"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du lịch Hà Nội - Điện Biên 3 Ngày 2 Đêm</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 2 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/du-lich-dao-ngoc-cat-ba-vietcenter.png" alt="Du Lịch Hà Nội - Cát Bà Điểm Đến Số 1 Hải Phòng 3 Ngày 2 Đêm"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Du Lịch Hà Nội - Cát Bà Điểm Đến Số 1 Hải Phòng 3 Ngày 2 Đêm</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 2 đêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/tam-chuc-ba-sao-kim-bang-ha-nam.png" alt="Tour Du Lịch Tam Chúc Ba Sao - Tham Quan Ngôi Chùa Lớn Nhất Việt Nam"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch Tam Chúc Ba Sao - Tham Quan Ngôi Chùa Lớn Nhất Việt Nam</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>1 ngày</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-card">
-                <div class="tour-card__img">
-                    <a href=""><img src="/frontend/images/homepage/vntours/du-lich-bien-lang-co.png" alt="Tour Du Lịch Hà Nội - Huế - Lăng Cô 3 Ngày 3 Đêm"></a>
-                </div>
-                <div class="tour-card__desc">
-                    <a href="">Tour Du Lịch Hà Nội - Huế - Lăng Cô 3 Ngày 3 Đêm</a>
-                    <div>
-                        <div class="tour-card__desc-info">
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>Hà Nội</span></p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>3 ngày 3 êeêm</span></p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>ô tô</span></p>
-                        </div>
-                        <div class="tour-card__desc-price">
-                            <strong>Liên hệ</strong>
-                            <strike></strike>
-                            <button>đặt phòng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#" autofocus>1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
         <div class="col-md-3">
             <div class="hotline">

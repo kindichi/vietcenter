@@ -1,11 +1,24 @@
 @extends('frontend.layouts.main')
 @section('mycss')
     <link rel="stylesheet" href="/frontend/css/index.css">
-    <link rel="stylesheet" href="/frontend/css/tour-detail.css">
+    <link rel="stylesheet" href="/frontend/css/tourDetail.css">
 @endsection
 @section('content')
     <section class="container title">
-        <p><a href="">Trang chủ</a> > <a href="">Tour trong nước</a></p>
+
+        <p><a href="{{ route('home.index') }}">Trang chủ</a> >
+            @foreach($categories as $item)
+                @if($item->id == $tour->categoryParent_id)
+                    <a href="{{route('home.toursList',['slug'=>$item->slug])}}">{{$item->name}}</a> >
+                @endif
+            @endforeach
+            @foreach($categories as $item)
+                @if($tour->category_id == $item->id)
+                    <a href="">{{$item->name}}</a>
+                @endif
+            @endforeach
+        </p>
+
     </section>
 
     <section class="container tour-detail">
@@ -46,7 +59,7 @@
                         <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
                         @endif
                     </div>
-                    <button>đặt tour ngay <i class="fas fa-chevron-circle-right"></i></button>
+                    <a href="{{route('home.bookTour',['slug'=>$tour->slug])}}">đặt tour ngay <i class="fas fa-chevron-circle-right"></i></a>
                 </div>
             </div>
             <div class="tourIntro">
@@ -55,15 +68,16 @@
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" autofocus>Giới thiệu</button>
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Lịch trình</button>
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">bao gồm và điều khoản</button>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">đánh giá</button>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">bình luận</button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">bình luận</button>
                     </div>
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <p class="tourIntro-title">Giới thiệu</p>
                         <div class="collapseContent">
                             {!! $tour->description !!}
                         </div>
                     </div>
                     <div id="collapseTwo" class="collapse blognews-mostviewed tourSchedule" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <p class="tourIntro-title">Lịch trình</p>
                         <div class="accordion" id="schedule">
                             <div class="tourSchedule-btn">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1" aria-expanded="true" aria-controls="day1" autofocus>Ngày 1</button>
@@ -73,30 +87,41 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day5" aria-expanded="false" aria-controls="day5">Ngày 5</button>
                             </div>
                             <div id="day1" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#schedule">
-
+                                <p class="tourSchedule-title">
+                                    <i class="fas fa-caret-right"></i>
+                                    <strong>HÀ NỘI – BANGKOK – PATTAYA (ĂN: TRƯA, TỐI)</strong>
+                                </p>
+                                <div class="tourSchedule-content">
+                                    <p><strong>07h00:</strong> Trưởng Đoàn của công ty Vietcenter đón đoàn tại điểm hẹn đưa đoàn ra sân bay Nội Bài, làm thủ tục đáp máy bay <strong>SL184</strong> lúc 10h30 khởi hành đi Bangkok.</p>
+                                    <p><strong>12h30:</strong> Máy bay hạ cánh xuống sân bay <strong>Don Mueang - Bangkok</strong>, đoàn làm thủ tục nhập cảnh vào Thái Lan. Đoàn ăn trưa coupon tại sân bay.</p>
+                                    <p>Tối đoàn ăn tối tại nhà hàng địa phương</p>
+                                    <p><strong>Tối:</strong> Quý khách có thể đăng ký xem những tiết mục đặc sắc - <strong>Sexy Show</strong> - Chi phí tự túc hoặc tự do dạo chơi và khám phá thế giới giải trí của thành phố không ngủ Pattaya. Nghỉ đêm tại
+                                        Pattaya, khách sạn <strong>VOGUE HOTLE 3-4*</strong> hoặc tương đương. &nbsp;</p>
+                                </div>
                             </div>
                             <div id="day2" class="collapse blognews-mostviewed" aria-labelledby="headingTwo" data-bs-parent="#schedule">
-
+                                2
                             </div>
                             <div id="day3" class="collapse" aria-labelledby="headingThree" data-bs-parent="#schedule">
-
+                                3
                             </div>
                             <div id="day4" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#schedule">
+                                4
                             </div>
                             <div id="day5" class="collapse blognews-mostviewed" aria-labelledby="headingFive" data-bs-parent="#schedule">
+                                5
                             </div>
-
                         </div>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <p class="tourIntro-title">Bao gồm và điều khoản</p>
                         <div class="collapseContent">
                             {!! $tour->rule !!}
                         </div>
 
                     </div>
                     <div id="collapseFour" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                    </div>
-                    <div id="collapseFive" class="collapse blognews-mostviewed" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <p class="tourIntro-title">Bình luận</p>
                     </div>
 
                 </div>
@@ -214,3 +239,15 @@
         </div>
     </section>
 @endsection
+@section('collapseJs')
+    <script>
+    $(document).ready(function() {
+        $(".tourSchedule-btn>button:first-child").addClass("active");
+        $(".tourSchedule-btn>button").click(function() {
+            $(".tourSchedule-btn>button").removeClass("active")
+            $(this).toggleClass("active");
+        });
+    });
+    </script>
+@endsection
+

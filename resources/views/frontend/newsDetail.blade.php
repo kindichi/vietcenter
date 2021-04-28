@@ -4,13 +4,13 @@
 @endsection
 @section('mycss')
     <link rel="stylesheet" href="/frontend/css/index.css">
-    <link rel="stylesheet" href="/frontend/css/news.css">
+    <link rel="stylesheet" href="/frontend/css/newsDetail.css">
 @endsection
 @section('content')
     <section class="banner">
         @foreach($banners as $banner)
             @if($banner->position == 2)
-        <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
+                <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
             @endif
         @endforeach
         <div class="search">
@@ -30,297 +30,93 @@
     </section>
 
     <section class="container direction">
-
-        <p><a href="">Trang chủ</a> > <a href="">{{$cateNews->name}}</a></p>
-
-
+        <p><a href="{{ route('home.index') }}">Trang chủ</a> >
+            <a href="{{ route('home.news') }}">Tin tức</a> >
+            @foreach($categories as $item)
+                @if($news->category_id == $item->id)
+                    <a href="">{{$item->name}}</a>
+                @endif
+            @endforeach
     </section>
 
-    <section class="container otherNewsTravel">
+    <section class="container newsList">
         <div class="col-md-9">
-            <div class="travelNews">
-                @foreach($categories as $item)
-                    @if($cateNews->id == $item->parent_id && $item->position ==1)
-                        <div class="title">
-                                <h3>{{$item->name}}</h3>
-                                <a href="{{route('home.newsList',['slug' => $item->slug])}}">Xem thêm ></a>
-                    </div>
-                     @endif
-                @endforeach
-                <div class="travelnews-content">
-                    <div id="carouselExampleIndicators" class="carousel slide carousel-fade travelnews-slides" data-bs-ride="carousel">
-                        <div class="carousel-indicators travelnews-slides__btn">
-                            @foreach($categories as $item)
-                                @if($cateNews->id == $item->parent_id && $item->position ==1)
-                                    <?php $i=0  ?>
-                                    @foreach($articles as $key => $article)
-                                        @if($article->category_id = $item->id && $article->position == 3 )
-                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}" aria-current="true" aria-label="Slide1"></button>
-                                                <?php $i++  ?>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="carousel-inner">
-                            @foreach($categories as $item)
-                                @if($cateNews->id == $item->parent_id && $item->position ==1)
-                                    @foreach($articles as $key => $article)
-                                        @if($article->category_id = $item->id && $article->position == 3 )
-                                            <div class="carousel-item travelnews-slide">
-                                                <div class="news-img">
-                                                    <img src="{{asset($article->image)}}" alt="{{($article->title)}}">
-                                                </div>
-                                                <div class="news-content">
-
-                                                        <a href="{{route('home.newsDetail',['slug'=>$article->slug])}}" class="news-title">
-                                                            {{($article->title)}}
-                                                        </a>
-                                                        <span>{!! $article->summary !!}</span>
-                                                        <a href="{{route('home.newsDetail',['slug'=>$article->slug])}}" class="news-btn">Chi tiết</a>
-
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="row new">
-                        <div class="news-static">
-                            <div class="news-img">
-                                <img src="/frontend/images/blog/chợ hoa.jpg" alt="Khám phá chợ hoa đêm Quảng An, một trong những trải nghiệm phải thử khi đến Hà Nội">
-                            </div>
-                            <div class="news-content">
-                                <p><a href="" class="news-title">
-                                        Khám phá chợ hoa đêm Quảng An, một trong những trải nghiệm phải thử khi đến Hà Nội
-                                    </a>
-
-                                    <a href="" class="news-btn">Chi tiết</a></p>
-                            </div>
-                        </div>
-                        <div class="news-static">
-                            <div class="news-img">
-                                <img src="/frontend/images/blog/chua-ong-can-tho-8.jpg" alt="Đầu năm đi lễ ở đâu? Tổng hợp nhanh những ngôi đền, chùa nổi tiếng linh thiêng cho dịp đầu xuân">
-                            </div>
-                            <div class="news-content">
-                                <p><a href="" class="news-title">
-                                        Đầu năm đi lễ ở đâu? Tổng hợp nhanh những ngôi đền, chùa nổi tiếng linh thiêng cho dịp đầu xuân
-                                    </a>
-                                    <a href="" class="news-btn">Chi tiết</a></p>
-                            </div>
-                        </div>
-
+            <div class="newsList-content">
+                <div class="title">
+                    <h3>{{$item->name}}</h3>
+                    <div class="time-view">
+                        <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
+                        <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
                     </div>
                 </div>
             </div>
-
-            <div class="travelGuide">
-                <div class="title">
-                    <h3>Cẩm nang du lịch</h3>
-                    <a href="">Xem thêm ></a>
-                </div>
-                <div class="travelGuide-content row">
-                    <div class="col-md-6 travelGuide-main">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/dulichdongmo.jpg" alt="Cuối tuần nên đi đâu ở Hà Nội? Khám phá ngay địa điểm thú vị này"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Cuối tuần nên đi đâu ở Hà Nội? Khám phá ngay địa điểm thú vị này</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>11/11/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>146</span>
-                            </div>
-                            <p>Cuối tuần nên đi đâu ở Hà Nội? Khám phá ngay địa điểm thú vị này</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 travelGuide-subs">
-                        <div class="travelGuide-sub">
-                            <div class="news-photo">
-                                <a href=""><img src="/frontend/images/blog/sportdongmo.png" alt="Camping Sport Đồng Mô - Địa điểm cắm trại dã ngoại MỚI TOANH gần Hà Nội"></a>
-                            </div>
-                            <div class="news-descript">
-                                <a href="">Camping Sport Đồng Mô - Địa điểm cắm trại dã ngoại MỚI TOANH gần Hà Nội</a>
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>31/08/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>368</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="travelGuide-sub">
-                            <div class="news-photo">
-                                <a href=""><img src="/frontend/images/blog/nha-tuong-niem-bac-ho.jpg" alt="Thông tin giới thiệu về khu di tích K9 Đá Chông"></a>
-                            </div>
-                            <div class="news-descript">
-                                <a href="">Thông tin giới thiệu về khu di tích K9 Đá Chông</a>
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>24/08/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>201</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="travelGuide-sub">
-                            <div class="news-photo">
-                                <a href=""><img src="/frontend/images/blog/cam-trai-tai-Ban-Rom.jpg" alt="Top những địa điểm cắm trại luôn HOT gần Hà Nội"></a>
-                            </div>
-                            <div class="news-descript">
-                                <a href="">Top những địa điểm cắm trại luôn HOT gần Hà Nội</a>
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>13/05/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>365</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="travelGuide-sub">
-                            <div class="news-photo">
-                                <a href=""><img src="/frontend/images/blog/Doi-net-ve-kien-truc-van-mieu-quoc-tu-giam-01.jpg" alt="Tìm hiểu khái quát về Văn Miếu Quốc Tử Giám"></a>
-                            </div>
-                            <div class="news-descript">
-                                <a href="">Tìm hiểu khái quát về Văn Miếu Quốc Tử Giám</a>
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>24/08/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>201</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="news-content">
+                {!! $news->description !!}
             </div>
-            <div class="travelExperience">
-                <div class="title">
-                    <h3>Kinh nghiệm du lịch</h3>
-                    <a href="">Xem thêm ></a>
-                </div>
-                <div class="travelExperience-content row">
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/dac-san-quy-nhon-banh-trang-nuoc-dua.jpg" alt="TOP 12 Đặc sản Quy Nhơn nhất định phải thử khi đến đây"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">TOP 12 Đặc sản Quy Nhơn nhất định phải thử khi đến đây</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>26/05/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>233</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/bun nuoc leo.jpg" alt="Điểm mặt những món đặc sản trứ danh của tỉnh Trà Vinh"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Điểm mặt những món đặc sản trứ danh của tỉnh Trà Vinh</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>13/08/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>235</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/so huyet.jpg" alt="Du lịch biển Sầm Sơn ăn gì? Những món ăn phải thử khi đến Sầm Sơn"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Du lịch biển Sầm Sơn ăn gì? Những món ăn phải thử khi đến Sầm Sơn</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>24/03/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>55</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/mon-ngon-han-quoc.jpg" alt="Khám phá ẩm thực Hàn Quốc với top 7 món ăn truyền thống xứ Hàn"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Khám phá ẩm thực Hàn Quốc với top 7 món ăn truyền thống xứ Hàn</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>16/02/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>263</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/bánh tôm.jpg" alt="Đến Hồ Tây ăn gì? Những địa chỉ ăn ngon quanh Hồ Tây"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Đến Hồ Tây ăn gì? Những địa chỉ ăn ngon quanh Hồ Tây</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>07/01/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>385</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="travelExperience-card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/mứt.jpg" alt="Tổng hợp những món mứt truyền thống không thể thiếu trong ngày tết cổ truyền"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Tổng hợp những món mứt truyền thống không thể thiếu trong ngày tết cổ truyền</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>05/01/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>418</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="travelInquiries">
-                <div class="title">
-                    <h3>Hỏi đáp du lịch</h3>
-                    <a href="">Xem thêm ></a>
-                </div>
-                <div class="travelInquiries-main">
-                    <div class="news-photo">
-                        <a href=""><img src="/frontend/images/blog/dam lap an(1).jpg" alt="Du lịch vịnh biển Lăng Cô, những trải nghiệm bạn không nên bỏ lỡ"></a>
-                    </div>
-                    <div class="news-descript">
-                        <a href="">Du lịch vịnh biển Lăng Cô, những trải nghiệm bạn không nên bỏ lỡ</a>
-                        <div class="time-view">
-                            <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>04/03/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>406</span>
-                        </div>
-                        <p>Lăng Cô thực sự là một thiên đường du lịch với những vẻ đẹp thiên nhiên nguyên thủy và là một trong những nơi hiếm hoi có cả núi, sông, biển, đảo và đầm phà. Đến với một trong những vùng vịnh biển đẹp bậc nhất thế giới và đừng
-                            bỏ lỡ những trải nghiệm có một không hai tại mảnh đất này nhé.</p>
-                    </div>
-                </div>
-                <div class="travelInquiries-sub">
-                    <div class="travelInquiries-sub__card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/du day.jpg" alt="Những trải nghiệm khó quên khi tham gia tour du thuyền Royal Caribbean"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Những trải nghiệm khó quên khi tham gia tour du thuyền Royal Caribbean</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>03/03/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>119</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" travelInquiries-sub__card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/dalat.jpg" alt="Khám phá ngay cánh đồng cỏ lau “đẹp phát hờn” tại Đà Lạt"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Khám phá ngay cánh đồng cỏ lau “đẹp phát hờn” tại Đà Lạt</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>04/02/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>394</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" travelInquiries-sub__card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/4722_Lo-trinh-tuyen-xe-bus-08-Ha-Noi.jpg" alt="Lộ trình phượt bus Hà Nội với những điểm đến cực hạt giẻ"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Lộ trình phượt bus Hà Nội với những điểm đến cực "hạt giẻ"</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>04/05/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>206</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" travelInquiries-sub__card">
-                        <div class="news-photo">
-                            <a href=""><img src="/frontend/images/blog/sapa.jpg" alt="Mùa đông này đi đâu ngắm tuyết rơi? Những địa điểm ngắm tuyết lãng mạn ở Việt Nam"></a>
-                        </div>
-                        <div class="news-descript">
-                            <a href="">Mùa đông này đi đâu ngắm tuyết rơi? Những địa điểm ngắm tuyết lãng mạn ở Việt Nam</a>
-                            <div class="time-view">
-                                <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>07/05/2020</span> <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>432</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="relatedNews">
+                <h4>Các tin liên quan</h4>
+                <ul class="relatedNews-list">
+                    <li>
+                        <a href="/nui-ba-den-tay-ninh-mo-cua-cap-treo-phuc-vu-du-lich-dip-tet-nguyen-dan-canh-ty-2020">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Núi Bà Đen – Tây Ninh mở cửa cáp treo phục vụ du lịch dịp Tết Nguyên Đán Canh Tý 2021
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pho-di-bo-ho-guom-dung-hoat-dong-tam-thoi-phong-dich-corona">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Phố đi bộ Hồ Gươm dừng hoạt động tạm thời phòng dịch Corona
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/du-lich-quoc-te-bang-tau-bien-trai-nghiem-du-lich-moi-la-thu-hut-du-khach">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Du lịch quốc tế bằng tàu biển, trải nghiệm du lịch mới lạ thu hút du khách
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/goi-y-mon-qua-y-nghia-tang-me-nhan-ngay-8-3">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Gợi ý món quà ý nghĩa tặng mẹ nhân ngày 8/3
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/vat-dung-can-thiet-khi-di-du-lich">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            List 30 những vật dụng cần thiết khi đi du lịch bạn nên mang theo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tong-hop-nhung-dia-diem-du-lich-ly-tuong-cho-cong-ty">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Tổng hợp những địa điểm du lịch lý tưởng cho công ty 2021
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/du-lich-van-hoa-la-gi-xu-huong-du-lich-gan-lien-voi-tim-hieu-net-dac-trung-van-hoa">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Du lịch Văn Hóa là gì? Xu hướng du lịch gắn liền với tìm hiểu nét đặc trưng Văn Hóa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/top-10-buc-tuong-phat-lon-nhat-the-gioi">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Top 10 bức tượng Phật lớn nhất thế giới
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tim-hieu-ve-di-tich-lich-su-nha-tu-phu-quoc">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Tìm hiểu về di tích lịch sử nhà tù Phú Quốc
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dia-diem-to-chuc-su-kien-cho-hoc-sinh-sinh-vien-ly-tuong-tai-ha-noi">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Địa điểm tổ chức sự kiện cho học sinh sinh viên lý tưởng tại Hà Nội
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="tourPromotion tours-list">
                 <h3><a href="">tour khuyến mại</a></h3>
@@ -330,7 +126,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/tung-bung-le-hoi-chiang-mai.jpg" alt="Tour du lịch Thái Lan - Bangkok - Pattaya 4N3Đ"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">3,890,000 đ</p>
+                                    <p class="new-price">3,890,000 đ</p>
                                     <p class="old-price">5,290,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -350,7 +146,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/du-lich-han-quoc.gif" alt="Tour du lịch Hàn Quốc Tết Canh Tý 2020: HN - Seoul - Lotte World - trượt tuyết 5N4Đ"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">16,990,000 đ</p>
+                                    <p class="new-price">16,990,000 đ</p>
                                     <p class="old-price">17,990,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -370,7 +166,7 @@
                             <a href=""><img src="/frontend/images/homepage/foreigntours/nuoc-nga.jpg" alt="Tour du lịch Nga - Matxcova - ST. Petersburg 8N7D"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">43,990,000 đ</p>
+                                    <p class="new-price">43,990,000 đ</p>
                                     <p class="old-price">45,900,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -390,7 +186,7 @@
                             <a href=""><img src="/frontend/images/homepage/foreigntours/tour-du-lich-lao.jpg" alt="Tour du lịch Lào khám phá xử sở hoa Champa 6N5Đ"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">6,190,000 đ</p>
+                                    <p class="new-price">6,190,000 đ</p>
                                     <p class="old-price">7,900,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -410,7 +206,7 @@
                             <a href=""><img src="/frontend/images/homepage/foreigntours/du-lich-Nhatban-yolotravel5840d85c2b1c6 - Copy.jpg" alt="Du Lịch Đất Nước Mặt Trời Mọc - Tết Nguyên Đán 2020"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">36,900,000 đ</p>
+                                    <p class="new-price">36,900,000 đ</p>
                                     <p class="old-price">37,900,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -430,7 +226,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/bai-dinh-1-min.jpg" alt="Trọn gói tour du lịch Ninh Bình : Bái Đính – Tràng An – Cúc Phương"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">3,000,000 đ</p>
+                                    <p class="new-price">3,000,000 đ</p>
                                     <p class="old-price">3,600,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -450,7 +246,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/mu-cang-chai.jpg" alt="Tour Du Lịch Mù Cang Chải – Yên Bái 3 Ngày 2 Đêm"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,700,000 đ</p>
+                                    <p class="new-price">2,700,000 đ</p>
                                     <p class="old-price">3,000,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -470,7 +266,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/du-lich-ha-long-1.jpg" alt="Tour Du lịch Hạ Long – Du thuyền ( 3 ngày)"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,795,000 đ</p>
+                                    <p class="new-price">2,795,000 đ</p>
                                     <p class="old-price">3,000,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -490,7 +286,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/da-nang1.jpg" alt="Du lịch Đà Nẵng – Hội An – Cố đô Huế"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,470,000 đ</p>
+                                    <p class="new-price">2,470,000 đ</p>
                                     <p class="old-price">2,800,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -510,7 +306,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/tour7.jpg" alt="Tour Hà Giang mùa hoa Tam giác mạch"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,250,000 đ</p>
+                                    <p class="new-price">2,250,000 đ</p>
                                     <p class="old-price">3,000,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -530,7 +326,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/cho-bac-ha-min.jpg" alt="Tour Du Lịch Y Tý – Bắc Hà 3 Ngày 2 Đêm"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,000,000 đ</p>
+                                    <p class="new-price">2,000,000 đ</p>
                                     <p class="old-price">2,500,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -551,7 +347,7 @@
                             <a href=""><img src="/frontend/images/homepage/vntours/tour10.jpg" alt="Tour Hà Nội – Hoàng Su Phì – Simacai – Bắc Hà 3 ngày 2 đêm"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">2,000,000 đ</p>
+                                    <p class="new-price">2,000,000 đ</p>
                                     <p class="old-price">2,300,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -571,7 +367,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/shangri-la.jpg" alt="Tour Du lịch Côn Minh - Lệ Giang Cổ Trấn - Shangri-la"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">16,990,000 đ</p>
+                                    <p class="new-price">16,990,000 đ</p>
                                     <p class="old-price">17,500,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -591,7 +387,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/Tour-du-lich-thai-lan-5-ngay-4-dem.png" alt="Tour Du Lịch Thái Lan - Xứ Sở Của Những Nụ Cười 5 Ngày 4 Đêm"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">6,490,000 đ</p>
+                                    <p class="new-price">6,490,000 đ</p>
                                     <p class="old-price">6,750,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -611,7 +407,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/tung-bung-le-hoi-chiang-mai.jpg" alt="Tour du lịch Thái Lan - Bangkok - Pattaya 4N3Đ"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">3,890,000 đ</p>
+                                    <p class="new-price">3,890,000 đ</p>
                                     <p class="old-price">5,290,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -631,7 +427,7 @@
                             <a href=""><img src="/frontend/images/homepage/hottestTour/du-lich-han-quoc.gif" alt="Tour du lịch Hàn Quốc Tết Canh Tý 2020: HN - Seoul - Lotte World - trượt tuyết 5N4Đ"></a>
                             <div class="tour-price">
                                 <div>
-                                    <p class="news-price">16,990,000 đ</p>
+                                    <p class="new-price">16,990,000 đ</p>
                                     <p class="old-price">17,990,000 đ</p>
                                 </div>
                                 <a href="">chi tiết </a>
@@ -903,5 +699,4 @@
             </div>
         </div>
     </section>
-
 @endsection

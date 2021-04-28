@@ -60,6 +60,7 @@
     font-size: 1.5rem;
     color: rgb(9, 81, 132);
     margin-bottom: 1.5rem;
+    text-transform: uppercase;
 }
 .title>a {
     text-decoration: none;
@@ -356,14 +357,14 @@
         width: 40%;
         height: 9rem;
     }
-  
+
 }
 @media (min-width: 992px){
     .featuredNews .news-photo{
         width: 40%;
         height: 5rem;
     }
- 
+
 }
 .tourPromotion>h3{
     margin: 0.5rem 0;

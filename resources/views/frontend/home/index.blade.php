@@ -10,12 +10,13 @@
     <section class="banner">
         <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active zoomOut ">
-                    <img src="/frontend/images/homepage/banner-du-lich-dong-bac.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item zoomOut">
-                    <img src="/frontend/images/homepage/item-banner-slider.png" class="d-block w-100" alt="...">
-                </div>
+                @foreach($banners as $banner)
+                    @if($banner->position == 1)
+                        <div class="carousel-item zoomOut ">
+                            <img src="{{asset($banner->image)}}" class="d-block w-100" alt="...">
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="search">
@@ -185,7 +186,7 @@
                                           </div>
                                           <div class="news-vietcenter__main-content">
                                               <div>
-                                                  <a href="">{{($news->title)}}</a>
+                                                  <a href="{{route('home.newsDetail',['slug'=>$news->slug])}}">{{($news->title)}}</a>
                                               </div>
                                               <div class="time-view">
                                                   <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>  {{ date_format($news->created_at,"d/m/Y") }}</span>
@@ -197,15 +198,14 @@
                                     @endforeach
                                 </div>
                                 <div class="news-vietcenter__sub">
-
-                                        <section class="regular slider responsive news-vietcenter__sub-slide">
+                                    <section class="regular slider responsive news-vietcenter__sub-slide">
                                             @foreach($articles as $news)
                                                 @if($news->position == 1 && $news->category_id == $item->id)
                                             <div class="news-vietcenter__sub-card">
                                                 <div class="news-vietcenter__sub-img">
-                                                    <a href=""><img src="{{asset($news->image)}}" alt="{{($news->title)}}"></a>
+                                                    <a href="{{route('home.newsDetail',['slug'=>$news->slug])}}"><img src="{{asset($news->image)}}" alt="{{($news->title)}}"></a>
                                                 </div>
-                                                <div class="news-vietcenter__sub-title"><a href="">{{($news->title)}}</a>
+                                                <div class="news-vietcenter__sub-title"><a href="{{route('home.newsDetail',['slug'=>$news->slug])}}">{{($news->title)}}</a>
                                                     <div class="time-view">
                                                         <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
                                                         <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
@@ -215,9 +215,7 @@
                                                 @endif
                                             @endforeach
                                         </section>
-
                                 </div>
-
                         @endif
                     @endif
                 @endforeach
@@ -373,4 +371,15 @@
         </div>
 
     </section>
+@endsection
+@section('collapseJs')
+    <script>
+        $(document).ready(function() {
+            $(".btn-news-detail>div:first-child>button").addClass("active");
+            $(".btn-news-detail>div>button").click(function() {
+                $(".btn-news-detail>div>button").removeClass("active")
+                $(this).toggleClass("active");
+            });
+        });
+    </script>
 @endsection

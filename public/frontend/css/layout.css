@@ -1179,7 +1179,27 @@ footer {
 
 @media (min-width: 1200px) {}
 
+.direction>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
 
+.direction>p>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+
+.direction>p>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+}
 /* @media (min-width: 1200px){
     .hotline {
         position: relative;
