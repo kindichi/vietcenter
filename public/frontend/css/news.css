@@ -102,6 +102,8 @@
 }
 .news-content>span{
     text-align: center;
+    color: white;
+    font-size: 1rem;
 }
 .news-content>a{
     display: flex;
@@ -126,18 +128,13 @@
     border: 2px solid white;
 }
 .news-title{
-    height: 6rem;
+    height: auto;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
 
-@media (min-width: 768px) {
-    .news-title{
-        height: 4.5rem;
-    }
- }
 
 .news-title:hover{
     color: rgb(145, 233, 115);

@@ -29,6 +29,7 @@
                                 <th style="width: 10px">#</th>
                                 <th>Hình ảnh</th>
                                 <th>Title</th>
+                                <th>Tóm tắt</th>
                                 <th>Kiểu bài viết</th>
                                 <th>Lượt xem</th>
                                 <th>Vị trí</th>
@@ -42,6 +43,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->title }}</td>
+                                    <td>{{ $item->summary }}</td>
                                     <td>{{ @$item->category->name }}</td>
                                     <td>{{ @$item->view }}</td>
                                     <td>{{ $item->position }}</td>

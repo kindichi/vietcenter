@@ -112,6 +112,33 @@
     </nav>
 
 </header>
+<section class="banner">
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($banners as $banner)
+                    <div class="carousel-item zoomOut ">
+                        <img src="{{asset($banner->image)}}" class="d-block w-100" alt="...">
+                    </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="search">
+        <h2>bạn muốn đi du lịch ở đâu ?</h2>
+        <form action="{{ route('home.search') }}" method="GET">
+            <div>
+                <input {{ isset($keyword) ? $keyword : '' }} name="tu-khoa" class="search-input" type="text" id="searchInput" placeholder="Tìm kiếm điểm đến, hoạt động, tin tức du lịch....">
+                <select class="form-select search-select" aria-label="Default select example">
+                    <option selected>Khởi hành từ</option>
+                    <option value="1">Từ Đà Nẵng</option>
+                    <option value="2">Từ Hà Nội</option>
+                    <option value="3">Từ Sài Gòn</option>
+                    <option value="4">Từ địa điểm khác</option>
+                </select>
+                <button type="submit" class="search-btn">tìm tour</button>
+            </div>
+        </form>
+    </div>
+</section>
 <!-- social network contact -->
 <section class="socialNetwork-contact">
     <ul>

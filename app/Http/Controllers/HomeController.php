@@ -7,6 +7,7 @@ use App\Category;
 use App\Contact;
 use App\Photo;
 use App\Review;
+use App\Schedule;
 use App\Tour;
 use App\Setting;
 use Illuminate\Http\Request;
@@ -28,6 +29,11 @@ class HomeController extends GeneralController
 
         $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3, 'position'=>1 ])->first();
 
+        $newsVietcenter  = Article::where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->limit(12)
+            ->get();
+
         $reviews = Review::all();
 
         return view('frontend.home.index', [
@@ -35,6 +41,7 @@ class HomeController extends GeneralController
             'allTours' => $allTours,
             'cateNews' => $cateNews,
             'reviews' => $reviews,
+            'newsVietcenter' => $newsVietcenter,
         ]);
 
     }
@@ -151,6 +158,9 @@ class HomeController extends GeneralController
             ->orderBy('position','ASC')
             ->limit(12)
             ->get();
+        $schedules  = Schedule::where(['is_active'=>1])
+            ->orderBy('position','ASC')
+            ->get();
 
         $sameTours  = Tour::where([
             ['is_active', '=', 1],
@@ -163,6 +173,7 @@ class HomeController extends GeneralController
 
         return view('frontend.tourDetail',[
             'tour' => $tour,
+            'schedules' => $schedules,
             'sameTours' => $sameTours,
             'photos' => $photos
         ]);
@@ -245,6 +256,28 @@ class HomeController extends GeneralController
 
         return view('frontend.newsDetail',[
             'news' => $news,
+        ]);
+    }
+    public function search(Request $request)
+    {
+        // b1. Lấy từ khóa tìm kiếm
+        $keyword = $request->input('tu-khoa');
+
+        $slug = str_slug($keyword);
+
+        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
+
+        $tours = Tour::where([
+            ['slug', 'like', '%' . $slug . '%'],
+            ['is_active', '=', 1]
+        ])->paginate(10);
+
+        $totalResult = $tours->total(); // số lượng kết quả tìm kiếm
+
+        return view('frontend.search', [
+            'tours' => $tours,
+            'totalResult' => $totalResult,
+            'keyword' => $keyword ? $keyword : ''
         ]);
     }
 }

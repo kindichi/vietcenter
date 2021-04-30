@@ -131,10 +131,8 @@
     <script type="text/javascript">
         $(function () {
             $(function () {
-                var _ckeditor1 = CKEDITOR.replace('summary');
-                _ckeditor1.config.height = 150;
                 var _ckeditor2 = CKEDITOR.replace('description');
-                _ckeditor2.config.height = 400;
+                _ckeditor2.config.height = 300;
             })
         })
     </script>

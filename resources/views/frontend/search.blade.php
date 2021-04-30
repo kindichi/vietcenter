@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('title')
-    <title>Danh sách tour</title>
+    <title>Kết quả tìm kiếm</title>
 @endsection
 @section('mycss')
     <link rel="stylesheet" href="/frontend/css/index.css">
@@ -9,38 +9,25 @@
 @section('content')
     <div class="container direction">
         <p><a href="{{route('home.index')}}">Trang chủ</a> >
-            @foreach($categories as $item)
-                @if($item->id == $category->parent_id)
-                    <a href="{{route('home.toursList',['slug'=>$item->slug])}}">{{$item->name}}</a> >
-                @endif
-            @endforeach
-            <a href="{{route('home.toursList',['slug'=>$category->slug])}}">{{$category->name}}</a>
+            <a href="">Tìm kiếm</a>
         </p>
     </div>
 
     <section class="container tours">
         <div class="col-md-9 tours-content">
-            <div class="tours-intro">
-                <h2>{{$category->name}}</h2>
-                <div>
-                    <img src="{{asset($category->image)}}" alt="">
-                    {!! $category->description !!}
-                </div>
-            </div>
             <div class="tours-title">
-                <h3>Danh sách tour <p>{{$category->name}}</p> </h3>
+                <h3>Từ khóa tìm kiếm "{{ $keyword }}" ({{ $totalResult }}) </h3>
                 <div class="tours-sort">
                     Sắp xếp theo
                     <select name="sapxep" id="sort">
                         <option value="cap nhat moi" selected>Cập nhật mới nhất</option>
-                        <option value="hang sao">Hạng sao</option>
                         <option value="gia thap">Giá từ thấp đến cao</option>
                         <option value="gia cao">Giá từ cao đến thấp</option>
                         <option value="tu a den z">Từ A-Z</option>
                     </select>
                 </div>
             </div>
-            @foreach($list_tours as $tour)
+            @foreach($tours as $tour)
                 <div class="tour-card">
                     <div class="tour-card__img">
                         <a href=""><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
@@ -59,14 +46,14 @@
                                 @if($tour->price)
                                     <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
                                 @endif
-                                <a href="{{route('home.bookTour',['slug'=>$tour->slug])}}">đặt tour</a>
+                                <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}">chi tiết</a>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
             <div class="pages">
-                {{ $list_tours->links() }}
+                {{ $tours->appends(['tu-khoa'=>$keyword])->links()  }}
             </div>
 
         </div>

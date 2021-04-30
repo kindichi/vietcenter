@@ -20,6 +20,7 @@ Route::get('/tin-tuc/{slug}', 'HomeController@newsList')->name('home.newsList');
 Route::get('/chi-tiet/{slug}', 'HomeController@newsDetail')->name('home.newsDetail');
 Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
 Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');
+Route::get('/tim-kiem', 'HomeController@search')->name('home.search');
 Route::get('/admin', 'AdminController@login')->name('admin.index');
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
 Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin');

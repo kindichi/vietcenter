@@ -27,7 +27,6 @@
                                 <th>Danh mục</th>
                                 <th>Danh mục cha</th>
                                 <th>Kiểu</th>
-                                <th>Mô tả</th>
                                 <th>Trạng Thái</th>
                                 <th>Vị trí</th>
                                 <th>Hành Động</th>
@@ -41,7 +40,6 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->parent->name or ''}}</td>
                                     <td>{{ $item->type }}</td>
-                                    <td>{{ $item->description }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td>{{ $item->position }}</td>
                                     <td class="text-center">

@@ -7,28 +7,6 @@
     <link rel="stylesheet" href="/frontend/css/news.css">
 @endsection
 @section('content')
-    <section class="banner">
-        @foreach($banners as $banner)
-            @if($banner->position == 2)
-        <img src="{{asset($banner->image)}}" class=" w-100" alt="...">
-            @endif
-        @endforeach
-        <div class="search">
-            <h2>bạn muốn đi du lịch ở đâu ?</h2>
-            <form class="row g-3 ">
-                <input class="search-input" type="text" id="searchInput" placeholder="Tìm kiếm điểm đến, hoạt động, tin tức du lịch....">
-                <select class="form-select search-select" aria-label="Default select example">
-                    <option selected>Khởi hành từ</option>
-                    <option value="1">Từ Đà Nẵng</option>
-                    <option value="2">Từ Hà Nội</option>
-                    <option value="3">Từ Sài Gòn</option>
-                    <option value="4">Từ địa điểm khác</option>
-                </select>
-                <button type="submit" class="search-btn">tìm tour</button>
-            </form>
-        </div>
-    </section>
-
     <section class="container direction">
 
         <p><a href="">Trang chủ</a> > <a href="">{{$cateNews->name}}</a></p>
@@ -904,4 +882,12 @@
         </div>
     </section>
 
+@endsection
+@section('carousel')
+    <script>
+        $(document).ready(function() {
+            $(".travelnews-slides>.carousel-inner>div:first").addClass("active");
+            $(".carousel-indicators>button:first").addClass("active");
+        })
+    </script>
 @endsection

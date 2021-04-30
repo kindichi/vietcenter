@@ -80,37 +80,25 @@
                         <p class="tourIntro-title">Lịch trình</p>
                         <div class="accordion" id="schedule">
                             <div class="tourSchedule-btn">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1" aria-expanded="true" aria-controls="day1" autofocus>Ngày 1</button>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2" aria-expanded="false" aria-controls="day2">Ngày 2</button>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day3" aria-expanded="false" aria-controls="day3">Ngày 3</button>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day4" aria-expanded="false" aria-controls="day4">Ngày 4</button>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day5" aria-expanded="false" aria-controls="day5">Ngày 5</button>
+                                @foreach($schedules as $schedule)
+                                    @if($schedule->tour_id == $tour->id)
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day{{$schedule->position}}" aria-expanded="true" aria-controls="day{{$schedule->position}}">Ngày {{$schedule->position}}</button>
+                                    @endif
+                                @endforeach
                             </div>
-                            <div id="day1" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#schedule">
+                            @foreach($schedules as $schedule)
+                                @if($schedule->tour_id == $tour->id)
+                                <div id="day{{$schedule->position}}" class="collapse" aria-labelledby="headingOne" data-bs-parent="#schedule">
                                 <p class="tourSchedule-title">
                                     <i class="fas fa-caret-right"></i>
-                                    <strong>HÀ NỘI – BANGKOK – PATTAYA (ĂN: TRƯA, TỐI)</strong>
+                                    <strong>{{$schedule->title}}</strong>
                                 </p>
                                 <div class="tourSchedule-content">
-                                    <p><strong>07h00:</strong> Trưởng Đoàn của công ty Vietcenter đón đoàn tại điểm hẹn đưa đoàn ra sân bay Nội Bài, làm thủ tục đáp máy bay <strong>SL184</strong> lúc 10h30 khởi hành đi Bangkok.</p>
-                                    <p><strong>12h30:</strong> Máy bay hạ cánh xuống sân bay <strong>Don Mueang - Bangkok</strong>, đoàn làm thủ tục nhập cảnh vào Thái Lan. Đoàn ăn trưa coupon tại sân bay.</p>
-                                    <p>Tối đoàn ăn tối tại nhà hàng địa phương</p>
-                                    <p><strong>Tối:</strong> Quý khách có thể đăng ký xem những tiết mục đặc sắc - <strong>Sexy Show</strong> - Chi phí tự túc hoặc tự do dạo chơi và khám phá thế giới giải trí của thành phố không ngủ Pattaya. Nghỉ đêm tại
-                                        Pattaya, khách sạn <strong>VOGUE HOTLE 3-4*</strong> hoặc tương đương. &nbsp;</p>
+                                    {!! $schedule->content !!}
                                 </div>
                             </div>
-                            <div id="day2" class="collapse blognews-mostviewed" aria-labelledby="headingTwo" data-bs-parent="#schedule">
-                                2
-                            </div>
-                            <div id="day3" class="collapse" aria-labelledby="headingThree" data-bs-parent="#schedule">
-                                3
-                            </div>
-                            <div id="day4" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#schedule">
-                                4
-                            </div>
-                            <div id="day5" class="collapse blognews-mostviewed" aria-labelledby="headingFive" data-bs-parent="#schedule">
-                                5
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -150,7 +138,14 @@
                             <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$sameTour->location}}</span> </p>
                             <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{ ($sameTour->duration) }}</span>
                             </p>
-                            <p><img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">Phương tiện: <span>{{ ($sameTour->vehicle) }}</span>
+                            <p>
+                                @if($sameTour->vehicle == 'Máy bay')
+                                <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                                <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                                <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+
+
+                                Phương tiện: <span>{{ ($sameTour->vehicle) }}</span>
                             </p>
                         </div>
                     </div>
@@ -247,7 +242,15 @@
             $(".tourSchedule-btn>button").removeClass("active")
             $(this).toggleClass("active");
         });
+        $("#schedule>div:nth-child(2)").addClass("show");
     });
+    </script>
+@endsection
+@section('carousel')
+    <script>
+        $(document).ready(function() {
+            $(".tourInfo-slide>.carousel-inner>div:first").addClass("active");
+        })
     </script>
 @endsection
 
