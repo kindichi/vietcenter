@@ -32,7 +32,7 @@
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
                                 <th>Tour đặt</th>
-                                <th>Thời gian khởi hành</th>
+                                <th>Thời gian dự kiến</th>
                                 <th>Số người tham gia</th>
                                 <th>Yêu cầu thêm</th>
                                 <th>Hành Động</th>
@@ -49,7 +49,7 @@
                                     <td>{{ @$item->tour->name }}</td>
                                     <td>{{ $item->date }}</td>
                                     <td>{{ $item->amount }}</td>
-                                    <td>{{ $item->content }}</td>
+                                    <td>{{ $item->moreInfo }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.booktour.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>

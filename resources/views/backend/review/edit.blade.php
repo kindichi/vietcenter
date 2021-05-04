@@ -41,7 +41,7 @@
                     @method('PUT')
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputSupplier">Tiêu đề</label>
                                     <input type="text" class="form-control" id="title" name="title" value="{{$data->title}}">
@@ -52,11 +52,22 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Danh mục Sản phẩm</label>
-                                    <select class="form-control" name="product_id" id="product_id">
+                                    <label>Tour đánh giá</label>
+                                    <select class="form-control" name="tour_id" id="tour_id">
                                         <option value>--chọn--</option>
                                         @foreach($tours as $tour)
                                             <option value="{{$tour->id}}" {{($data->tour_id == $tour->id) ? 'selected' : ''}}>{{$tour->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Danh mục</label>
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value>--chọn danh mục--</option>
+                                        @foreach($categories as $item)
+                                            <option value="{{$item->id}}" {{($data->category_id == $item->id) ? 'selected' : ''}}>{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -87,8 +98,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputSupplier">Người đánh giá</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{$data->name}}">
+                                    <label>Người đánh giá</label>
+                                    <select class="form-control" id="name" name="name">
+                                        <option value>--chọn người đánh giá--</option>
+                                        @foreach($customers as $item)
+                                            <option {{($data->name == $item->name) ? 'selected' : ''}} value="{{$item->name}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
                                     @if ($errors->has('name'))
                                         <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('name') }}</label>
                                     @endif

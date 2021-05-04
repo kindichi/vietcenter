@@ -2,28 +2,22 @@
 @section('mycss')
     <link rel="stylesheet" href="/frontend/css/index.css">
     <link rel="stylesheet" href="/frontend/css/tourDetail.css">
+    <link rel="stylesheet" href="/frontend/css/sidebar.css">
 @endsection
 @section('content')
     <section class="container title">
-
         <p><a href="{{ route('home.index') }}">Trang chủ</a> >
             @foreach($categories as $item)
-                @if($item->id == $tour->categoryParent_id)
+                @if($item->id == $category->parent_id)
                     <a href="{{route('home.toursList',['slug'=>$item->slug])}}">{{$item->name}}</a> >
                 @endif
             @endforeach
-            @foreach($categories as $item)
-                @if($tour->category_id == $item->id)
-                    <a href="">{{$item->name}}</a>
-                @endif
-            @endforeach
+            <a href="{{route('home.toursList',['slug'=>$category->slug])}}">{{$category->name}}</a>
         </p>
-
     </section>
 
     <section class="container tour-detail">
         <div class="col-md-9">
-
             <div class="tourInfo">
                 <div id="carouselExampleIndicators" class="carousel slide tourInfo-slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -49,7 +43,15 @@
                         <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$tour->location}}</span> </p>
                         <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$tour->duration}}</span>
                         </p>
-                        <p><img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">Phương tiện: <span>{{$tour->vehicle}}</span>
+                        <p>
+                            @if($tour->vehicle == 'Máy bay')
+                                <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                            @elseif($tour->vehicle == 'Ô tô')
+                                <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                            @elseif($tour->vehicle == 'Tàu hỏa')
+                                <img src="/frontend/images/homepage/ic-train.png" alt="phương tiện">
+                            @endif
+                            Phương tiện: <span>{{$tour->vehicle}}</span>
                         </p>
                     </div>
                     <div class="tourInfo-card__price">
@@ -106,49 +108,47 @@
                         <div class="collapseContent">
                             {!! $tour->rule !!}
                         </div>
-
                     </div>
                     <div id="collapseFour" class="collapse blognews-mostviewed" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                         <p class="tourIntro-title">Bình luận</p>
                     </div>
-
                 </div>
             </div>
-
             <div class="tours tours-list">
                 <h3><a href="">Các tour tương tự</a></h3>
                 <section class="regular slider">
                     @foreach($sameTours as $sameTour)
-                    <div class="tour-card">
-                        <div class="tour-img">
-                            <a href="{{ route('home.tourDetail', ['slug'=>$sameTour->slug]) }}"><img src="{{ asset($sameTour->image) }}" alt="{{ ($sameTour->name) }}"></a>
-                            <div class="tour-price">
-                                <div>
-                                    <p class="new-price">{{number_format($sameTour->sale,0,",",".")}} đ</p>
-                                    @if($sameTour->price)
-                                        <p class="old-price">{{number_format($sameTour->price,0,",",".")}} đ</p>
-                                    @endif
+                        <div class="tour-card">
+                            <div class="tour-img">
+                                <a href="{{ route('home.tourDetail', ['slug'=>$sameTour->slug]) }}"><img src="{{ asset($sameTour->image) }}" alt="{{ ($sameTour->name) }}"></a>
+                                <div class="tour-price">
+                                    <div>
+                                        <p class="new-price">{{number_format($sameTour->sale,0,",",".")}} đ</p>
+                                        @if($sameTour->price)
+                                            <p class="old-price">{{number_format($sameTour->price,0,",",".")}} đ</p>
+                                        @endif
+                                    </div>
+                                    <a href="{{ route('home.tourDetail', ['slug'=>$sameTour->slug]) }}">chi tiết </a>
                                 </div>
-                                <a href="{{ route('home.tourDetail', ['slug'=>$sameTour->slug]) }}">chi tiết </a>
+                            </div>
+                            <div class="tour-info">
+                                <h4><a href="">{{ ($sameTour->name) }}</a></h4>
+                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{ ($sameTour->departure_day) }}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$sameTour->location}}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{ ($sameTour->duration) }}</span>
+                                </p>
+                                <p>
+                                    @if($sameTour->vehicle == 'Máy bay')
+                                    <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                                    @elseif($sameTour->vehicle == 'Ô tô')
+                                    <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                                    @elseif($sameTour->vehicle == 'Tàu hỏa')
+                                        <img src="/frontend/images/homepage/ic-train.png" alt="phương tiện">
+                                    @endif
+                                    Phương tiện: <span>{{ ($sameTour->vehicle) }}</span>
+                                </p>
                             </div>
                         </div>
-                        <div class="tour-info">
-                            <h4><a href="">{{ ($sameTour->name) }}</a></h4>
-                            <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{ ($sameTour->departure_day) }}</span> </p>
-                            <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$sameTour->location}}</span> </p>
-                            <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{ ($sameTour->duration) }}</span>
-                            </p>
-                            <p>
-                                @if($sameTour->vehicle == 'Máy bay')
-                                <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
-                                <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
-                                <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
-
-
-                                Phương tiện: <span>{{ ($sameTour->vehicle) }}</span>
-                            </p>
-                        </div>
-                    </div>
                     @endforeach
                 </section>
 
@@ -190,47 +190,22 @@
                     <a href=""><i class="fas fa-caret-right"></i>Khách sạn Quảng Ninh</a>
                 </div>
             </div>
-            <div class="service-card">
-                <div class="service-img">
-                    <a href=""><img src="/frontend/images/customerExperience/item-cubes-1.png" alt="passport"></a>
-                </div>
-                <div class="service-desc">
-                    <a href="">visa - hộ chiếu</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-img">
-                    <a href=""><img src="/frontend/images/homepage/ve-may-bay.png" alt="passport"></a>
-                </div>
-                <div class="service-desc">
-                    <a href="">Vé máy bay</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-img">
-                    <a href=""><img src="/frontend/images/homepage/dat-phong-khach-san.png" alt="passport"></a>
-                </div>
-                <div class="service-desc">
-                    <a href="">đặt phòng khách sạn</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-img">
-                    <a href=""><img src="/frontend/images/homepage/to-chuc-su-kien.png" alt="passport"></a>
-                </div>
-                <div class="service-desc">
-                    <a href="">Tổ chức sự kiện</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img">
-                    <a href=""><img src="/frontend/images/homepage/cho-thue-xe.png" alt="passport"></a>
-                </div>
-                <div class="service-desc">
-                    <a href="">cho thuê xe</a>
-                </div>
-            </div>
+            @foreach($categories as $item)
+                @if($item->parent_id == 0 && $item->type == 2)
+                    @foreach($categories as $item2)
+                        @if($item2->parent_id == $item->id)
+                            <div class="service-card">
+                                <div class="service-img">
+                                    <a href="{{route('home.serviceDetail',['slug'=>$item2->slug])}}"><img src="{{asset($item2->image)}}" alt="{{$item2->name}}"></a>
+                                </div>
+                                <div class="service-desc">
+                                    <a href="{{route('home.serviceDetail',['slug'=>$item2->slug])}}">{{$item2->name}}</a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
         </div>
     </section>
 @endsection

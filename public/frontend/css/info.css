@@ -1,0 +1,267 @@
+
+.travelNews>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+
+
+.col-md-6{
+    padding:0;
+}
+
+.newsList{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.newsList>.col-md-9{
+    width: 100%;
+    margin: 0 1rem;
+}
+@media (min-width: 768px){
+    .newsList>.col-md-9{
+        max-width: 100%;
+    }
+}
+@media (min-width: 992px){
+    .newsList{
+        display: flex;
+    }
+    .newsList>.col-md-9{
+        max-width: 75%;
+        margin: 0;
+        padding-right: 1rem;
+    }
+}
+.title{
+
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+}
+.title>h3{
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    color: rgb(9, 81, 132);
+    text-transform: uppercase;
+}
+.title>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.title>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.info-content{
+   margin-top: 1.5rem;
+}
+.info-content>p{
+    padding: 0.5rem 0;
+}
+.info-content>p>strong{
+    display: flex;
+    margin: auto;
+}
+.info-content>p>img{
+    display: flex;
+    margin: auto;
+    max-width: 100%;
+    min-width: 60%;
+}
+.info-content img{
+    display: flex;
+    margin: auto;
+    max-width: 100%;
+    min-width: 60%;
+}
+
+.col-md-9, .col-md-3, .col-md-6{
+    padding: 0;
+}
+
+.customer-card {
+    display: flex;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 0 10px -6px #000;
+    border-radius: .3rem;
+    -webkit-border-radius: .3rem;
+    -moz-border-radius: .3rem;
+    -ms-border-radius: .3rem;
+    -o-border-radius: .3rem;
+    background: rgb(247, 247, 247);
+    margin: 2rem 0;
+}
+
+.customer-card__img {
+    padding: 2.5rem;
+    display: block;
+    margin: auto;
+}
+
+.customer-card__img>a {
+    display: block;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 0rem auto;
+    box-sizing: content-box;
+    border: 8px solid transparent;
+    box-shadow: 0 0 10px -2px #000;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
+
+.customer-rating {
+    display: flex;
+    justify-content: center;
+    margin: 0.75rem auto;
+}
+
+.customer-rating>img {
+    width: 1rem;
+}
+
+.customer-card__img>a>img {
+    width: 6.5rem;
+    height: 6.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.customer-card__img>a:hover img {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.customer-card__desc {
+    padding: 2rem 1rem 1rem 0rem;
+}
+
+.customer-card__desc>a {
+    background: url(../images/homepage/ic-title-feedback.png) left no-repeat;
+    padding: 0.5rem 1rem 0.5rem 3rem;
+    width: 6.5rem;
+    font-family: SegoeUISemiBold;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgb(33, 90, 130);
+}
+
+.customer-card__desc>p {
+    margin: 0.5rem 0;
+    text-align: left;
+    font-family: SegoeUI;
+    font-size: 1rem;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.customer-card__desc>p:first-child{
+    margin-top: 1rem;
+}
+.customer-card__desc>p>a {
+    color: rgb(9, 81, 132);
+    text-decoration: none;
+}
+
+.customer-card__desc>p>a:hover {
+    color: rgb(145, 233, 115);
+}
+
+.customer-card__desc-infoUser {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgb(221, 221, 221);
+    padding-top: 0.75rem;
+}
+
+.customer-card__desc-infoUser>div {
+    padding: 0 0.5rem;
+}
+
+.customer-card__desc-infoUser__avt>a>img {
+    width: 7rem;
+    height: 4rem;
+}
+
+.customer-card__desc-infoUser__avt {
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-card__desc-infoUser__avt::after {
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+}
+
+.customer-card__desc-infoUser__avt:hover::after {
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 2s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 2s ease 0s normal none 1 running fixedAnim;
+}
+
+@-webkit-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@-moz-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@keyframes fixedAnim {
+    0% {
+        right: 125%
+    }
+    125% {
+        right: 0;
+    }
+}
+@media (min-width: 768px) {
+    .customer-card__img {
+        padding: 1rem;
+    }
+}

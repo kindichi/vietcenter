@@ -1,0 +1,92 @@
+
+
+.travelNews>p {
+    margin: 0.5rem 0;
+    color: rgb(83, 83, 155);
+}
+
+
+
+.col-md-6{
+    padding:0;
+}
+
+.newsList{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.newsList>.col-md-9{
+    width: 100%;
+    margin: 0 1rem;
+}
+@media (min-width: 768px){
+    .newsList>.col-md-9{
+        max-width: 100%;
+    }
+}
+@media (min-width: 992px){
+    .newsList{
+        display: flex;
+    }
+    .newsList>.col-md-9{
+        max-width: 75%;
+        margin: 0;
+        padding-right: 1rem;
+    }
+}
+.title{
+
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+}
+.title>h3{
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    color: rgb(9, 81, 132);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+.title>a {
+    text-decoration: none;
+    color: rgb(83, 83, 155);
+    font-family: SegoeUI;
+    font-size: 1rem;
+}
+
+.title>a:hover {
+    color: rgb(145, 233, 115);
+}
+.col-md-9, .col-md-3, .col-md-6{
+    padding: 0;
+}
+
+
+.relatedNews{
+    margin-top: 1rem;
+
+}
+.relatedNews>h4{
+    font-family: SegoeUISemiBold;
+    font-size: 1.5rem;
+    color: rgb(9, 81, 132);
+    margin-bottom: 1rem;
+}
+.relatedNews a{
+   text-decoration: none;
+   color: black;
+   transition: all 1s;
+   -webkit-transition: all 1s;
+   -moz-transition: all 1s;
+   -ms-transition: all 1s;
+   -o-transition: all 1s;
+}
+.relatedNews i{
+    font-size: 0.75rem;
+}
+.relatedNews a:hover{
+   color: rgb(145, 233, 115);
+}
+

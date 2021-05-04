@@ -10,4 +10,8 @@ class Booktour extends Model
     {
         return $this->belongsTo('App\Tour');
     }
+    public function customers()
+    {
+        return $this->hasMany('App\Customer');
+    }
 }

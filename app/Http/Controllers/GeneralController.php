@@ -38,12 +38,30 @@ class GeneralController extends Controller
         // 4. cấu hình website
         $setting = Setting::first();
 
+        $saleTours = Tour::where([['is_active','=', 1],['price','<>', null]])
+            ->orderBy('updated_at','desc')
+            ->limit(30)
+            ->get();
+
+        $mostViews = Article::where(['is_active'=>1])
+            ->orderBy('view','desc')
+            ->limit(10)
+            ->get();
+
+        $newestArticles = Article::where(['is_active'=>1])
+            ->orderBy('updated_at','desc')
+            ->limit(10)
+            ->get();
+
         // Chia sẻ dữ qua tất các layout
         view()->share([
             'setting' => $setting,
             'categories' => $categories,
             'banners' => $banners,
-            'articles' => $articles
+            'articles' => $articles,
+            'saleTours' => $saleTours,
+            'mostViews' => $mostViews,
+            'newestArticles' => $newestArticles,
         ]);
 
     }

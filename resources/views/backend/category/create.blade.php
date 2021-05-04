@@ -66,7 +66,9 @@
                                         <option value>--chọn--</option>
                                         <option value="1">Sản phẩm</option>
                                         <option value="2">Dịch vụ</option>
-                                        <option value="3">Bài viết</option>
+                                        <option value="3">Tin tức</option>
+                                        <option value="4">Blog</option>
+                                        <option value="5">Thông tin</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

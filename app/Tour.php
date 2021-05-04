@@ -26,4 +26,8 @@ class Tour extends Model
     {
         return $this->hasMany('App\Review');
     }
+    public function customers()
+    {
+        return $this->hasMany('App\Customer');
+    }
 }

@@ -30,7 +30,6 @@
                                 <th>Hình ảnh</th>
                                 <th>Tour</th>
                                 <th>Danh mục tour</th>
-                                <th>Danh mục cha</th>
                                 <th>Giá bán</th>
                                 <th>Giá khuyến mãi</th>
                                 <th>Ngày khởi hành</th>
@@ -50,7 +49,6 @@
                                     <td><img src="{{ asset($item->image) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ @$item->category->name }}</td>
-                                    <td>{{ @$item->category->parent->name }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->sale }}</td>
                                     <td>{{ $item->departure_day }}</td>

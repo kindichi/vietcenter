@@ -63,10 +63,11 @@
                                     <label>Loại danh mục</label>
                                     <select class="form-control" name="type" id="type">
                                         <option value>--chọn--</option>
-
                                         <option value="1" {{ ($data->type == 1) ? 'selected' : '' }}>Sản phẩm</option>
                                         <option value="2" {{ ($data->type == 2) ? 'selected' : '' }}>Dịch vụ</option>
-                                        <option value="3" {{ ($data->type == 3) ? 'selected' : '' }}>Bài viết</option>
+                                        <option value="3" {{ ($data->type == 3) ? 'selected' : '' }}>Tin tức</option>
+                                        <option value="4" {{ ($data->type == 4) ? 'selected' : '' }}>Blog</option>
+                                        <option value="5" {{ ($data->type == 5) ? 'selected' : '' }}>Thông tin</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

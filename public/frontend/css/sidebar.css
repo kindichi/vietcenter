@@ -1,0 +1,452 @@
+
+.news-descript{
+    padding: 1rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.news-descript>a{
+    font-family: SegoeUISemiBold;
+    font-size: 1.25rem;
+    color: rgb(57, 51, 51);
+    text-decoration: none;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    line-height: 1.25rem;
+
+}
+.news-descript>a:hover{
+    color: rgb(145, 233, 115);
+}
+
+.time-view {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+    display: flex;
+}
+
+.time-view>img {
+    margin: auto 0;
+}
+
+.time-view>span {
+    line-height: 1.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.75rem;
+    color: black;
+}
+
+.news-descript>p{
+    font-family: SegoeUI;
+    font-size: 1rem;
+    color: rgb(150, 100, 100);
+}
+
+.news-photo{
+    position: relative;
+    overflow: hidden;
+}
+.news-photo>a>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1.5s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+}
+.news-photo:hover img{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+
+
+.news-card>.news-descript>a
+{
+    font-size: 1rem;
+    font-family: SegoeUI;
+    line-height: 1.3rem !important;
+    height: 2.6rem;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+}
+
+.news-descript>.time-view>span{
+    font-size: .875rem;
+}
+
+
+
+.news-content{
+    justify-content: space-between;
+}
+.news-card{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+
+}
+.news-card>.news-photo{
+    width: 15rem;
+    height: 9rem;
+}
+.news-card>.news-descript{
+    padding: 0.5rem;
+    width: calc(100% - 15rem);
+}
+
+@media (min-width: 768px) {
+
+    .news-card{
+        margin-top: 1rem;
+        width: 48%;
+        flex-direction: column;
+
+    }
+    .news-card>.news-photo{
+        width: 100%;
+        height: 12rem;
+    }
+    .news-card>.news-descript{
+        width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .news-card{
+        margin-top: 1rem;
+        width: 32%;
+
+    }
+    .news-card>.news-photo{
+        width: 100%;
+        height: 11rem;
+    }
+
+}
+
+.otherNews>.col-md-3{
+    width: 100%;
+    margin: 0 1rem 1rem;
+
+}
+@media (min-width: 768px){
+    .otherNews>.col-md-3{
+        max-width: 100%;
+        margin: 0 1rem;
+    }
+
+}
+@media (min-width: 992px){
+    .otherNews>.col-md-3{
+        margin: 0;
+    }
+}
+
+.featuredNews{
+    margin-top: 2rem;
+    height: 46.5rem;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px -6px #000;
+}
+.btn-featuredNews{
+    height: 2.25rem;
+    border-bottom: 2px solid rgb(255, 132, 0);
+    display: flex;
+}
+.btn-featuredNews>button{
+    height: 100%;
+    width: 50%;
+    border: none;
+    font-family: SegoeUISemiBold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.btn-featuredNews>button:focus{
+    background: rgb(255, 132, 0);
+    color: white;
+}
+
+.featuredNews .news-photo{
+    width: 40%;
+    height: 6rem;
+    border: 1px solid rgb(200, 200, 200);
+}
+.featuredNews .news-photo>a{
+    display: block;
+    width: 94%;
+    height: 94%;
+    overflow: hidden;
+    margin: 3%;
+    position: relative;
+}
+.featuredNews .news-photo>a>img{
+    width: 100%;
+    height: 100%;
+}
+.featuredNews-card{
+    display: flex;
+    margin:  0 1rem ;
+    padding: 1rem 0;
+    border-bottom: 2px dotted rgb(151, 151, 151);
+}
+.featuredNews .news-descript{
+    width: calc(100% - 4.875rem);
+    padding: 0 0 0 0.5rem;
+}
+.featuredNews .news-descript>a{
+    font-family: SegoeUI;
+    font-size: 0.875rem;
+    line-height: 1rem;
+}
+.featuredNews .time-view{
+    margin: 0;
+}
+.featuredNews .time-view>span{
+    font-size: 0.75rem;
+}
+.featuredNews-mostviewed {
+    height: 44rem;
+    overflow-y: scroll;
+}
+.featuredNews-mostviewed::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(221, 221, 221);
+}
+.featuredNews-mostviewed::-webkit-scrollbar-thumb {
+    background-color:rgb(9, 81, 132);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+
+}
+
+@media (min-width: 768px){
+    .featuredNews .news-photo{
+        width: 40%;
+        height: 9rem;
+    }
+
+}
+@media (min-width: 992px){
+    .featuredNews .news-photo{
+        width: 40%;
+        height: 5rem;
+    }
+}
+
+.tourPromotion>h3{
+    margin: 1.5rem 0;
+}
+.tourPromotion>h3>a{
+    font-family: SegoeUISemiBold;
+    font-size: 1.255rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    padding-left: 1rem;
+    color: rgb(9, 81, 132);
+    border-left: 8px solid rgb(145, 233, 115);
+}
+.tourPromotion{
+    justify-content: space-between;
+}
+.tourPromotion .tour-card{
+
+}
+.tourPromotion .tour-card>.tour-img{
+    width: 100%;
+    height: 10.375rem !important;
+}
+.tourPromotion>section{
+    margin-bottom: 2rem;
+
+}
+.tours-list .slick-next {
+    background: url(../images/homepage/ic-next-slider-v1.png) center no-repeat;
+    right: -1.5rem;
+}
+
+.service-card {
+    height: 9rem;
+    width: 100%;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.service-img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.service-img>a>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.service-card:hover .service-img>a>img {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.service-img::after {
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+}
+
+.service-img:hover::after {
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    animation: 2s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 2s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 2s ease 0s normal none 1 running fixedAnim;
+}
+
+.service-desc {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(216, 86, 108, 0.8);
+}
+
+.service-desc>a {
+    font-family: SegoeUIBold;
+    font-size: 1.15rem;
+    color: white;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+}
+
+@-webkit-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@-moz-keyframes fixedAnim {
+    0% {
+        right: 125%;
+    }
+    125% {
+        right: 0;
+    }
+}
+
+@keyframes fixedAnim {
+    0% {
+        right: 125%
+    }
+    125% {
+        right: 0;
+    }
+}
+
+
+.toursNav {
+    margin-top: 2rem;
+    height: auto;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px -6px #000;
+}
+
+.toursNav-title {
+    height: 2.25rem;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    display: flex;
+    align-items: center;
+}
+
+.toursNav-title>h5 {
+    font-family: SegoeUISemiBold;
+    font-size: 1.15rem;
+    border-left: 10px solid rgb(145, 233, 115);
+    color: rgb(9, 81, 132);
+    text-transform: uppercase;
+    padding-left: 0.75rem;
+}
+
+.toursNav-desc__btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.toursNav-desc__list>li{
+    margin: 0rem 1rem;
+}
+.toursNav-desc__list>li>a{
+    margin: 0 0.5rem ;
+    font-size: 0.875rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+.toursNav-desc__list>li>a>i{
+    margin-right: 0.25rem;
+}
+.toursNav-desc__list>li>a:hover{
+    color: rgb(77, 197, 37);
+}
+
+.toursNav-desc>div>ul{
+    transition-property: height;
+}
+
+@media (min-width: 576px) {
+    .toursNav{
+        width: 48%;
+    }
+    .toursNav-themed{
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .toursNav{
+        width: 100%;
+    }
+}

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/frontend/slick-1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="/frontend/css/layout.css" rel="stylesheet ">
+    <link href="/frontend/css/index.css" rel="stylesheet ">
     @yield('mycss')
 </head>
 <body>
@@ -70,6 +71,7 @@
 </script>
 @yield('collapseJs')
 @yield('carousel')
+@yield('booktour')
 </body>
 
 </html>

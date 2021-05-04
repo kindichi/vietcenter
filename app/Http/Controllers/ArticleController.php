@@ -31,7 +31,7 @@ class ArticleController extends Controller
     public function create()
     {
         // lấy danh mục tin tức
-        $categories = Category::where(['type' => 3])->get();
+        $categories = Category::where(['type' => 3, 'type' => 4,'type' => 5])->get();
         $max_position = Article::max('position');
 
         return view('backend.article.create',[
@@ -127,7 +127,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $data = Article::find($id);
-        $categories = Category::where(['type' => 3])->get();
+        $categories = Category::where(['type' => 3, 'type' => 4,'type' => 5])->get();
 
         return view('backend.article.edit',[
             'data' => $data,

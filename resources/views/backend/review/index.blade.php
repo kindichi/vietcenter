@@ -32,7 +32,7 @@
                                 <th>Người đánh giá</th>
                                 <th>Địa chỉ</th>
                                 <th>Vị trí</th>
-                                <th>Tour</th>
+                                <th>Tour đánh giá</th>
                                 <th>Trạng thái</th>
                                 <th>Hành Động</th>
                             </tr>
@@ -46,7 +46,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td>{{ @$item->tour->name }}</td>
+                                    <td>{{ @$item->tour_id }}</td>
                                     <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.review.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>

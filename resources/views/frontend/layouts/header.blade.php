@@ -9,7 +9,7 @@
             </div>
             <ul class="header-top__menu">
                 <li><a href="">Đối Tác - Khách Hàng</a></li>
-                <li><a href="">Dịch Vụ</a></li>
+                <li><a href="/dich-vu">Dịch Vụ</a></li>
                 <li><a href="">Đặt Phòng</a></li>
                 <li><a href="">Giới Thiệu</a></li>
                 <li><a href="">Blog</a></li>
@@ -88,7 +88,7 @@
 
                     @endforeach
                     @foreach($categories as $item)
-                        @if($item->parent_id == 0 && $item->is_active == 1 && $item->position == 1 && $item->type == 3)
+                        @if($item->parent_id == 0 && $item->position == 1 && $item->type == 3)
                                 <li class="nav-item">
                                     <a href="{{ route('home.news') }}">{{ $item->name }}</a>
                                     <ul class="header-menu__sub">

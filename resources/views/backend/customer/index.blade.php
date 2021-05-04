@@ -32,7 +32,8 @@
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
                                 <th>Tour đặt</th>
-                                <th>Thời gian khởi hành</th>
+                                <th>Thời gian bắt đầu</th>
+                                <th>Thời gian kết thúc</th>
                                 <th>Số người tham gia</th>
                                 <th>Yêu cầu thêm</th>
                                 <th>Hành Động</th>
@@ -46,8 +47,9 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->product_id }}</td>
-                                    <td>{{ $item->date }}</td>
+                                    <td>{{ @$item->tour->name }}</td>
+                                    <td>{{ $item->dateStart }}</td>
+                                    <td>{{ $item->dateEnd }}</td>
                                     <td>{{ $item->amount }}</td>
                                     <td>{{ $item->content }}</td>
                                     <td class="text-center">

@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputSupplier">Ngày khởi hành</label>
+                                    <label for="exampleInputSupplier">Ngày dự kiến</label>
                                     <input type="text" class="form-control" id="date" name="date" value="{{$data->date}}">
                                     @if ($errors->has('date'))
                                         <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('date') }}</label>
@@ -107,8 +107,8 @@
 
                         <div class="form-group">
                             <label>Yêu cầu thêm</label>
-                            <textarea id="content" name="content" class="form-control" rows="5"
-                            >{{$data->content}}</textarea>
+                            <textarea id="moreInfo" name="moreInfo" class="form-control" rows="5"
+                            >{{$data->moreInfo}}</textarea>
                         </div>
 
                     </div>

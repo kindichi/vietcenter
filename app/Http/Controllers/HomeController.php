@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use App\Article;
 use App\Banner;
+use App\Booktour;
 use App\Category;
 use App\Contact;
+use App\Customer;
 use App\Photo;
 use App\Review;
 use App\Schedule;
@@ -22,28 +24,76 @@ class HomeController extends GeneralController
 
     public function index()
     {
-        $allTours  = Tour::where(['is_active'=>1])->limit(100)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
-            ->get();
+        $list = []; // chứa danh sách sản phẩm  theo danh mục
 
-        $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3, 'position'=>1 ])->first();
+        foreach($this->categories as $key => $parent) {
+            if($parent->parent_id == 0 && $parent->type == 1) { // check danh mục cha
+                $ids = [] ; // tạo chứa các id của danh cha + danh mục con trực thuộc
 
-        $newsVietcenter  = Article::where('is_active', 1)
-            ->orderBy('id', 'desc')
-            ->limit(12)
-            ->get();
+                $ids[] = $parent->id; // id danh mục cha
+
+                foreach($this->categories as $child) {
+                    if ($child->parent_id == $parent->id) {
+                        $ids[] = $child->id; // thêm phần tử vào mảng
+
+                    }
+                } // ids = [1,7,8,9,..]
+
+                $list[$key]['category'] = $parent; // điện thoại, tablet
+
+                // SELECT * FROM `products` WHERE is_active = 1 AND is_hot = 0 AND category_id IN (1,7,9,11) ORDER BY id DESC LIMIT 10
+                $list[$key]['hotTours'] = Tour::where(['is_active' => 1, 'is_hot' => 1])
+                    ->limit(21)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $list[$key]['tours'] = Tour::where(['is_active' => 1, 'is_hot' => 0])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(21)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+        }
+
+        $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3])->first();
+        $listNews = [];
+        foreach ($this->categories as $key => $item){
+            if($item->parent_id == $cateNews->id) {
+                $ids = [] ;
+
+                $ids[] = $item->id;
+
+                $listNews[$key]['cateNews'] = $item;
+
+                $listNews[$key]['travelNews'] = Article::where(['is_active' => 1, 'position' => 2])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(30)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $listNews[$key]['mainNews'] = Article::where(['is_active' => 1, 'position' => 1])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(1)
+                    ->get();
+
+                $listNews[$key]['othersNews'] = Article::where(['is_active' => 1])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(4)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+
+        }
 
         $reviews = Review::all();
 
         return view('frontend.home.index', [
             //'cart' => $cart,
-            'allTours' => $allTours,
+            'list' => $list,
+            'listNews' => $listNews,
             'cateNews' => $cateNews,
             'reviews' => $reviews,
-            'newsVietcenter' => $newsVietcenter,
         ]);
-
     }
 
     public function contact()
@@ -139,10 +189,16 @@ class HomeController extends GeneralController
                 $query->orderBy('id', 'DESC');
             }
 
+            $articles = Article::where(['is_active'=>1])
+                ->orderBy('view','desc')
+                ->limit(10)
+                ->get();
+
             return view('frontend.toursList',[
                 'category' => $category,
                 'list_tours' => $list_tours,
                 'filter_sort' => $filter_sort,
+                'articles' => $articles,
             ]);
         } else {
             return $this->notfound();
@@ -151,6 +207,9 @@ class HomeController extends GeneralController
 
     public function detailTour($slug){
         $tour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $category = Category::where([['id', '=' , $tour->category_id]])->first();
+
         $photos = Photo::where([
             ['is_active', '=', 1],
             ['tour_id','=',$tour->id]
@@ -158,8 +217,14 @@ class HomeController extends GeneralController
             ->orderBy('position','ASC')
             ->limit(12)
             ->get();
+
         $schedules  = Schedule::where(['is_active'=>1])
             ->orderBy('position','ASC')
+            ->get();
+
+        $articles = Article::where(['is_active'=>1])
+            ->orderBy('view','desc')
+            ->limit(10)
             ->get();
 
         $sameTours  = Tour::where([
@@ -173,27 +238,113 @@ class HomeController extends GeneralController
 
         return view('frontend.tourDetail',[
             'tour' => $tour,
+            'category' => $category,
             'schedules' => $schedules,
             'sameTours' => $sameTours,
-            'photos' => $photos
+            'photos' => $photos,
+            'articles' => $articles,
         ]);
     }
+
     public function bookTour($slug){
-        $bookTour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
+        $tour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $category = Category::where([['id', '=' , $tour->category_id]])->first();
 
         return view('frontend.bookTour',[
-            'bookTour' => $bookTour
+            'tour' => $tour,
+            'category' => $category,
         ]);
     }
 
-    public function news()
+    public function postBookTour(Request $request, $slug)
     {
-        $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3, 'position'=>1 ])->first();
+        $tour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ],[
+            'name.required' => 'Bạn chưa nhập họ tên',
+            'phone.required' => 'Bạn chưa nhập số điện thoại',
+        ]);
+
+        $name  = $request->input('name');
+        $phone  = $request->input('phone');
+        $email  = $request->input('email');
+        $address  = $request->input('address');
+        $date  = $request->input('date');
+        $amount  = $request->input('amount');
+        $moreInfo  = $request->input('moreInfo');
+        $tour_id = $tour->id;
+
+        $bookTour = new Booktour();
+        $bookTour->name = $name;
+        $bookTour->phone = $phone;
+        $bookTour->email = $email;
+        $bookTour->address = $address;
+        $bookTour->date = $date ;
+        $bookTour->amount = $amount ;
+        $bookTour->moreInfo = $moreInfo;
+        $bookTour->tour_id = $tour_id;
+
+        $bookTour->save();
+
+        // chuyen dieu huong trang
+        return redirect()->route('home.index')->with('msg', 'Bạn đã đặt tour thành công');
+    }
+
+    public function allNews()
+    {
+        $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3])->first();
+        $listNews = [];
+        foreach ($this->categories as $key => $item){
+            if($item->parent_id == $cateNews->id) {
+                $ids = [] ;
+
+                $ids[] = $item->id;
+
+                $listNews[$key]['cateNews'] = $item;
+
+                $listNews[$key]['travelNews'] = Article::where(['is_active' => 1, 'position' => 2])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(2)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $listNews[$key]['mainTravelNews'] = Article::where(['is_active' => 1, 'position' => 1])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(5)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $listNews[$key]['mainNews'] = Article::where(['is_active' => 1, 'position' => 1])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(1)
+                    ->get();
+
+                $listNews[$key]['othersNews'] = Article::where(['is_active' => 1, 'position' => 2])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(4)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $listNews[$key]['expNews'] = Article::where(['is_active' => 1])
+                    ->whereIn('category_id' , $ids)
+                    ->limit(6)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+
+        }
 
         return view('frontend.news',[
-            'cateNews' => $cateNews
+            'cateNews' => $cateNews,
+            'listNews' => $listNews,
+
         ]);
     }
+
     public function newsList(Request $request, $slug)
     {
         $filter_sort = $request->query('sap-sep');
@@ -241,6 +392,7 @@ class HomeController extends GeneralController
                 $query->orderBy('id', 'DESC');
             }
 
+
             return view('frontend.newsList',[
                 'category' => $category,
                 'list_news' => $list_news,
@@ -254,10 +406,21 @@ class HomeController extends GeneralController
     public function newsDetail($slug){
         $news = Article::where(['is_active' => 1,'slug' => $slug])->first();
 
+        $sameNews  = Article::where([
+            ['is_active', '=', 1],
+            ['id','<>',$news->id],
+            ['category_id','=',$news->category_id]
+        ])->orderBy('id','desc')
+            ->orderBy('position','ASC')
+            ->limit(10)
+            ->get();
+
         return view('frontend.newsDetail',[
             'news' => $news,
+            'sameNews' => $sameNews,
         ]);
     }
+
     public function search(Request $request)
     {
         // b1. Lấy từ khóa tìm kiếm
@@ -280,4 +443,126 @@ class HomeController extends GeneralController
             'keyword' => $keyword ? $keyword : ''
         ]);
     }
+
+    public function info($slug){
+
+        $category = Category::where(['is_active' => 1,'slug' => $slug])->first();
+
+        if ($category) {
+            // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
+            $ids = []; // mảng lưu toàn id của danh mục cha + id - danh mục con
+
+            $ids[] = $category->id; // 1
+            $child_categories = []; // lưu danh mục con
+
+            foreach ($this->categories as $child) {
+                if ($child->parent_id == $category->id) {
+                    $ids[] = $child->id; // thêm id của danh mục con vào mảng ids
+                    $child_categories[] = $child;
+                }
+            } // ids = 1,7,8,9,11
+
+            // step 2 : lấy list sản phẩm theo thể loại
+            $list_news = Article::where(['is_active' => 1])
+                ->whereIn('category_id' , $ids)
+                ->latest()
+                ->paginate(18);
+
+            $reviews = Review::all();
+
+
+            return view('frontend.info',[
+                'category' => $category,
+                'list_news' => $list_news,
+                'reviews' => $reviews,
+            ]);
+
+        }
+        else {
+            return $this->notfound();
+        }
+
+    }
+
+    public function infoDetail($slug){
+        $news = Article::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $category = Category::where([['id', '=' , $news->category_id]])->first();
+
+        $sameNews  = Article::where([
+            ['is_active', '=', 1],
+            ['id','<>',$news->id],
+            ['category_id','=',$news->category_id]
+        ])->orderBy('id','desc')
+            ->orderBy('position','ASC')
+            ->limit(10)
+            ->get();
+
+        return view('frontend.infoDetail',[
+            'news' => $news,
+            'category' => $category,
+            'sameNews' => $sameNews,
+        ]);
+    }
+
+    public function reviewDetail($slug){
+        $review = Review::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $category = Category::where([['id', '=' , $review->category_id]])->first();
+
+        $customers = Customer::all();
+
+        return view('frontend.reviewDetail',[
+            'review' => $review,
+            'category' => $category,
+            'customers' => $customers,
+        ]);
+    }
+
+    public function services() {
+        $services = Category::where(['is_active' => 1,'parent_id'=>0, 'type'=>2])->first();
+        return view('frontend.services',[
+            'services'=>$services
+        ]);
+    }
+
+    public function serviceDetail($slug){
+
+        $category = Category::where(['is_active' => 1,'slug' => $slug])->first();
+
+        if ($category) {
+            // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
+            $ids = []; // mảng lưu toàn id của danh mục cha + id - danh mục con
+
+            $ids[] = $category->id; // 1
+            $child_categories = []; // lưu danh mục con
+
+            foreach ($this->categories as $child) {
+                if ($child->parent_id == $category->id) {
+                    $ids[] = $child->id; // thêm id của danh mục con vào mảng ids
+                    $child_categories[] = $child;
+                }
+            } // ids = 1,7,8,9,11
+
+            // step 2 : lấy list sản phẩm theo thể loại
+            $list_news = Article::where(['is_active' => 1])
+                ->whereIn('category_id' , $ids)
+                ->latest()
+                ->paginate(18);
+
+
+
+
+            return view('frontend.serviceDetail',[
+                'category' => $category,
+                'list_news' => $list_news,
+            ]);
+
+        }
+        else {
+            return $this->notfound();
+        }
+
+    }
+
 }

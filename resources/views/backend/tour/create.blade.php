@@ -73,13 +73,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="categoryOption">Danh mục cha</label>
-                                        <select class="form-control" name="categoryParent_id">
-                                            <option value="select"> -- chọn Danh Mục --</option>
-                                            @foreach($categoryParent_id as $Parent_id)
-                                                <option value="{{$Parent_id -> id}}">{{$Parent_id -> name}}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="exampleInputEmail1">Vị trí</label>
+                                        <input type="number" class="form-control" id="position" name="position"
+                                               value="1">
                                     </div>
                                 </div>
 
@@ -138,14 +134,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Vị trí</label>
-                                        <input type="number" class="form-control" id="position" name="position"
-                                               value="1">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+
+                                <div class=" form-group col-md-6">
                                     <div class="checkbox">
                                         <label class="col-md-6">
                                             <input type="checkbox" value="1" name="is_hot" id="is_hot"><b>Tour hot</b>
@@ -157,15 +147,12 @@
                                 </div>
                             </div>
 
-                            <div class="row">
 
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputSupplier">Tùy chỉnh liên kết Url</label>
-                                <input type="text" class="form-control" id="name" name="url"
-                                       placeholder="">
-                            </div>
+                                <div class="form-group" >
+                                    <label for="exampleInputSupplier">Tùy chỉnh liên kết Url</label>
+                                    <input type="text" class="form-control" id="name" name="url"
+                                           placeholder="">
+                                </div>
 
 
 
@@ -174,11 +161,7 @@
                                 <textarea id="editor2" name="description" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
                             </div>
-                            <div class="form-group">
-                                <label>Lịch trình</label>
-                                <textarea id="editor1" name="schedule" class="form-control" rows="3"
-                                          placeholder="Enter ..."></textarea>
-                            </div>
+
                             <div class="form-group">
                                 <label>Điều khoản</label>
                                 <textarea id="editor3" name="rule" class="form-control" rows="3"

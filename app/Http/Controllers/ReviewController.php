@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Customer;
 use App\Review;
 use App\Tour;
 use Illuminate\Http\Request;
@@ -31,9 +32,13 @@ class ReviewController extends Controller
     public function create()
     {
         $tours = Tour::all();
+        $categories =  Category::where(['type' => 5])->get();
+        $customers =  Customer::all();
 
         return view('backend.review.create',[
-            'tours' => $tours
+            'tours' => $tours,
+            'categories' => $categories,
+            'customers' => $customers,
         ]);
     }
 
@@ -72,6 +77,7 @@ class ReviewController extends Controller
         $summary  = $request->input('summary');
         $description  = $request->input('description');
         $tour_id  = $request->input('tour_id');
+        $category_id  = $request->input('category_id');
         $position  = $request->input('position');
 
         $path_avatar = '';
@@ -112,6 +118,7 @@ class ReviewController extends Controller
         $review->description = $description;
         $review->position = $position;
         $review->tour_id = $tour_id;
+        $review->category_id = $category_id;
         $review->slug = $slug;
         $review->is_active = $is_active;
         $review->avatar = $path_avatar;
@@ -143,10 +150,14 @@ class ReviewController extends Controller
     {
         $data = Review::find($id);
         $tours = Tour::all();
+        $categories =  Category::where(['type' => 5])->get();
+        $customers =  Customer::all();
 
         return view('backend.review.edit',[
             'data' => $data,
-            'tours' => $tours
+            'tours' => $tours,
+            'categories' => $categories,
+            'customers' => $customers,
         ]);
     }
 
@@ -186,6 +197,7 @@ class ReviewController extends Controller
         $summary  = $request->input('summary');
         $description  = $request->input('description');
         $tour_id  = $request->input('tour_id');
+        $category_id  = $request->input('category_id');
         $position  = $request->input('position');
 
 
@@ -203,7 +215,10 @@ class ReviewController extends Controller
         $review->summary = $summary;
         $review->description = $description;
         $review->position = $position;
-        $review->tour_id = $tour_id;
+        $review->tour_id1 = $tour_id1;
+        $review->tour_id2 = $tour_id2;
+        $review->tour_id3 = $tour_id3;
+        $review->category_id = $category_id;
         $review->slug = $slug;
         $review->is_active = $is_active;
         if ($request->hasFile('avatar')) {

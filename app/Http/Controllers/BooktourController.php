@@ -98,8 +98,7 @@ class BooktourController extends Controller
         $date  = $request->input('date');
         $amount  = $request->input('amount');
         $tour_id  = $request->input('tour_id');
-        $content  = $request->input('content');
-
+        $moreInfo  = $request->input('moreInfo');
 
         $booktour = Booktour::find($id);
         $booktour->name = $name;
@@ -109,7 +108,8 @@ class BooktourController extends Controller
         $booktour->date = $date;
         $booktour->amount = $amount;
         $booktour->tour_id = $tour_id;
-        $booktour->content = $content;
+        $booktour->moreInfo = $moreInfo;
+
 
         $booktour->save();
 

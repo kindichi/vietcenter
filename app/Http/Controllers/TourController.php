@@ -29,14 +29,10 @@ class TourController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $categoryParent_id = Category::where(['parent_id' => 0])->get();
-        $categories = Category::where(['type' => 1, 'position' => 2])->get();
+        $categories = Category::where(['type' => 1])->get();
 
         return view('backend.tour.create' ,[
             'categories' => $categories,
-            'categoryParent_id' => $categoryParent_id
-
         ]);
     }
 
@@ -60,7 +56,6 @@ class TourController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
-        $categoryParent_id  = (int)$request->input('categoryParent_id');
         $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
@@ -69,7 +64,6 @@ class TourController extends Controller
         $vehicle  = $request->input('vehicle');
         $location  = $request->input('location');
         $url  = $request->input('url');
-        $schedule  = $request->input('schedule');
         $description  = $request->input('description');
         $rule  = $request->input('rule');
 
@@ -99,13 +93,11 @@ class TourController extends Controller
         $tour = new Tour();
         $tour->name = $name;
         $tour->category_id = $category_id;
-        $tour->categoryParent_id = $categoryParent_id;
         $tour->departure_day = $departure_day;
         $tour->price = $price;
         $tour->sale = $sale;
         $tour->position = $position;
         $tour->url = $url;
-        $tour->schedule = $schedule;
         $tour->description = $description;
         $tour->slug = $slug;
         $tour->is_active = $is_active;
@@ -141,13 +133,11 @@ class TourController extends Controller
     public function edit($id)
     {
         $tour = Tour::find($id);
-        $categoryParent_id = Category::where(['parent_id' => 0])->get();
-        $categories = Category::where(['type' => 1, 'position' => 2])->get();
+        $categories = Category::where(['type' => 1])->get();
 
         return view('backend.tour.edit' ,[
             'data' => $tour,
             'categories' => $categories,
-            'categoryParent_id' => $categoryParent_id
         ]);
     }
 
@@ -173,7 +163,6 @@ class TourController extends Controller
         $name  = $request->input('name');
         $slug = str_slug($name,'-');
         $category_id  = (int)$request->input('category_id');
-        $categoryParent_id  = (int)$request->input('categoryParent_id');
         $departure_day  = $request->input('departure_day');
         $price  = $request->input('price');
         $sale  = $request->input('sale');
@@ -182,7 +171,6 @@ class TourController extends Controller
         $vehicle  = $request->input('vehicle');
         $location  = $request->input('location');
         $url  = $request->input('url');
-        $schedule  = $request->input('schedule');
         $description  = $request->input('description');
         $rule  = $request->input('rule');
 
@@ -199,13 +187,11 @@ class TourController extends Controller
         $tour = Tour::find($id);
         $tour->name = $name;
         $tour->category_id = $category_id;
-        $tour->categoryParent_id = $categoryParent_id;
         $tour->departure_day = $departure_day;
         $tour->price = $price;
         $tour->sale = $sale;
         $tour->position = $position;
         $tour->url = $url;
-        $tour->schedule = $schedule;
         $tour->description = $description;
         $tour->slug = $slug;
         $tour->is_active = $is_active;

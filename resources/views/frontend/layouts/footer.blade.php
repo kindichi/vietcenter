@@ -38,26 +38,22 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-3 vietcenter-info__card">
-            <h4>thông tin cần biết</h4>
-            <ul>
-                <li>
-                    <a href=""> <i class="fas fa-angle-right"></i> Hướng dẫn thanh toán</a>
-                </li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Điều khoản</a></li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Bảo mật thông tin</a></li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Bảo hiểm du lịch</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 vietcenter-info__card">
-            <h4>thông tin hữu ích</h4>
-            <ul>
-                <li><a href=""><i class="fas fa-angle-right"></i> Tin VietCenter</a></li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Góc truyền thông</a></li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Tuyển dụng</a></li>
-                <li><a href=""><i class="fas fa-angle-right"></i> Cảm nhận khách hàng</a></li>
-            </ul>
-        </div>
+        @foreach($categories as $item)
+            @if($item->parent_id == 0 && $item ->type == 5)
+                <div class="col-md-3 vietcenter-info__card">
+                    <h4>{{ $item->name }}</h4>
+                    <ul>
+                        @foreach($categories as $item2)
+                            @if($item2->parent_id == $item->id)
+                                <li>
+                                    <a href="{{ route('home.info', ['slug' => $item2->slug]) }}"> <i class="fas fa-angle-right"></i> {{ $item2->name }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        @endforeach
         <div class="col-md-3 vietcenter-info__card">
             <h4>địa chỉ công ty</h4>
             <ul>

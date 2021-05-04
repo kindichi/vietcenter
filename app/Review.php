@@ -10,4 +10,8 @@ class Review extends Model
     {
         return $this->belongsTo('App\Tour');
     }
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
 }
