@@ -72,6 +72,7 @@
 @yield('collapseJs')
 @yield('carousel')
 @yield('booktour')
+@yield('sort')
 </body>
 
 </html>

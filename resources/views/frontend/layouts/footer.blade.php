@@ -1,20 +1,29 @@
 <footer>
     <nav class="container footer-menu">
         <ul class="d-flex">
-            <li><a href="">Trang chủ</a></li>
-            <li><a href="">Kinh nghiệm du lịch</a></li>
-            <li><a href="">Video du lịch</a></li>
-            <li><a href="">Hình ảnh du lịch</a></li>
-            <li><a href="">Tư vấn du lịch</a></li>
-            <li><a href="">Review du lịch</a></li>
-            <li><a href="">Liên hệ</a></li>
-            <li><a href="">Site map</a></li>
+            <li><a href="{{route('home.index')}}">Trang chủ</a></li>
+            @foreach($categories as $item)
+                @if($item->parent_id == 0 && $item->position == 1 && $item->type == 3)
+                    @foreach($categories as $item2)
+                        @if($item2->parent_id == $item->id)
+                            <li>
+                                <a href="{{ route('home.newsList', ['slug' => $item2->slug]) }}">{{ $item2->name }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+            <li><a href="/lien-he">Liên hệ</a></li>
         </ul>
     </nav>
     <div class="promotional-news">
         <h3>đăng ký nhận tin khuyến mãi</h3>
-        <input type="text" placeholder="Nhập email của bạn">
-        <button type="submit">đăng ký</button>
+        <form action="{{route('home.promotion')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="text" name="email" placeholder="Nhập email của bạn">
+            <button type="submit">đăng ký</button>
+        </form>
+
     </div>
     <div class="container vietcenter-info">
         <div class="col-md-3">

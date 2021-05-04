@@ -8,6 +8,7 @@ use App\Category;
 use App\Contact;
 use App\Customer;
 use App\Photo;
+use App\Promotion;
 use App\Review;
 use App\Schedule;
 use App\Tour;
@@ -144,7 +145,7 @@ class HomeController extends GeneralController
     // lấy san phan theo danh mục
     public function toursList(Request $request, $slug)
     {
-        $filter_sort = $request->query('sap-sep');
+        $filter_sort = $request->query('sap-xep');
 
         // step 1 : lấy chi tiết thể loại
         $category = Category::where(['slug' => $slug])->first();
@@ -169,16 +170,20 @@ class HomeController extends GeneralController
                                 ->latest()
                                 ->paginate(10);
 
+            $hot_tours = Tour::where(['is_active' => 1, 'is_hot' => 1])
+                ->latest()
+                ->paginate(10);
+
             $query = DB::table('tours')->select('*')
                 ->whereIn('category_id', $ids)
                 ->where('is_active', '=', 1);
 
             // Sắp sếp
             if ($filter_sort) {
-                if ($filter_sort == 'noi-bat') {
-                    $query->orderBy('is_hot', 'DESC');
-                } elseif ($filter_sort == 'ban-chay-nhat') {
-                    $query->orderBy('is_hot', 'DESC');
+                if ($filter_sort == 'moi-nhat') {
+                    $query->orderBy('updated_at', 'DESC');
+                } elseif ($filter_sort == 'tu-a-den-z') {
+                    $query->orderBy('name', 'ASC');
                 } elseif ($filter_sort == 'gia-thap-den-cao') {
                     $query->orderBy('sale', 'ASC');
                 } elseif ($filter_sort == 'gia-cao-den-thap') {
@@ -197,6 +202,7 @@ class HomeController extends GeneralController
             return view('frontend.toursList',[
                 'category' => $category,
                 'list_tours' => $list_tours,
+                'hot_tours' => $hot_tours,
                 'filter_sort' => $filter_sort,
                 'articles' => $articles,
             ]);
@@ -563,6 +569,35 @@ class HomeController extends GeneralController
             return $this->notfound();
         }
 
+    }
+
+    public function promotion(Request $request) {
+
+
+        $phone  = $request->input('phone');
+        $email  = $request->input('email');
+        $note  = $request->input('note');
+
+        $promotion = new Promotion();
+        $promotion->phone = $phone;
+        $promotion->email = $email;
+        $promotion->note = $note;
+
+        $promotion->save();
+
+        // chuyen dieu huong trang
+        return redirect()->route('home.index')->with('msg', 'Bạn đã gửi tin nhắn thành công');
+    }
+
+    public function introduce() {
+        return view('frontend.intro');
+    }
+    public function partner() {
+        return view('frontend.partner');
+    }
+
+    public function bookHotel() {
+        return view('frontend.partner');
     }
 
 }

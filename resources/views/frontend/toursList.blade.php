@@ -30,16 +30,51 @@
             <div class="tours-title">
                 <h3>Danh sách tour <p>{{$category->name}}</p> </h3>
                 <div class="tours-sort">
-                    Sắp xếp theo
-                    <select name="sapxep" id="sort">
-                        <option value="cap nhat moi" selected>Cập nhật mới nhất</option>
-                        <option value="gia thap">Giá từ thấp đến cao</option>
-                        <option value="gia cao">Giá từ cao đến thấp</option>
-                        <option value="tu a den z">Từ A-Z</option>
+                    <label for="sort">Sắp xếp</label>
+                    <select name="sortby" id="sort">
+                        <option value="tat-ca">-- Tất cả ---</option>
+                        <option {{ ($filter_sort == 'moi-nhat' ? 'selected' : '') }} value="moi-nhat">Cập nhật mới nhất</option>
+                        <option {{ ($filter_sort == 'gia-thap-den-cao' ? 'selected' : '') }} value="gia-thap-den-cao">Giá từ thấp đến cao</option>
+                        <option {{ ($filter_sort == 'gia-cao-den-thap' ? 'selected' : '') }} value="gia-cao-den-thap">Giá từ cao đến thấp</option>
+                        <option {{ ($filter_sort == 'tu-a-den-z' ? 'selected' : '') }} value="tu-a-den-z">Thứ tự từ A đến Z</option>
                     </select>
                 </div>
             </div>
             @foreach($list_tours as $tour)
+                <div class="tour-card">
+                    <div class="tour-card__img">
+                        <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}"><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
+                    </div>
+                    <div class="tour-card__desc">
+                        <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}">{{$tour->name}}</a>
+                        <div>
+                            <div class="tour-card__desc-info">
+                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{$tour->departure_day}}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành">Điểm khởi hành:<span>{{$tour->location}}</span></p>
+                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{$tour->duration}}</span></p>
+                                <p>
+                                    @if($tour->vehicle == 'Máy bay')
+                                        <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                                    @elseif($tour->vehicle == 'Ô tô')
+                                        <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                                    @elseif($tour->vehicle == 'Tàu hỏa')
+                                        <img src="/frontend/images/homepage/ic-train.png" alt="phương tiện">
+                                    @endif
+                                    Phương tiện: <span>{{$tour->vehicle}}</span>
+                                </p>
+                            </div>
+                            <div class="tour-card__desc-price">
+                                <strong>{{number_format($tour->sale,0,",",".")}} đ</strong>
+                                @if($tour->price)
+                                    <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
+                                @endif
+                                <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}">chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            @foreach($hot_tours as $tour)
                 <div class="tour-card">
                     <div class="tour-card__img">
                         <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}"><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
@@ -90,8 +125,9 @@
                     </div>
                 </div>
                 <div class="advisory">
-                    <p>Hoặc để lại số điện thoại cần tư vấn</p>
-                    <form action="" class="form-advisory">
+                    <p>Hoặc để lại số điện thoại</p>
+                    <form action="{{route('home.promotion')}}" method="post" enctype="multipart/form-data" class="form-advisory">
+                        @csrf
                         <input type="text" id="customer-phone" name="phone" placeholder="Nhập số điện thoại của bạn">
                         <button type="submit"><img src="/frontend/images/homepage/btn-advisory.png" alt=""></button>
                     </form>
@@ -206,4 +242,22 @@
             @endforeach
 </div>
 </section>
+@endsection
+@section('sort')
+    <script>
+
+        var pathname = window.location.pathname; // danh-muc/dien-thoai , /danh-muc/tablet
+        var urlParams = new URLSearchParams(window.location.search); // khoi tao
+        $(document).on('change', '.filter_sort', function () {
+            var sort = $(this).val();
+            if (sort === 'tat-ca') {
+                urlParams.delete('sap-xep');
+            } else {
+                urlParams.set('sap-xep', sort);
+            }
+            // chuyển hướng trang
+            window.location.href = pathname + "?"+decodeURIComponent(urlParams.toString());
+        });
+    </script>
+
 @endsection

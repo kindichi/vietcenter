@@ -134,6 +134,10 @@
     background: rgb(83, 83, 155);
 }
 
+.news-static>.news-content{
+    padding: 1rem;
+}
+
 .travelnews-slides .travelnews-slide>.news-img{
     height: 24.3rem;
 

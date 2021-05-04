@@ -95,6 +95,7 @@ class SettingController extends Controller
         $setting->payment_guide = $request->input('payment_guide');
         $setting->information_security = $request->input('information_security');
         $setting->travel_insurance = $request->input('travel_insurance');
+        $setting->partner = $request->input('partner');
 
 
 

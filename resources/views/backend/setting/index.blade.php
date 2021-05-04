@@ -93,6 +93,10 @@
                                 <label>Bảo hiểm du lịch</label>
                                 <textarea id="editor5" name="travel_insurance" class="form-control" rows="10" >{{ $setting->travel_insurance }}</textarea>
                             </div>
+                            <div class="form-group col-md-12">
+                                <label>Đối tác - Khách hàng</label>
+                                <textarea id="editor6" name="partner" class="form-control" rows="10" >{{ $setting->partner }}</textarea>
+                            </div>
                         </div>
                         <!-- /.box-body -->
 
@@ -124,6 +128,8 @@
                 var _ckeditor4 = CKEDITOR.replace('information_security');
                 _ckeditor4.config.height = 150;
                 var _ckeditor5 = CKEDITOR.replace('travel_insurance');
+                _ckeditor5.config.height = 150;
+                var _ckeditor5 = CKEDITOR.replace('partner');
                 _ckeditor5.config.height = 150;
             })
         })

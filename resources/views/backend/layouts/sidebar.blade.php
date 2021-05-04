@@ -75,6 +75,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.promotion.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Khuyến mãi</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.user.index')}}">
                     <i class="fa fa-th"></i> <span>Quản lý Người dùng</span>
                 </a>

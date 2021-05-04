@@ -1,106 +1,28 @@
 @extends('frontend.layouts.main')
 @section('title')
-    <title>Danh sách tour</title>
+    <title>Đối tác - Khách hàng</title>
 @endsection
 @section('mycss')
-    <link rel="stylesheet" href="/frontend/css/toursList.css">
+    <link rel="stylesheet" href="/frontend/css/info.css">
     <link rel="stylesheet" href="/frontend/css/sidebar.css">
 @endsection
 @section('content')
     <div class="container direction">
         <p><a href="{{route('home.index')}}">Trang chủ</a> >
-        <a href="{{route('home.services')}}">Dịch vụ</a>
+            <a href="{{route('home.partner')}}">Đối tác - Khách hàng</a>
         </p>
     </div>
 
-    <section class="container tours">
-        <div class="col-md-9 tours-content">
-
-            <section class="services">
-                <div class="container">
-                    <div class="servicesList-title">
-                        <h3><a href="/dich-vu">dịch vụ</a></h3>
-                        <img src="/frontend/images/homepage/bg-title-bottom.png" alt="">
-                    </div>
-                    <div class="services-content">
-                        <h4 style="margin-bottom: 1rem">Các dịch vụ mà Vietcenter cung cấp</h4>
-                        <ul>
-                            <li>- Dịch vụ hỗ trợ thủ tục cấp hộ chiếu, visa thời hạn ngắn và chi phí thấp, đặc biệt đối với quốc gia khó xin visa.</li>
-                            <li>- Dịch vụ cho thuê xe du lịch.</li>
-                            <li>- Dịch vụ đặt vé máy bay nội địa và quốc tế thường trực 24/24 đảm bảo nhanh và tiết kiệm nhất.</li>
-                            <li>- Dịch vụ tổ chức Hội thảo & Sự kiện – MICE, cho thuê thiết bị hội thảo, hội nghị.</li>
-                            <li>- Dịch vụ đặt phòng khách sạn.</li>
-                        </ul>
-                    </div>
-                    <div class="servicesList">
-                        <div class="col-md-4 servicesList-passport">
-                            <div><img class="service-img" src="/frontend/images/homepage/item-cubes-1.png" alt="hộ chiếu">
-                                <div class="filter bg1"></div>
-                            </div>
-
-                            <a href="/dich-vu/visa-ho-chieu" class="service-info service-info__passport">
-                                <div class="service-info__img">
-                                    <div> <img src="/frontend/images/homepage/ic-visa.png" alt="hộ chiếu"></div>
-                                </div>
-                                <h5>visa - hộ chiếu</h5>
-                            </a>
-
-                        </div>
-                        <div class="col-md-8 row servicesList-others">
-                            <div class="servicesList-others__large">
-                                <div class="servicesList-others__img">
-                                    <img class="service-img" src="/frontend/images/homepage/cho-thue-xe.png" alt="cho thuê xe">
-                                    <div class="filter bg2"></div>
-                                </div>
-                                <a class="service-info" href="/dich-vu/cho-thue-xe">
-                                    <div class="service-info__img">
-                                        <div><img src="/frontend/images/homepage/ic-car.png" alt="thuê xe ô tô"></div>
-                                    </div>
-                                    <h5>cho thuê xe</h5>
-                                </a>
-                            </div>
-                            <div>
-                                <div class="servicesList-others__img"><img class="service-img" src="/frontend/images/homepage/ve-may-bay.png" alt="đặt vé máy bay">
-                                    <div class="filter bg3"></div>
-                                </div>
-                                <a href="/dich-vu/ve-may-bay" class="service-info">
-                                    <div class="service-info__img">
-                                        <div><img src="/frontend/images/homepage/ic-air-ticket.png" alt="dặt vé máy bay"></div>
-                                    </div>
-                                    <h5>vé máy bay</h5>
-                                </a>
-                            </div>
-                            <div>
-                                <div class="servicesList-others__img"><img class="service-img" src="/frontend/images/homepage/to-chuc-su-kien.png" alt="tổ chức sự kiện">
-                                    <div class="filter bg4"></div>
-                                </div>
-                                <a href="/dich-vu/to-chuc-su-kien" class="service-info">
-                                    <div class="service-info__img">
-                                        <div><img src="/frontend/images//homepage/ic-events.png" alt="tổ chức sự kiện"></div>
-                                    </div>
-                                    <h5>tổ chức sự kiện</h5>
-                                </a>
-                            </div>
-                            <div class="servicesList-others__large">
-                                <div class="servicesList-others__img">
-                                    <img class="service-img" src="/frontend/images/homepage/dat-phong-khach-san.png" alt="đặt phòng khách sạn">
-                                    <div class="filter bg5"></div>
-                                </div>
-                                <a href="/dich-vu/dat-phong-khach-san" class="service-info">
-                                    <div class="service-info__img">
-                                        <div><img src="/frontend/images//homepage/ic-hotel.png" alt="đặt phòng khách sạn"></div>
-
-                                    </div>
-                                    <h5>đặt phòng khách sạn</h5>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
+    <section class="container newsList">
+        <div class="col-md-9">
+            <div class="newsList-content">
+                <div class="title">
+                    <h3>Đối tác - Khách hàng</h3>
                 </div>
-
-            </section>
-
+            </div>
+            <div class="info-content">
+                {!! $setting->partner!!}
+            </div>
         </div>
         <div class="col-md-3">
             <div class="hotline">
@@ -213,6 +135,24 @@
                     </div>
                 </div>
             </div>
+            @foreach($categories as $item)
+                @if($item->parent_id == 0 && $item->type == 2)
+                    @foreach($categories as $item2)
+                        @if($item2->parent_id == $item->id)
+                            <div class="service-card">
+                                <div class="service-img">
+                                    <a href="{{route('home.serviceDetail',['slug'=>$item2->slug])}}"><img src="{{asset($item2->image)}}" alt="{{$item2->name}}"></a>
+                                </div>
+                                <div class="service-desc">
+                                    <a href="{{route('home.serviceDetail',['slug'=>$item2->slug])}}">{{$item2->name}}</a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
         </div>
     </section>
+
+
 @endsection

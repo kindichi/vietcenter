@@ -3,12 +3,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Sửa thông tin liên hệ <a href="{{route('admin.contact.index')}}" class="btn btn-primary">Danh sách </a>
+            Sửa thông tin liên hệ <a href="{{route('admin.promotion.index')}}" class="btn btn-primary">Danh sách </a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">Quản lý Liên hệ</li>
+            <li class="active">Quản lý Khuyến mãi</li>
         </ol>
     </section>
     <section class="content">
@@ -17,7 +17,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Sửa thông tin liên hệ</h3>
+                    <h3 class="box-title">Sửa thông tin nhận khuyến mãi</h3>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -36,20 +36,12 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('admin.contact.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{route('admin.promotion.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputSupplier">Họ và tên</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{$data->name}}">
-                                    @if ($errors->has('name'))
-                                        <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('name') }}</label>
-                                    @endif
-                                </div>
-                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputSupplier">Email</label>
@@ -68,31 +60,17 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputSupplier">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="address" name="address" value="{{$data->address}}">
-                                    @if ($errors->has('address'))
-                                        <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('address') }}</label>
-                                    @endif
-                                </div>
-                            </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="exampleInputSupplier">Yêu cầu</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{$data->title}}">
+                            <label for="exampleInputSupplier">Ghi chú</label>
+                            <input type="text" class="form-control" id="note" name="note" value="{{$data->title}}">
                             @if ($errors->has('title'))
                                 <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('title') }}</label>
                             @endif
                         </div>
 
-                        <div class="form-group">
-                            <label>Nội dung</label>
-                            <textarea id="content" name="content" class="form-control" rows="5"
-                            >{{$data->content}}</textarea>
-                        </div>
 
                     </div>
                     <!-- /.box-body -->

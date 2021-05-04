@@ -22,6 +22,10 @@ Route::get('/dich-vu', 'HomeController@services')->name('home.services');
 Route::get('/dich-vu/{slug}', 'HomeController@serviceDetail')->name('home.serviceDetail');
 Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
 Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');
+Route::get('/gioi-thieu', 'HomeController@introduce')->name('home.introduce');
+Route::get('/doi-tac', 'HomeController@partner')->name('home.partner');
+Route::get('/dat-phong', 'HomeController@bookHotel')->name('home.bookHotel');
+Route::post('/', 'HomeController@promotion')->name('home.promotion');
 Route::get('/thong-tin/{slug}', 'HomeController@info')->name('home.info');
 Route::get('/thong-tin-chi-tiet/{slug}', 'HomeController@infoDetail')->name('home.infoDetail');
 Route::get('/cam-nhan-khach-hang/{slug}', 'HomeController@reviewDetail')->name('home.reviewDetail');
@@ -46,6 +50,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('setting', 'SettingController');
     Route::resource('schedule', 'ScheduleController');
     Route::resource('review', 'ReviewController');
+    Route::resource('promotion', 'PromotionController');
 });
 
 

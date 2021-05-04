@@ -145,12 +145,15 @@ h6,
 .header-top__menu {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-end;
+    padding-right: 1rem;
     margin-bottom: 0.5rem;
 }
 
 .header-top__menu>li {
     margin: 0.25rem 1rem;
+    position: relative;
+    padding: 0 0.5rem;
 }
 
 .header-top__menu>li>a {
@@ -170,11 +173,11 @@ h6,
     position: absolute;
     height: 13px;
     width: 1px;
-    /*right: 0;*/
-    /*top: 0;*/
+    left: 0;
+    top: 0;
     background: #fcf2ad;
-    /*bottom: 0;*/
-    margin: 0.45rem -0.5rem;
+    bottom: 0;
+    margin: auto;
 }
 .header-top__menu>li:first-child::before,.header-top__menu>li:last-child::before {
     content: unset;
@@ -674,12 +677,12 @@ footer {
     text-transform: uppercase;
     color: white;
     margin-right: 1rem;
-    width: 40%;
+    width: 25%;
     text-align: center;
 }
 
-.promotional-news>input {
-    width: 40%;
+.promotional-news>form>input {
+    width: 25rem;
     height: 2.5rem;
     border: none;
     padding-left: 0.5rem;
@@ -691,7 +694,7 @@ footer {
     margin-right: 0.3rem;
 }
 
-.promotional-news>button {
+.promotional-news>form>button {
     font-family: SegoeUISemiBold;
     font-size: 1.125rem;
     text-transform: uppercase;
@@ -708,7 +711,7 @@ footer {
     -o-border-radius: ;
 }
 
-.promotional-news>button:hover {
+.promotional-news>form>button:hover {
     background: rgb(2, 67, 113)
 }
 
@@ -1230,6 +1233,9 @@ footer {
     justify-content: center;
 }
 
+.footer-menu>ul>li>a{
+    text-transform: capitalize;
+}
 
 /* @media (min-width: 1200px){
     .hotline {

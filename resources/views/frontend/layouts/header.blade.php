@@ -8,12 +8,10 @@
                 <a href="mailto:lienhe@vietcenter.vn">lienhe@vietcenter.vn</a>
             </div>
             <ul class="header-top__menu">
-                <li><a href="">Đối Tác - Khách Hàng</a></li>
+                <li><a href="/gioi-thieu">Giới Thiệu</a></li>
                 <li><a href="/dich-vu">Dịch Vụ</a></li>
-                <li><a href="">Đặt Phòng</a></li>
-                <li><a href="">Giới Thiệu</a></li>
-                <li><a href="">Blog</a></li>
-                <li><a href="">Lịch khởi hành</a></li>
+                <li><a href="/doi-tac">Đối Tác - Khách Hàng</a></li>
+                <li><a href="/lich-khoi-hanh">Lịch khởi hành</a></li>
                 <li>
                     <a href=""><img src="/frontend/images/homepage/ic-en.png" alt=""></a>
                 </li>

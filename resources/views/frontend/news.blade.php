@@ -3,8 +3,8 @@
     <title>Tin tức</title>
 @endsection
 @section('mycss')
-    <link rel="stylesheet" href="/frontend/css/news.css">
     <link rel="stylesheet" href="/frontend/css/sidebar.css">
+    <link rel="stylesheet" href="/frontend/css/news.css">
 @endsection
 @section('content')
     <section class="container direction">
@@ -220,7 +220,8 @@
                 </div>
                 <div class="advisory">
                     <p>Hoặc để lại số điện thoại</p>
-                    <form action="" class="form-advisory">
+                    <form action="{{route('home.promotion')}}" method="post" enctype="multipart/form-data" class="form-advisory">
+                        @csrf
                         <input type="text" id="customer-phone" name="phone" placeholder="Nhập số điện thoại của bạn">
                         <button type="submit"><img src="/frontend/images/homepage/btn-advisory.png" alt=""></button>
                     </form>
