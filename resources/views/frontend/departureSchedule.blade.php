@@ -9,12 +9,7 @@
 @section('content')
     <div class="container direction">
         <p><a href="{{route('home.index')}}">Trang chủ</a> >
-            @foreach($categories as $item)
-                @if($item->id == $category->parent_id)
-                    <a href="">{{$item->name}}</a> >
-                @endif
-            @endforeach
-            <a href="{{route('home.info',['slug'=>$category->slug])}}">{{$category->name}}</a>
+            <a href="{{route('home.departureSchedule')}}">Lịch khởi hành</a>
         </p>
     </div>
 
@@ -22,70 +17,9 @@
         <div class="col-md-9">
             <div class="newsList-content">
                 <div class="title">
-                    <h3>{{$category->name}}</h3>
+                    <h3>Lịch khởi hành</h3>
                 </div>
             </div>
-
-
-            @if($category->position == 1)
-                    <div class="info-content">
-                        {!! $category->description !!}
-                    </div>
-                @endif
-            @if($category->position == 2)
-                <div class="information">
-                    {!! $category->description !!}
-                </div>
-                <div class="news-content row">
-                    @foreach($list_news as $news)
-                        <div class="news-card">
-                            <div class="news-photo">
-                                <a href="{{route('home.infoDetail',['slug'=>$news->slug])}}"><img src="{{asset($news->image)}}" alt="{{$news->title}}"></a>
-                            </div>
-                            <div class="news-descript">
-                                <a href="{{route('home.infoDetail',['slug'=>$news->slug])}}">{{$news->title}}</a>
-                                <div class="time-view">
-                                    <img src="/frontend/images/homepage/news/ic-departure.png" alt="time"> <span>{{ date_format($news->created_at,"d/m/Y") }}</span>
-                                    <img src="/frontend/images/homepage/news/ic-view.png" alt="view"> <span>{{($news->view)}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="pages">
-                    {{ $list_news->links() }}
-                </div>
-            @endif
-            @if($category->position == 3)
-                @foreach($reviews as $item)
-                    <div class="customer-card">
-                        <div class="customer-card__img">
-                            <a href="{{route('home.reviewDetail',['slug'=>$item->slug])}}"><img src="{{asset($item->avatar)}}" alt="{{($item->title)}}"></a>
-                            <div class="customer-rating">
-                                <img src="/frontend/images/customerExperience/star.png" alt="">
-                                <img src="/frontend/images/customerExperience/star.png" alt="">
-                                <img src="/frontend/images/customerExperience/star.png" alt="">
-                                <img src="/frontend/images/customerExperience/star.png" alt="">
-                                <img src="/frontend/images/customerExperience/star.png" alt="">
-                            </div>
-                        </div>
-                        <div class="customer-card__desc">
-                            <a href="{{route('home.reviewDetail',['slug'=>$item->slug])}}">{{($item->title)}}</a>
-                            {!! $item->summary !!}
-                            <p><a href="{{route('home.reviewDetail',['slug'=>$item->slug])}}">[Xem chi tiết]</a></p>
-                            <div class="customer-card__desc-infoUser d-flex">
-                                <div>
-                                    <p><strong>{{($item->name)}}</strong></p>
-                                    <p>{{($item->address)}}</p>
-                                </div>
-                                <div class="customer-card__desc-infoUser__avt">
-                                    <a href="{{route('home.reviewDetail',['slug'=>$item->slug])}}"><img src="{{asset($item->image)}}" alt="{{($item->title)}}"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
 
             <div class="tourPromotion tours-list">
                 <h3><a href="">tour khuyến mại</a></h3>

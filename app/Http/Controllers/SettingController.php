@@ -83,8 +83,12 @@ class SettingController extends Controller
         $setting->company = $request->input('company');
         $setting->phone = $request->input('phone');
         $setting->hotline = $request->input('hotline');
-        $setting->address = $request->input('address');
+        $setting->address1 = $request->input('address1');
+        $setting->linkMap1 = $request->input('linkMap1');
+        $setting->embedMap1 = $request->input('embedMap1');
         $setting->address2 = $request->input('address2');
+        $setting->linkMap2 = $request->input('linkMap2');
+        $setting->embedMap2 = $request->input('embedMap2');
         $setting->tax = $request->input('tax');
         $setting->fax = $request->input('fax');
         $setting->facebook = $request->input('facebook');

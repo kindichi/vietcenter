@@ -28,15 +28,38 @@
                                     <img src="{{ asset($setting->image) }}" width="200">
                                 @endif
                             </div>
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Địa chỉ 1</label>
-                                <input value="{{ $setting->address }}" type="text" class="form-control" id="address"
-                                       name="address" placeholder="">
+                                <input value="{{ $setting->address1 }}" type="text" class="form-control" id="address"
+                                       name="address1" placeholder="">
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Link địa chỉ 1</label>
+                                <input value="{{ $setting->linkMap1 }}" type="text" class="form-control" id="facebook"
+                                       name="linkMap1" placeholder="">
+                            </div>
+
                             <div class="form-group col-md-12">
+                                <label for="exampleInputEmail1">Embed map 1</label>
+                                <textarea id="embedMap1" name="embedMap1" class="form-control" rows="5" >{{ $setting->embedMap1 }}</textarea>
+                            </div>
+
+                            <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Địa chỉ 2</label>
                                 <input value="{{ $setting->address2 }}" type="text" class="form-control" id="address2"
                                        name="address2" placeholder="">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Link địa chỉ 2</label>
+                                <input value="{{ $setting->linkMap2 }}" type="text" class="form-control" id="linkMap2"
+                                       name="linkMap2" placeholder="">
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="exampleInputEmail1">Embed map 2</label>
+                                <textarea id="embedMap2" name="embedMap2" class="form-control" rows="5" >{{ $setting->embedMap2 }}</textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">SĐT</label>

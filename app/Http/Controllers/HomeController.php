@@ -146,7 +146,6 @@ class HomeController extends GeneralController
     public function toursList(Request $request, $slug)
     {
         $filter_sort = $request->query('sap-xep');
-
         // step 1 : lấy chi tiết thể loại
         $category = Category::where(['slug' => $slug])->first();
 
@@ -174,11 +173,16 @@ class HomeController extends GeneralController
                 ->latest()
                 ->paginate(10);
 
+
+            $articles = Article::where(['is_active'=>1])
+                ->orderBy('view','desc')
+                ->limit(10)
+                ->get();
+
             $query = DB::table('tours')->select('*')
                 ->whereIn('category_id', $ids)
                 ->where('is_active', '=', 1);
 
-            // Sắp sếp
             if ($filter_sort) {
                 if ($filter_sort == 'moi-nhat') {
                     $query->orderBy('updated_at', 'DESC');
@@ -194,17 +198,14 @@ class HomeController extends GeneralController
                 $query->orderBy('id', 'DESC');
             }
 
-            $articles = Article::where(['is_active'=>1])
-                ->orderBy('view','desc')
-                ->limit(10)
-                ->get();
+            $list_tours = $query->paginate(10);;
 
             return view('frontend.toursList',[
                 'category' => $category,
                 'list_tours' => $list_tours,
                 'hot_tours' => $hot_tours,
-                'filter_sort' => $filter_sort,
                 'articles' => $articles,
+                'filter_sort' => $filter_sort,
             ]);
         } else {
             return $this->notfound();
@@ -598,6 +599,10 @@ class HomeController extends GeneralController
 
     public function bookHotel() {
         return view('frontend.partner');
+    }
+
+    public function departureSchedule() {
+        return view('frontend.departureSchedule');
     }
 
 }

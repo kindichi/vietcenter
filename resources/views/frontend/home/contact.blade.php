@@ -21,7 +21,7 @@
                     <span><i aria-hidden="true" class="fa fa-envelope">&nbsp;</i>lienhe@vietcenter.vn</span>
                 </div>
                 </ul>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1862.020151064859!2d105.79384675330355!3d21.031073355052477!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7b378a70d49473d1!2sViet%20Center%20Tourist!5e0!3m2!1sen!2sus!4v1618332339822!5m2!1sen!2sus" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                {!! $setting->embedMap1 !!}
             </div>
             <div class="contact-info">
                 <h4>gửi thông tin liên hệ cho chúng tôi</h4>

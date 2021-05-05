@@ -31,16 +31,18 @@
                 <h3>Danh sách tour <p>{{$category->name}}</p> </h3>
                 <div class="tours-sort">
                     <label for="sort">Sắp xếp</label>
-                    <select name="sortby" id="sort">
+                    <select name="sap-xep" class="filter_sort">
                         <option value="tat-ca">-- Tất cả ---</option>
-                        <option {{ ($filter_sort == 'moi-nhat' ? 'selected' : '') }} value="moi-nhat">Cập nhật mới nhất</option>
-                        <option {{ ($filter_sort == 'gia-thap-den-cao' ? 'selected' : '') }} value="gia-thap-den-cao">Giá từ thấp đến cao</option>
-                        <option {{ ($filter_sort == 'gia-cao-den-thap' ? 'selected' : '') }} value="gia-cao-den-thap">Giá từ cao đến thấp</option>
-                        <option {{ ($filter_sort == 'tu-a-den-z' ? 'selected' : '') }} value="tu-a-den-z">Thứ tự từ A đến Z</option>
+                        <option value="moi-nhat" {{ ($filter_sort == 'moi-nhat' ? 'selected' : '') }} >Cập nhật mới nhất</option>
+                        <option value="gia-thap-den-cao" {{ ($filter_sort == 'gia-thap-den-cao' ? 'selected' : '') }} >Giá từ thấp đến cao</option>
+                        <option value="gia-cao-den-thap" {{ ($filter_sort == 'gia-cao-den-thap' ? 'selected' : '') }}>Giá từ cao đến thấp</option>
+                        <option value="tu-a-den-z" {{ ($filter_sort == 'tu-a-den-z' ? 'selected' : '') }}>Thứ tự từ A đến Z</option>
+
                     </select>
                 </div>
             </div>
-            @foreach($list_tours as $tour)
+            @if($category->slug != 'tour-hot-nhat')
+                @foreach($list_tours as $tour)
                 <div class="tour-card">
                     <div class="tour-card__img">
                         <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}"><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
@@ -74,7 +76,9 @@
                     </div>
                 </div>
             @endforeach
-            @foreach($hot_tours as $tour)
+            @endif
+            @if($category->slug == 'tour-hot-nhat')
+                @foreach($hot_tours as $tour)
                 <div class="tour-card">
                     <div class="tour-card__img">
                         <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}"><img src="{{asset($tour->image)}}" alt="{{$tour->name}}"></a>
@@ -108,6 +112,7 @@
                     </div>
                 </div>
             @endforeach
+            @endif
             <div class="pages">
                 {{ $list_tours->links() }}
             </div>

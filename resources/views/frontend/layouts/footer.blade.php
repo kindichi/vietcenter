@@ -68,11 +68,11 @@
             <ul>
                 <li>
                     <i class="fas fa-map-marker-alt"></i>
-                    <a href=""></i>{{$setting->address}}</a>
+                    <a href="{{$setting->linkMap1}}"></i>{{$setting->address1}}</a>
                 </li>
                 <li><i class="fas fa-phone-alt"></i> <a href=""> {{$setting->phone}}</a></li>
                 <li><i class="fas fa-fax"></i> <a href=""> {{$setting->fax}}</a></li>
-                <li><i class="fas fa-envelope"></i> <a href=""> {{$setting->email}}</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:{{$setting->email}}"> {{$setting->email}}</a></li>
             </ul>
         </div>
     </div>

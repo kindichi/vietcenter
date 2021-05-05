@@ -24,7 +24,7 @@ Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
 Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');
 Route::get('/gioi-thieu', 'HomeController@introduce')->name('home.introduce');
 Route::get('/doi-tac', 'HomeController@partner')->name('home.partner');
-Route::get('/dat-phong', 'HomeController@bookHotel')->name('home.bookHotel');
+Route::get('/lich-khoi-hanh', 'HomeController@departureSchedule')->name('home.departureSchedule');
 Route::post('/', 'HomeController@promotion')->name('home.promotion');
 Route::get('/thong-tin/{slug}', 'HomeController@info')->name('home.info');
 Route::get('/thong-tin-chi-tiet/{slug}', 'HomeController@infoDetail')->name('home.infoDetail');
