@@ -9,6 +9,11 @@
         <p><a href="{{ route('home.index') }}">Trang chủ</a> >
             @foreach($categories as $item)
                 @if($item->id == $category->parent_id)
+                    @foreach($categories as $item1)
+                        @if($item->parent_id == $item1->id)
+                            <a href="{{route('home.toursList',['slug'=>$item1->slug])}}">{{$item1->name}}</a> >
+                        @endif
+                    @endforeach
                     <a href="{{route('home.toursList',['slug'=>$item->slug])}}">{{$item->name}}</a> >
                 @endif
             @endforeach
