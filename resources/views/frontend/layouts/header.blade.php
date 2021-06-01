@@ -13,7 +13,7 @@
                 <li><a href="/doi-tac">Đối Tác - Khách Hàng</a></li>
                 <li><a href="/lich-khoi-hanh">Lịch khởi hành</a></li>
                 <li>
-                    <a href=""><img src="/frontend/images/homepage/ic-en.png" alt=""></a>
+                    <a href="{{ route('home.cart') }}"><i class="fas fa-shopping-cart"></i></a>
                 </li>
             </ul>
         </div>

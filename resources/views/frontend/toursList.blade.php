@@ -76,6 +76,7 @@
                                     <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
                                 @endif
                                 <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}">chi tiết</a>
+                                <a href="{{route('home.cart.add-to-cart',['id'=>$tour->id])}}" title="Thêm vào giỏ hàng" >thêm vào giỏ hàng</a>
                             </div>
                         </div>
                     </div>
@@ -112,6 +113,7 @@
                                     <strike>{{number_format($tour->price,0,",",".")}} đ</strike>
                                 @endif
                                 <a href="{{route('home.tourDetail',['slug'=>$tour->slug])}}">chi tiết</a>
+                                <a href="{{route('home.cart.add-to-cart',['id'=>$tour->id])}}" title="Thêm vào giỏ hàng" >thêm vào giỏ hàng</a>
                             </div>
                         </div>
                     </div>
@@ -252,6 +254,7 @@
             @endforeach
 </div>
 </section>
+
 @endsection
 @section('sort')
     <script>

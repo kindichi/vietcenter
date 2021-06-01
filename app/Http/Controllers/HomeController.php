@@ -15,6 +15,8 @@ use App\Tour;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Cart;
 
 class HomeController extends GeneralController
 {

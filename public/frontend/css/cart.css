@@ -25,6 +25,8 @@
     color: rgb(9, 81, 132);
     padding-top: 1rem;
     text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .tours-intro>div {
@@ -371,5 +373,49 @@ text-transform: capitalize;
 
 
   }
+
+.cart-table{
+    width: 100%;
+}
+.cart-table>thead>tr{
+    border-radius: 0.5rem;
+}
+.cart-table>thead>tr>th{
+    width: 18%;
+    text-align: center;
+    text-transform: uppercase;
+    background: #0b58a2;
+    color: white;
+    height: 2.5rem;
+}
+.cart-table>thead>tr>th:first-child{
+    width: 10%;
+}
+.thead-primary{
+    background: #0b93d5;
+    text-align: center;;
+}
+.thead-primary>tr>th{
+    width: 12%;
+    color: white;
+    text-transform: uppercase;
+}
+.thead-primary>tr>th:first-child{
+    width: 4%;
+}
+.thead-primary>tr>th:nth-child(2){
+    width: 20%;
+}
+.thead-primary>tr>th:nth-child(3){
+    width: 40%;
+}
+td{
+    vertical-align: middle !important;
+}
+.image-prod>img{
+    width: 100%;
+}
+
+
 
 
