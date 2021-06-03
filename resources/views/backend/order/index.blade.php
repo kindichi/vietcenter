@@ -3,12 +3,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Quản lý Đặt tour  <a href="{{ route('admin.booktour.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+            Quản lý Đơn hàng
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="#">Forms</a></li>
-            <li class="active">Đặt tour</li>
+            <li class="active">Đơn hàng</li>
         </ol>
     </section>
     <section class="content">
@@ -18,7 +18,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin Đặt tour</h3>
+                        <h3 class="box-title">Thông tin Đơn hàng</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -27,16 +27,15 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Họ tên</th>
                                 <th>Số điện thoại</th>
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
-                                <th>Tour đặt</th>
                                 <th>Thời gian dự kiến</th>
-                                <th>Số người tham gia</th>
-                                <th>Giá</th>
-                                <th>Tổng tiền</th>
                                 <th>Yêu cầu thêm</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
                                 <th>Hành Động</th>
                             </tr>
                             </thead>
@@ -44,19 +43,25 @@
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->code }}</td>
+                                    <td>{{ $item->fullname }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ @$item->tour->name }}</td>
                                     <td>{{ $item->date }}</td>
-                                    <td>{{ $item->amount }}</td>
-                                    <td>{{ number_format($item->price) }}</td>
-                                    <td>{{number_format($item->total) }}</td>
-                                    <td>{{ $item->moreInfo }}</td>
+                                    <td>{{ $item->note }}</td>
+                                    <td>{{ number_format($item->total) }} đ</td>
+                                    <td>  @if ($item->order_status_id === 1)
+                                            <span class="label label-info">Mới</span>
+                                        @elseif ($item->order_status_id === 2)
+                                            <span class="label label-warning">Đang XL</span>
+                                        @elseif ($item->order_status_id === 3)
+                                            <span class="label label-success">Hoàn thành</span>
+                                        @else
+                                            <span class="label label-danger">Hủy</span>
+                                        @endif</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.booktour.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
-                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.order.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">Chi tiết</a>
                                     </td>
                                 </tr>
 
@@ -95,7 +100,7 @@
                 let result = confirm("Bạn có chắc chắn muốn xóa ?");
                 if (result) { // neu nhấn == ok , sẽ send request ajax
                     $.ajax({
-                        url: '/admin/booktour/'+id, // http://webthucpham.local:8888/user/8
+                        url: '/admin/order/'+id, // http://webthucpham.local:8888/user/8
                         type: 'DELETE', // phương truyền tải dữ liệu
                         data: {
                             // dữ liệu truyền sang nếu có

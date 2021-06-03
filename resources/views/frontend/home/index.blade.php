@@ -32,6 +32,7 @@
                                                     @endif
                                                 </div>
                                                 <a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">chi tiết </a>
+                                                <a class="cart" href="{{route('home.cart.add-to-cart',['id'=>$tour->id])}}" title="Thêm vào giỏ hàng" ><i class="fas fa-cart-plus"></i> </a>
                                             </div>
                                         </div>
                                         <div class="tour-info">
@@ -83,6 +84,7 @@
                                                     @endif
                                                 </div>
                                                 <a href="{{route('home.tourDetail', ['slug'=>$tour->slug])}}">chi tiết </a>
+                                                <a class="cart" href="{{route('home.cart.add-to-cart',['id'=>$tour->id])}}" title="Thêm vào giỏ hàng" ><i class="fas fa-cart-plus"></i> </a>
                                             </div>
                                         </div>
                                         <div class="tour-info">

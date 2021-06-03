@@ -13,7 +13,9 @@
                 <li><a href="/doi-tac">Đối Tác - Khách Hàng</a></li>
                 <li><a href="/lich-khoi-hanh">Lịch khởi hành</a></li>
                 <li>
-                    <a href="{{ route('home.cart') }}"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ route('home.cart') }}"><i class="fas fa-shopping-cart"></i>
+                        [{{ !empty(session('totalItem')) ? session('totalItem') : 0 }}]
+                    </a>
                 </li>
             </ul>
         </div>

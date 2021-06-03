@@ -284,6 +284,8 @@ class HomeController extends GeneralController
         $address  = $request->input('address');
         $date  = $request->input('date');
         $amount  = $request->input('amount');
+        $price  = $tour->sale;
+        $total  = $price*$amount;
         $moreInfo  = $request->input('moreInfo');
         $tour_id = $tour->id;
 
@@ -294,6 +296,8 @@ class HomeController extends GeneralController
         $bookTour->address = $address;
         $bookTour->date = $date ;
         $bookTour->amount = $amount ;
+        $bookTour->price = $price ;
+        $bookTour->total = $total ;
         $bookTour->moreInfo = $moreInfo;
         $bookTour->tour_id = $tour_id;
 

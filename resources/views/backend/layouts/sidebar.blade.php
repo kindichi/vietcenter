@@ -60,6 +60,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.order.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản lý Đơn hàng</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.booktour.index')}}">
                     <i class="fa fa-th"></i> <span>Quản lý Đặt tour</span>
                 </a>

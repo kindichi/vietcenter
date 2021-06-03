@@ -66,12 +66,12 @@
             <div class="row" style="margin-top: 15px">
                 <div class="col-md-12">
                     <p>
-                        <a href="{{ route('shop.cart.destroy') }}" class="btn btn-danger py-2 px-2 m-l-2">
+                        <a href="{{ route('home.cart.destroy') }}" class="btn btn-danger py-2 px-2 m-l-2">
                             <i class="icon-remove"></i> Hủy Đơn Hàng
                         </a>
-                        <a href="/" class="btn btn-black py-2 px-2 " >Tiến tục mua hàng</a>
-                        <a href="{{ route('shop.cart.order') }}#order" class="btn btn-warning py-2 px-2 "style="float: right">
-                            <i class="icon-long-arrow-right"></i>Tiến Hành Đặt hàng
+                        <a href="/" class="btn btn-green py-2 px-2 " >Tiếp Tục Mua Hàng</a>
+                        <a href="{{ route('home.cart.order') }}#order" class="btn btn-warning py-2 px-2 "style="float: right">
+                            <i class="icon-long-arrow-right"></i>Tiến Hành Đặt Hàng
                         </a>
                     </p>
                 </div>

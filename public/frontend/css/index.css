@@ -169,7 +169,7 @@
 }
 
 .tour-price>a {
-    width: 5.625rem;
+    width: 7rem;
     height: 1.75rem;
     line-height: 1.75rem;
     text-align: center;
@@ -181,7 +181,7 @@
     background: rgb(241, 113, 2);
     border: none;
     border-radius: 0.3rem;
-    margin: auto 0;
+    margin: auto 0.2rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
     -ms-border-radius: 0.3rem;
@@ -192,6 +192,17 @@
     -ms-transition: all 1s;
     -o-transition: all 1s;
 }
+
+.tour-price>a:first-child {
+    width: 7rem;
+}
+
+.tour-price>.cart{
+    width: 4rem;
+    font-size: 1rem;
+}
+
+
 
 .tour-price>a:hover {
     background: rgb(115, 192, 74);

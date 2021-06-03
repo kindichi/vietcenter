@@ -67,6 +67,7 @@
                         @endif
                     </div>
                     <a href="{{route('home.bookTour',['slug'=>$tour->slug])}}">đặt tour ngay <i class="fas fa-chevron-circle-right"></i></a>
+                    <a href="{{route('home.cart.add-to-cart',['id'=>$tour->id])}}" title="Thêm vào giỏ hàng" >thêm vào giỏ hàng <i class="fas fa-cart-plus"></i></a>
                 </div>
             </div>
             <div class="tourIntro">

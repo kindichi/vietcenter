@@ -152,6 +152,12 @@
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
 }
+
+.tourInfo-card>a:last-child {
+    font-size: 0.85rem;
+}
+
+
 .tourInfo-card>a>i{
     padding-left: 0.5rem;
 }

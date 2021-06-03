@@ -41,15 +41,15 @@ Route::get('/gio-hang/them-vao-gio-hang/{tour_id}', 'CartController@addToCart')-
 // Xóa SP khỏi giỏ hàng
 Route::get('/gio-hang/xoa-sp-gio-hang/{id}', 'CartController@removeToCart')->name('home.cart.remove-to-cart');
 // Cập nhật giỏ hàng
-Route::get('/gio-hang/cap-nhat-so-luong-sp', 'CartController@updateToCart')->name('shop.cart.update-to-cart');
+Route::get('/gio-hang/cap-nhat-so-luong-sp', 'CartController@updateToCart')->name('home.cart.update-to-cart');
 // Hủy đơn đặt hàng
-Route::get('/gio-hang/huy-don-hang', 'CartController@destroy')->name('shop.cart.destroy');
+Route::get('/gio-hang/huy-don-hang', 'CartController@destroy')->name('home.cart.destroy');
 
-Route::get('/dat-hang', 'CartController@order')->name('shop.cart.order');
+Route::get('/dat-hang', 'CartController@order')->name('home.cart.order');
 
-Route::post('/dat-hang', 'CartController@postOrder')->name('shop.cart.postOrder');
+Route::post('/dat-hang', 'CartController@postOrder')->name('home.cart.postOrder');
 
-Route::get('/dat-hang/hoan-tat-dat-hang', 'CartController@completedOrder')->name('shop.cart.completedOrder');
+Route::get('/dat-hang/hoan-tat-dat-hang', 'CartController@completedOrder')->name('home.cart.completedOrder');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin'],function (){
     Route::resource('default', 'DefaultController');
@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkLogin
     Route::resource('banner', 'BannerController');
     Route::resource('customer', 'CustomerController');
     Route::resource('booktour', 'BooktourController');
+    Route::resource('order', 'OrderController');
     Route::resource('contact', 'ContactController');
     Route::resource('setting', 'SettingController');
     Route::resource('schedule', 'ScheduleController');
