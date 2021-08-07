@@ -145,9 +145,9 @@
                                 </p>
                                 <p>
                                     @if($sameTour->vehicle == 'Máy bay')
-                                    <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                                        <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
                                     @elseif($sameTour->vehicle == 'Ô tô')
-                                    <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                                        <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
                                     @elseif($sameTour->vehicle == 'Tàu hỏa')
                                         <img src="/frontend/images/homepage/ic-train.png" alt="phương tiện">
                                     @endif
@@ -157,7 +157,44 @@
                         </div>
                     @endforeach
                 </section>
-
+            </div>
+            <div class="tours tours-list">
+                <h3><a href="">Các tour đã xem</a></h3>
+                <section class="regular slider">
+                    @foreach($viewedTours as $viewedTour)
+                        <div class="tour-card">
+                            <div class="tour-img">
+                                <a href="{{ route('home.tourDetail', ['slug'=>$viewedTour->slug]) }}"><img src="{{ asset($viewedTour->image) }}" alt="{{ ($viewedTour->name) }}"></a>
+                                <div class="tour-price">
+                                    <div>
+                                        <p class="new-price">{{number_format($viewedTour->sale,0,",",".")}} đ</p>
+                                        @if($viewedTour->price)
+                                            <p class="old-price">{{number_format($viewedTour->price,0,",",".")}} đ</p>
+                                        @endif
+                                    </div>
+                                    <a href="{{ route('home.tourDetail', ['slug'=>$viewedTour->slug]) }}">chi tiết </a>
+                                </div>
+                            </div>
+                            <div class="tour-info">
+                                <h4><a href="">{{ ($viewedTour->name) }}</a></h4>
+                                <p><img src="/frontend/images/homepage/ic-departure.png" alt="ngày khởi hành"> Ngày khởi hành: <span>{{ ($viewedTour->departure_day) }}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-location.png" alt="điểm khởi hành"> Điểm khởi hành: <span>{{$viewedTour->location}}</span> </p>
+                                <p><img src="/frontend/images/homepage/ic-time.png" alt="thời gian">Thời gian:<span>{{ ($viewedTour->duration) }}</span>
+                                </p>
+                                <p>
+                                    @if($viewedTour->vehicle == 'Máy bay')
+                                        <img src="/frontend/images/homepage/ic-planes.png" alt="phương tiện">
+                                    @elseif($viewedTour->vehicle == 'Ô tô')
+                                        <img src="/frontend/images/homepage/ic-oto.png" alt="phương tiện">
+                                    @elseif($viewedTour->vehicle == 'Tàu hỏa')
+                                        <img src="/frontend/images/homepage/ic-train.png" alt="phương tiện">
+                                    @endif
+                                    Phương tiện: <span>{{ ($viewedTour->vehicle) }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </section>
             </div>
         </div>
         <div class="col-md-3">

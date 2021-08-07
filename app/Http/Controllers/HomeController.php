@@ -59,11 +59,17 @@ class HomeController extends GeneralController
         }
 
         $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3])->first();
+        $otherCateNews = Category::where([['is_active', '=', 1],
+                                        ['parent_id', '=' ,$cateNews->id],
+                                        ['position','<>',1]])
+                                        ->orderBy('id', 'asc')
+                                        ->limit(3)
+                                        ->get();
+
         $listNews = [];
         foreach ($this->categories as $key => $item){
             if($item->parent_id == $cateNews->id) {
                 $ids = [] ;
-
                 $ids[] = $item->id;
 
                 $listNews[$key]['cateNews'] = $item;
@@ -95,6 +101,7 @@ class HomeController extends GeneralController
             'list' => $list,
             'listNews' => $listNews,
             'cateNews' => $cateNews,
+           'otherCateNews' => $otherCateNews,
             'reviews' => $reviews,
         ]);
     }
@@ -214,8 +221,43 @@ class HomeController extends GeneralController
         }
     }
 
-    public function detailTour($slug){
+    public function tourDetail($slug){
         $tour = Tour::where(['is_active' => 1,'slug' => $slug])->first();
+
+        $viewedTours = [];
+
+        if(isset($_COOKIE['list_tour_viewed'])){
+            $list_tours_viewed = $_COOKIE['list_tour_viewed']; // list id sản phẩm
+            $list_tours_viewed = json_decode($list_tours_viewed); // chuyển nược lại từ chuỗi json sang mảng
+
+            // kiểm tra id đã tồn tại trong list đã xem
+            if(!in_array($tour->id, $list_tours_viewed)){
+                $list_tours_viewed[] = $tour->id; // thêm id vào mảng
+                // lấy ra 4 cái id mới nhất
+                $list_tours_viewed = array_slice($list_tours_viewed,-6,6);
+                //thay đổi danh sách
+                $list_tours_viewed = json_encode($list_tours_viewed); //chuyển mảng thành chuỗi json
+                setcookie('list_tour_viewed', $list_tours_viewed, time() + (7*86400));
+
+            }
+            //lấy ra danh sách sản phẩm đã xem từ mảng
+            $viewedTours  = Tour::where([
+                                        ['is_active', '=', 1],
+                                        ['id','<>',$tour->id],
+                                    ])  ->whereIn('id', $list_tours_viewed)
+                                        -> take(6)
+                                        ->get();
+
+
+        } else {
+            // lưu lại id sản phẩm đã xem vào cookie
+            $arr_tour_id = [$tour->id];
+            $arr_tour_id = json_encode($arr_tour_id);
+
+            setcookie('list_tour_viewed', $arr_tour_id, time()+(7*86400));
+        }
+
+
 
         $category = Category::where([['id', '=' , $tour->category_id]])->first();
 
@@ -252,6 +294,7 @@ class HomeController extends GeneralController
             'sameTours' => $sameTours,
             'photos' => $photos,
             'articles' => $articles,
+            'viewedTours' => $viewedTours
         ]);
     }
 
@@ -310,6 +353,7 @@ class HomeController extends GeneralController
     public function allNews()
     {
         $cateNews  = Category::where(['is_active'=>1,'parent_id'=>0,'type'=>3])->first();
+
         $listNews = [];
         foreach ($this->categories as $key => $item){
             if($item->parent_id == $cateNews->id) {
@@ -353,8 +397,7 @@ class HomeController extends GeneralController
 
         return view('frontend.news',[
             'cateNews' => $cateNews,
-            'listNews' => $listNews,
-
+            'listNews' => $listNews
         ]);
     }
 

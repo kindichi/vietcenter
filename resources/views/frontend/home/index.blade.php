@@ -151,6 +151,7 @@
         <div class="container">
             @foreach($listNews as $item)
                 @if($item['cateNews']->position == 1)
+
                     <div class="news-vietcenter">
                         <div class="news-vietcenter__title">
                         <a href="{{ route('home.newsList', ['slug' => $item['cateNews']->slug]) }}">{{($item['cateNews']->name)}}</a>
@@ -197,16 +198,14 @@
             <div class="news-detail">
                 <div class="accordion" id="accordionExample">
                     <div class="btn-news-detail">
-                        @foreach($listNews as $item)
-                            @if($item['cateNews']->position != 1)
+                        @foreach($otherCateNews as $item)
                                 <div>
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $item['cateNews']->id }}" aria-expanded="true" aria-controls="collapse{{ $item['cateNews']->id }}" >{{ $item['cateNews']->name }}</button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}" aria-expanded="true" aria-controls="collapse{{ $item->id }}" >{{ $item->name }}</button>
                                 </div>
-                            @endif
                         @endforeach
                     </div>
                     @foreach($listNews as $item)
-                        @if($item['cateNews']->position != 1)
+{{--                        @if($item['cateNews']->position != 1 && $item['cateNews']->position != 5 && $item['cateNews']->position != 6)--}}
                             <div id="collapse{{ $item['cateNews']->id }}" class="collapse show" aria-labelledby="heading{{ $item['cateNews']->id }}" data-bs-parent="#accordionExample">
                                 @foreach($item['othersNews'] as $news)
                                     <div class="news-detail__card">
@@ -223,7 +222,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                        @endif
+{{--                        @endif--}}
                     @endforeach
                 </div>
             </div>

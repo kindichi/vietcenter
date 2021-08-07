@@ -12,7 +12,7 @@
 */
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/danh-sach-tour/{slug}', 'HomeController@toursList')->name('home.toursList');
-Route::get('/chi-tiet-tour/{slug}', 'HomeController@detailTour')->name('home.tourDetail');
+Route::get('/chi-tiet-tour/{slug}', 'HomeController@tourDetail')->name('home.tourDetail');
 Route::get('/dat-tour/{slug}', 'HomeController@bookTour')->name('home.bookTour');
 Route::post('/dat-tour/{slug}', 'HomeController@postBookTour')->name('home.postBookTour');
 Route::get('/tin-tuc', 'HomeController@allNews')->name('home.news');
